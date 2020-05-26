@@ -43,5 +43,5 @@ deploy:
     - developer
 
 after_script:
-    -echo "App deployed"   
-    -echo "CI-CD successful"
+    - echo "App deployed"   
+    - echo "CI-CD successful"
