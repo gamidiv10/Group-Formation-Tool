@@ -1,0 +1,47 @@
+image: java:8-jdk
+
+stages:
+  - build
+  - test
+  - deploy
+
+before_script:
+  - echo "CI-CD started" 
+  - export GRADLE_USER_HOME=`pwd`/.gradle  
+  - echo "CI-CI start"
+  
+cache:
+  paths:
+    - .gradle/wrapper
+    - .gradle/caches
+
+build:
+  stage: build
+  script: 
+    - chmod +x ./gradlew
+    - ./gradlew assemble
+  artifacts:
+    paths:
+      - build/libs/*.jar
+  tags:
+    - dalfcs_gitlab_docker_ci
+  
+test:
+  stage: test
+  script:     
+    -  chmod +x ./gradlew
+    - ./gradlew check
+  tags:
+    - dalfcs_gitlab_docker_ci
+
+deploy:
+  stage: deploy
+  script:
+    - git remote add heroku https://heroku:$HEROKU_API_KEY_TESTSERVER@git.heroku.com/adv-sdc-grp2-test || true
+    - git push -f heroku HEAD:master
+  only:
+    - developer
+
+after_script:
+    - echo "App deployed"   
+    - echo "CI-CD successful"
