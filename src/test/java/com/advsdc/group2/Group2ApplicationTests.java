@@ -1,4 +1,4 @@
-package com.advsdc.group2.Group2;
+package com.advsdc.group2;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
