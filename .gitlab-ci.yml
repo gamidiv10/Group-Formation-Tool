@@ -40,6 +40,6 @@ deploy:
     - git remote add heroku https://heroku:$HEROKU_API_KEY_TESTSERVER@git.heroku.com/test-server-app-sdc.git || true
     - git push -f heroku HEAD:master
   only:
-     - developer
+     - develop
   tags:
     - ugrad
