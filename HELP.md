@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'com.adv-sdc.group2.Group2' is invalid and this project uses 'com.advsdc.group2.Group2' instead.
+* The original package name 'com.adv-sdc.group2.Group2' is invalid and this project uses 'com.advsdc.group2.tests' instead.
 
 # Getting Started
 
