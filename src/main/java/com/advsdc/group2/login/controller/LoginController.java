@@ -25,11 +25,14 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String loginSubmit(@ModelAttribute UserCredentials userCred, Model model)
+    public String loginSubmit(@ModelAttribute UserCredentials userCred)
     {
         UserCredentials userCredFromDb = new UserCredentials();
         LoginDaoImpl ld = new LoginDaoImpl();
         userCredFromDb = ld.getUserCredentials(userCred.getUserId());
-        return "result";
+        if(userCredFromDb.getUserId() != null) {
+            return "result";
+        }
+        return null;
     }
 }

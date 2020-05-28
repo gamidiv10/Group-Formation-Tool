@@ -5,10 +5,9 @@ import com.advsdc.group2.login.models.UserCredentials;
 import java.sql.*;
 
 public class LoginDaoImpl implements LoginDao{
+    UserCredentials uc = new UserCredentials();
+
     public UserCredentials getUserCredentials(String userId){
-
-        UserCredentials uc = new UserCredentials();
-
         try{
             Connection con= DriverManager.getConnection(
                     "jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_2_DEVINT","CSCI5308_2_DEVINT_USER","CSCI5308_2_DEVINT_2009");
@@ -18,12 +17,12 @@ public class LoginDaoImpl implements LoginDao{
             ResultSet resultSet = statement.executeQuery();
             System.out.println(resultSet);
             while (resultSet.next()) {
-                System.out.println(resultSet.getString("UserId"));
-
+                this.uc.setUserId(resultSet.getString("UserId"));
+                this.uc.setPassword(resultSet.getString("Password"));
             }
             con.close();
         }catch(Exception e){ System.out.println(e);}
-        return uc;
+        return this.uc;
     }
 
 }
