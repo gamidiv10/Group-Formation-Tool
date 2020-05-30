@@ -12,22 +12,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeRequests()
-//                .antMatchers( "/public/**").permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .loginPage("/login")
-//                .failureUrl("/login-error")
-//                .permitAll();
+        http
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers( "/login").permitAll()
+                .anyRequest().authenticated();
     }
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//
-//        auth.inMemoryAuthentication()
-//                .withUser(UserId)
-//                .password(Password)
-//                .roles("USER");
-    }
+
 }

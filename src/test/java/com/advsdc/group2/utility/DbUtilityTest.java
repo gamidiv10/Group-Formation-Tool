@@ -29,5 +29,10 @@ public class DbUtilityTest {
             e.printStackTrace();
         }
     }
+    @Test
+    public void getUserCredentialsTest(){
+        DbUtility dbUtility = new DbUtility();
+        assertNotNull(dbUtility.getUserCredentials("B00834696"));
+    }
 
 }

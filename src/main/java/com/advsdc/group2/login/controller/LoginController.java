@@ -33,7 +33,9 @@ public class LoginController {
     {
         LoginServiceImpl loginService = new LoginServiceImpl();
         boolean success = loginService.validateUser(userCredentials);
+        String jsonWebToken;
         if(success) {
+            jsonWebToken = loginService.generateJsonWebToken(userCredentials.getUserId());
             return "result";
         }
         model.addAttribute("userCred", new UserCredentials());
