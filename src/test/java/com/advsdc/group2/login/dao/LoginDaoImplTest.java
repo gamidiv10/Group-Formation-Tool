@@ -8,6 +8,6 @@ public class LoginDaoImplTest {
     @Test
     public void getUserCredentialsTest(){
         LoginDaoImpl loginDao = new LoginDaoImpl();
-        assertNotNull(loginDao.getUserCredentials("B00834696").getUserId());
+        assertNotNull(loginDao.getUserCredentials("B00834696"));
     }
 }
