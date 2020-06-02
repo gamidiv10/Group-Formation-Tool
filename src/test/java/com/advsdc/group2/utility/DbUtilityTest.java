@@ -14,11 +14,10 @@ public class DbUtilityTest {
         assertNotNull(dbUtility.connection);
     }
 
-    @Test
-    public void getUsersTest(){
-        DbUtility dbUtility = new DbUtility();
-        assertNotNull(dbUtility.getUsers());
-    }
+	/*
+	 * @Test public void getUsersTest(){ DbUtility dbUtility = new DbUtility();
+	 * assertNotNull(dbUtility.getUsers()); }
+	 */
     @Test
     public void closeConnectionTest(){
         DbUtility dbUtility = new DbUtility();

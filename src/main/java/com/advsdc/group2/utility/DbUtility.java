@@ -26,23 +26,14 @@ public class DbUtility {
 
 
     //Sample Retrieval Method
-    public ResultSet getUsers(){
-        try {
-            this.statement = this.connection.createStatement();
-            ResultSet rs = this.statement.executeQuery("select * from auth");
-            while(rs.next()){
-                System.out.println("DB Output: " + rs.getString("UserId"));
-            }
-            return rs;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println(e);
-        }
-        finally {
-            closeConnection();
-        }
-        return null;
-    }
+	/*
+	 * public ResultSet getUsers(){ try { this.statement =
+	 * this.connection.createStatement(); ResultSet rs =
+	 * this.statement.executeQuery("select * from auth"); while(rs.next()){
+	 * System.out.println("DB Output: " + rs.getString("UserId")); } return rs; }
+	 * catch (SQLException e) { e.printStackTrace(); System.out.println(e); }
+	 * finally { closeConnection(); } return null; }
+	 */
 
 
     public void closeConnection(){
