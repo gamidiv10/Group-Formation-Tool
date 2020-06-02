@@ -29,20 +29,7 @@ public class SignupServiceImpl implements SignupService {
         	System.out.println("User already exists in DB user_auth : "+userId);
         	return true;
         }
-//		try {
-//			while(userRs.next()) {
-//                String databaseUserId = userRs.getString("user_id");
-//                System.out.println("DB userid Output: " + databaseUserId);
-//                if(userId.equals(databaseUserId)){
-//                	System.out.println("User already exists in DB user_auth : "+userId);
-//                	return true;
-//                }
-//
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//			System.out.println(e);
-//		}
+
 		return false;
 	}
 
