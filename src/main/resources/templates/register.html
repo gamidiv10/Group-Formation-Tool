@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
 <head>
-    <title>Catme</title>
+    <title>Signup</title>
     <link rel="stylesheet">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <style>
@@ -23,7 +23,7 @@
 <form class="signup_form" th:action="@{/register}" th:object="${user}" method="POST">
     <div class="card bg-dark text-white" style="width: 500px; margin-left: 500px; margin-top: 100px">
 
-    <h1 style="margin-top: 20px; margin-bottom: 30px">CatMe Signup</h1>
+    <h1 style="margin-top: 20px; margin-bottom: 30px">Signup Form</h1>
         <div class="form-group">
 
         <input class="input_element" type="text" th:field="*{userId}" placeholder="Banner ID" required autofocus/>
