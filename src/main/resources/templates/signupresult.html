@@ -6,7 +6,12 @@
 </head>
 <body>
 	<h1>Result</h1>
+	<p th:text="'id: ' + ${user.userId}" />
+    <p th:text="'first name: ' + ${user.firstName}" />
+    <p th:text="'last name: ' + ${user.lastName}" />
+    <p th:text="'email: ' + ${user.email}" />  
     <a href="/register">Submit another form</a>
+    <br>
     <a href="/login">Login to system</a>
 </body>
 </html>
