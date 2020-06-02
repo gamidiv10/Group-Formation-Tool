@@ -6,7 +6,7 @@ public interface IUserAuthInfo {
 
 	public void setOneTimePassword(int oneTimePassword);
 
-	public void setOtpTime(String string);
+	public void setOtpTime(Timestamp otpTime);
 
 	public void setPassword(String password);
 

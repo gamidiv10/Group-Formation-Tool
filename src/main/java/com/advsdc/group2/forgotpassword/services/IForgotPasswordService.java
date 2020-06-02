@@ -12,9 +12,9 @@ public interface IForgotPasswordService {
 	
 	public String otpEmailGeneration(String email);
 	
-	public void oneTimePwdInsertion(String code, UserAuthInfo userAuth,IUserAuth userAuthDao);
+	public int oneTimePwdInsertion(String code, UserAuthInfo userAuth,IUserAuth userAuthDao);
 	
 	public void OTPValidation(String code, UserAuthInfo userAuth,IUserAuth userAuthDao);
 	
-	public void setNewPassword(UserAuthInfo userAuth,IUserAuth userAuthDao);
+	public int setNewPassword(UserAuthInfo userAuth,IUserAuth userAuthDao);
 }

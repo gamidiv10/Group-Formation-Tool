@@ -95,9 +95,10 @@ public class IForgotPasswordServiceImpl implements IForgotPasswordService {
 	}
 
 	@Override
-	public void oneTimePwdInsertion(String code, UserAuthInfo userAuth, IUserAuth userAuthDao) {
+	public int oneTimePwdInsertion(String code, UserAuthInfo userAuth, IUserAuth userAuthDao) {
 
-		userAuthDao.oneOTPInsertion(Integer.parseInt(code), userAuth);
+		int rows = userAuthDao.oneOTPInsertion(Integer.parseInt(code), userAuth);
+		return rows;
 
 	}
 
@@ -109,11 +110,11 @@ public class IForgotPasswordServiceImpl implements IForgotPasswordService {
 	}
 
 	@Override
-	public void setNewPassword(UserAuthInfo userAuth, IUserAuth userAuthDao) {
-		
-		userAuthDao.setNewPassword(userAuth, userAuthDao);
+	public int setNewPassword(UserAuthInfo userAuth, IUserAuth userAuthDao) {
+
+		int insertedRecord = userAuthDao.setNewPassword(userAuth, userAuthDao);
 		// TODO Auto-generated method stub
-		
+		return insertedRecord;
 	}
 
 }

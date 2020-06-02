@@ -42,7 +42,7 @@ public class UserAuthDaoImpl implements IUserAuth {
 
 	}
 
-	public void oneOTPInsertion(int code, UserAuthInfo userAuthInfo) {
+	public int oneOTPInsertion(int code, UserAuthInfo userAuthInfo) {
 		// TODO Auto-generated method stub
 
 		DbUtility dbConnection = new DbUtility();
@@ -64,6 +64,8 @@ public class UserAuthDaoImpl implements IUserAuth {
 		finally {
 			dbConnection.closeConnection();
 		}
+		
+		return 1;
 
 	}
 
@@ -103,10 +105,11 @@ public class UserAuthDaoImpl implements IUserAuth {
 	}
 
 	@Override
-	public void setNewPassword(UserAuthInfo userAuth, IUserAuth userAuthDao) {
+	public int setNewPassword(UserAuthInfo userAuth, IUserAuth userAuthDao) {
 
 		DbUtility dbConnection = new DbUtility();
 		Connection con = dbConnection.connection;
+		int records =0;
 
 		try {
 
@@ -116,7 +119,7 @@ public class UserAuthDaoImpl implements IUserAuth {
 			pst.setString(1, userAuth.getPassword());
 			
 			pst.setString(2, userAuth.getUser_id());
-			int records = pst.executeUpdate();
+			records = pst.executeUpdate();
 			System.out.println("number of records inserted " + records);
 
 		} catch (Exception e) {
@@ -126,6 +129,8 @@ public class UserAuthDaoImpl implements IUserAuth {
 		finally {
 			dbConnection.closeConnection();
 		}
+		
+		return records;
 
 	}
 

@@ -6,10 +6,10 @@ import com.advsdc.group2.forgotpassword.dao.IUserAuth;
 
 public class UserAuthInfo implements IUserAuthInfo {
 
-	int oneTimePassword;
-	Timestamp otpTime;
-	String password;
-	String user_id;
+	public int oneTimePassword;
+	public Timestamp otpTime;
+	public String password;
+	public String user_id;
 
 	public UserAuthInfo() {
 		super();
@@ -52,10 +52,13 @@ public class UserAuthInfo implements IUserAuthInfo {
 		this.user_id = user_id;
 	}
 
-	@Override
-	public void setOtpTime(String string) {
-		// TODO Auto-generated method stub
-
-	}
+	/*
+	 * @Override public void setOtpTime(String string) {
+	 * 
+	 * 
+	 * 
+	 * 
+	 * }
+	 */
 
 }
