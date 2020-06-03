@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-public class JwtUtility implements Serializable {
+public class JwtUtility implements Serializable, IJwtUtility {
 
     private String key = "Group2";
 

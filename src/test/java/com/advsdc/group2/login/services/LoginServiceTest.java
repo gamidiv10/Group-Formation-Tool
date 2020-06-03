@@ -1,5 +1,6 @@
 package com.advsdc.group2.login.services;
 
+import com.advsdc.group2.login.model.UserCredentialsMock;
 import com.advsdc.group2.login.models.UserCredentials;
 import org.junit.jupiter.api.Test;
 
@@ -9,11 +10,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class LoginServiceTest {
     @Test
     public void validateUserTest() {
-        LoginServiceImpl loginService = new LoginServiceImpl();
+        LoginServiceMock loginServiceMock = new LoginServiceMock();
+        UserCredentialsMock userCredentialsMock = new UserCredentialsMock();
         UserCredentials userCredentials = new UserCredentials();
-        userCredentials.setUserId("B00834696");
-        userCredentials.setPassword("Pass@1");
-        assertTrue(loginService.validateUser(userCredentials));
+        userCredentials.setUserId(userCredentialsMock.getUserId());
+        userCredentials.setPassword(userCredentialsMock.getPassword());
+        assertTrue(loginServiceMock.validateUser(userCredentials));
     }
 
     @Test

@@ -24,47 +24,6 @@ public class DbUtility {
         }
     }
 
-    public String getUserCredentials(String userId){
-        try{
-
-            PreparedStatement statement = connection.prepareStatement("select password from user_auth where user_id = ?");
-            statement.setString(1, userId);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                return resultSet.getString("password");
-            }
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        finally {
-            closeConnection();
-        }
-        return null;
-    }
-
-
-
-
-    //Sample Retrieval Method
-    public ResultSet getUsers(){
-        try {
-            this.statement = this.connection.createStatement();
-            ResultSet rs = this.statement.executeQuery("select * from auth");
-            while(rs.next()){
-                System.out.println("DB Output: " + rs.getString("UserId"));
-            }
-            return rs;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println(e);
-        }
-        finally {
-            closeConnection();
-        }
-        return null;
-    }
-
-
     public void closeConnection(){
         try {
             this.connection.close();

@@ -1,6 +1,6 @@
 package com.advsdc.group2.login.models;
 
-public class UserCredentials {
+public class UserCredentials implements IUserCredentials{
     private String userId;
     private String password;
 
