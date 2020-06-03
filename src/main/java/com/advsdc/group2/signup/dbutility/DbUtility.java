@@ -1,14 +1,14 @@
-package com.advsdc.group2.utility;
+package com.advsdc.group2.signup.dbutility;
 
 import java.sql.*;
 
 public class DbUtility {
     private final String USER_NAME;
     private final String PASSWORD;
-    private Statement statement;
     public Connection connection;
 
-    private static final String CONNECTION_STRING = "jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_2_DEVINT?serverTimezone=AST";
+
+    private static final String CONNECTION_STRING = "jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_2_DEVINT";
     public DbUtility() {
         this.USER_NAME = "CSCI5308_2_DEVINT_USER";
         this.PASSWORD = "CSCI5308_2_DEVINT_2009";
@@ -23,18 +23,6 @@ public class DbUtility {
             System.out.println(e);
         }
     }
-
-
-    //Sample Retrieval Method
-	/*
-	 * public ResultSet getUsers(){ try { this.statement =
-	 * this.connection.createStatement(); ResultSet rs =
-	 * this.statement.executeQuery("select * from auth"); while(rs.next()){
-	 * System.out.println("DB Output: " + rs.getString("UserId")); } return rs; }
-	 * catch (SQLException e) { e.printStackTrace(); System.out.println(e); }
-	 * finally { closeConnection(); } return null; }
-	 */
-
 
     public void closeConnection(){
         try {
