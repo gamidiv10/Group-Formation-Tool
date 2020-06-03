@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student</title>
+</head>
+<body>
+<form th:action="@{/coursehome}" method="get">
+<h1>Student Course Home</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Course Name</th>
+            <th scope="col">Course Number</th>
+            <th scope="col">Instructor Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="course : ${courseList}">
+            <td th:text="${course.courseId}"></td>
+            <td th:text="${course.courseName}"></td>
+            <td th:text="${course.courseDesc}"></td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+</body>
+</html>
