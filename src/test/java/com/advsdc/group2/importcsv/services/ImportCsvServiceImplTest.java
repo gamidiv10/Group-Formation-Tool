@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.BufferedReader;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,7 +21,8 @@ public class ImportCsvServiceImplTest {
             FileInputStream fileInputStream = new FileInputStream(csvFile);
             assertDoesNotThrow(() -> new InputStreamReader(fileInputStream));
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
-            assertNotNull(importCsvService.readFromCsv(inputStreamReader));
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            assertDoesNotThrow(() -> bufferedReader.read());
         }
         catch(IOException e){
             e.printStackTrace();
