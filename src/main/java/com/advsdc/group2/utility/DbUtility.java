@@ -29,7 +29,7 @@ public class DbUtility {
     public ResultSet getUsers(){
         try {
             this.statement = this.connection.createStatement();
-            ResultSet rs = this.statement.executeQuery("select * from auth");
+            ResultSet rs = this.statement.executeQuery("select * from user_auth");
             while(rs.next()){
                 System.out.println("DB Output: " + rs.getString("UserId"));
             }
