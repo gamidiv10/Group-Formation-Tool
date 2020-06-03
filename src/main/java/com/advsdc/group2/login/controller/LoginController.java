@@ -1,5 +1,6 @@
 package com.advsdc.group2.login.controller;
 
+import com.advsdc.group2.course.controller.HomePageController;
 import com.advsdc.group2.login.models.UserCredentials;
 import com.advsdc.group2.login.services.LoginServiceImpl;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,7 @@ public class LoginController {
         return "login";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/home")
     public String loginSubmit(@ModelAttribute UserCredentials userCredentials, Model model)
     {
         LoginServiceImpl loginService = new LoginServiceImpl();
@@ -25,7 +26,8 @@ public class LoginController {
         String jsonWebToken;
         if(success) {
             jsonWebToken = loginService.generateJsonWebToken(userCredentials.getUserId());
-            return "result";
+            model.addAttribute("token", jsonWebToken);
+            return new HomePageController().courseHome(jsonWebToken, model);
         }
         model.addAttribute("userCred", new UserCredentials());
         model.addAttribute("loginError", true);
