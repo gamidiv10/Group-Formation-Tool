@@ -7,7 +7,10 @@ public class PasswordEncryption implements PasswordEncoder {
 
     @Override
     public String encode(CharSequence rawPassword) {
-        return BCrypt.hashpw(rawPassword.toString(), BCrypt.gensalt());
+        if(rawPassword!=null) {
+        	return BCrypt.hashpw(rawPassword.toString(), BCrypt.gensalt());
+        }
+		return null;
     }
 
     @Override

@@ -16,10 +16,21 @@
         .input_element{
             border-radius: 5px;
         }
+		.result{
+            text-align: center;
+            margin-top: 30px;
+            horiz-align: center;
+            vertical-align: center;
+        }
+        .input_element{
+            border-radius: 5px;
+        }
     </style>
 </head>
 
 <body>
+<div th:if="${form}">
+
 <form class="signup_form" th:action="@{/register}" th:object="${user}" method="POST">
     <div class="card bg-dark text-white" style="width: 500px; margin-left: 500px; margin-top: 100px">
 
@@ -64,6 +75,25 @@
     </div>
 
 </form>
+
+</div>
+
+<div th:if="${result}">
+	<div class="result"> 
+	<div class="card bg-dark text-white" style="width: 500px; margin-left: 500px; margin-top: 100px">
+	
+	<h1 style="margin-top: 20px; margin-bottom: 30px">Signup Successfull</h1>
+	<p th:text="'id: ' + ${user.userId}" />
+    <p th:text="'first name: ' + ${user.firstName}" />
+    <p th:text="'last name: ' + ${user.lastName}" />
+    <p th:text="'email: ' + ${user.email}" />  
+    <a href="/register">Submit another form</a>
+    <br>
+    <a href="/login">Login to system</a>
+	
+	</div>
+	</div>
+</div>
 
 </body>
 </html>

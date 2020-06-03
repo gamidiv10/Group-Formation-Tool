@@ -11,9 +11,9 @@ public class SignupServiceImpl implements SignupService {
 	private SignupDao signupDaoImpl;;
 	
 	@Override
-	public void createUser(User user) {
+	public boolean createUser(User user) {
 		this.signupDaoImpl = new SignupDaoImpl();
-		signupDaoImpl.setUserDetails(user);		
+		return signupDaoImpl.setUserDetails(user);		
 	}
 	
 	@Override
@@ -23,18 +23,25 @@ public class SignupServiceImpl implements SignupService {
 		List<String> userList = signupDaoImpl.getUsers();
 		System.out.println("Obtained list: "+userList);
         System.out.println("given userId : "+userId);
-        boolean userExists = userList.contains(userId);
-        System.out.println("userExists value : "+userExists);
-        if(userExists) {
-        	System.out.println("User already exists in DB user_auth : "+userId);
-        	return true;
+        if(userList !=null) {
+             boolean userExists = userList.contains(userId);
+             System.out.println("userExists value : "+userExists);
+             if(userExists) {
+             	System.out.println("User already exists in DB user_auth : "+userId);
+             	return true;
+             }
+        	
         }
+       
 
 		return false;
 	}
 
 	@Override
 	public boolean isPasswordMatched(String password, String matchingPassword) {
+		System.out.println(""+password+" "+matchingPassword);
+		if(password == null)
+			return false;
 		if(password.equals(matchingPassword))
 			return true;
 		else

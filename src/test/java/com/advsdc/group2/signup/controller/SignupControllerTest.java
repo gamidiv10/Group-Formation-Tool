@@ -32,20 +32,19 @@ public class SignupControllerTest {
         .andReturn();
 	}
 	
-//	@Test
-//    public void registerSubmitTest() throws Exception {
-//        
-//		this.viewResolver = new InternalResourceViewResolver();
-//        viewResolver.setPrefix("/WEB-INF/jsp/view/");
-//        viewResolver.setSuffix(".jsp");
-//		this.mockMvc = MockMvcBuilders.standaloneSetup(new SignupController()).setViewResolvers(viewResolver).build();
-//
-//		this.mockMvc.perform(MockMvcRequestBuilders.post("/register"))
-//        .andExpect(status().isOk())
-//        .andExpect(view().name("register"))
-//        .andExpect(view().name("signupresult"))
-//        .andDo(MockMvcResultHandlers.print())
-//        .andReturn();    
-//        }
+	@Test
+    public void registerSubmitTest() throws Exception {
+        
+		this.viewResolver = new InternalResourceViewResolver();
+        viewResolver.setPrefix("/WEB-INF/jsp/view/");
+        viewResolver.setSuffix(".jsp");
+		this.mockMvc = MockMvcBuilders.standaloneSetup(new SignupController()).setViewResolvers(viewResolver).build();
+
+		this.mockMvc.perform(MockMvcRequestBuilders.post("/register"))
+        .andExpect(status().isOk())
+        .andExpect(view().name("register"))
+        .andDo(MockMvcResultHandlers.print())
+        .andReturn();    
+        }
 
 }

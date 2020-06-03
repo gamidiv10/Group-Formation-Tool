@@ -8,7 +8,7 @@ public class DbUtility {
     public Connection connection;
 
 
-    private static final String CONNECTION_STRING = "jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_2_DEVINT";
+    private static final String CONNECTION_STRING = "jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_2_DEVINT?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     public DbUtility() {
         this.USER_NAME = "CSCI5308_2_DEVINT_USER";
         this.PASSWORD = "CSCI5308_2_DEVINT_2009";
@@ -26,7 +26,8 @@ public class DbUtility {
 
     public void closeConnection(){
         try {
-            this.connection.close();
+            if(this.connection!=null)
+            	this.connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println(e);

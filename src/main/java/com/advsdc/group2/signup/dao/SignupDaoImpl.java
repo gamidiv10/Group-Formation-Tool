@@ -53,14 +53,17 @@ public class SignupDaoImpl implements SignupDao{
     }
 	
 	@Override
-	public String setUserDetails(User user){
-        this.dbUtility = new DbUtility();
+	public boolean setUserDetails(User user){
+        boolean status = true;
+		this.dbUtility = new DbUtility();
         PreparedStatement statementForUserAuthTable = null;
         PreparedStatement statementForUserTable = null;
         PreparedStatement statementForUserRoleMapTable = null;
         this.passwordEncryption = new PasswordEncryption();
+        if(user!=null)
+        {
         String encryptedPassword = passwordEncryption.encode(user.getPassword());
-
+        
         try{
 
             statementForUserAuthTable = dbUtility.connection.prepareStatement("INSERT INTO user_auth(user_id,password) VALUES(?,?)");
@@ -87,46 +90,59 @@ public class SignupDaoImpl implements SignupDao{
 
         }catch(Exception e){
             System.out.println(e);
+            status = false;
         }
         finally {
         	try {
-				statementForUserAuthTable.close();
+				if(statementForUserAuthTable!=null)
+					statementForUserAuthTable.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 				System.out.println(e);
 			}
         	try {
-				statementForUserTable.close();
+				if(statementForUserTable!=null)
+					statementForUserTable.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 				System.out.println(e);
 			}
         	try {
-				statementForUserRoleMapTable.close();
+				if(statementForUserRoleMapTable!=null)
+					statementForUserRoleMapTable.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 				System.out.println(e);
 			}
             dbUtility.closeConnection();
         }
-        return null;
-    }
+        
+        }
+        return status;
+        
+	}
 
 	@Override
 	public List<String> getUsers() {
         this.dbUtility = new DbUtility();
         Statement statementForGetUsersFromUserAuthTable = null;
         ResultSet rs = null;
+        List<String> userNamesList = null;
         
         try {
-            statementForGetUsersFromUserAuthTable= dbUtility.connection.createStatement();
-            rs = statementForGetUsersFromUserAuthTable.executeQuery("select * from user_auth");
-            List<String> userNamesList = new ArrayList<String>();
-            while(rs.next()) {
-				userNamesList.add(rs.getString("user_id"));
-                }
-            System.out.println(userNamesList);
-            return userNamesList;
+            System.out.println("get users");
+        	if(dbUtility.connection!=null) {
+        		
+        		statementForGetUsersFromUserAuthTable= dbUtility.connection.createStatement();
+            	rs = statementForGetUsersFromUserAuthTable.executeQuery("select * from user_auth");
+            	userNamesList = new ArrayList<String>();
+            	while(rs.next()) {
+            		userNamesList.add(rs.getString("user_id"));
+                	}
+            	System.out.println(userNamesList);
+        		
+        	}
+        		
         }        
         catch (SQLException e) {
             e.printStackTrace();
@@ -134,19 +150,21 @@ public class SignupDaoImpl implements SignupDao{
         }
         finally {
         	try {
-				rs.close();
+        		if(rs!=null)
+    				rs.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 				System.out.println(e);
 			}
         	try {
-				statementForGetUsersFromUserAuthTable.close();
+				if(statementForGetUsersFromUserAuthTable!=null)
+					statementForGetUsersFromUserAuthTable.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 				System.out.println(e);
 			}
             dbUtility.closeConnection();
         }
-        return null;
+        return userNamesList;
 	}
 }
