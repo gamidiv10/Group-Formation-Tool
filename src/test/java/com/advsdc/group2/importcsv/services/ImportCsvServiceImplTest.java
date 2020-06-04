@@ -42,7 +42,7 @@ public class ImportCsvServiceImplTest {
 
     }
     @Test
-    public void sendEmail(){
+    public void sendEmailTest(){
         User user = new User();
         user.setEmail("vamsi.gamidi01@gmail.com");
         user.setUserId("vamsig10");
@@ -53,6 +53,11 @@ public class ImportCsvServiceImplTest {
         ImportCsvServiceImpl importCsvService = new ImportCsvServiceImpl();
         assertDoesNotThrow(() -> importCsvService.sendEmail(user));
 
+    }
+    @Test
+    public void enrollInCourseTest(){
+        ImportCsvDaoMock importCsvDaoMock = new ImportCsvDaoMock();
+        assertDoesNotThrow(() -> importCsvDaoMock.enrollInCourse("userId", "courseId"));
     }
 
 }
