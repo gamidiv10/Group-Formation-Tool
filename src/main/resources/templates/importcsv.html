@@ -1,27 +1,50 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 <head>
-    <meta charset="UTF-8">
-    <title>CatMe</title>
+    <title>Import CSV</title>
+    <link rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <style>
-        h1{
-            text-align: center;
-            margin-top: 40px;
-        }
         .md-form{
             text-align: center;
-            margin-top: 100px;
+            margin-top: 30px;
+            horiz-align: center;
+            vertical-align: center;
         }
-
+        .input_element{
+            border-radius: 5px;
+        }
+		.input-file{
+            text-align: center;
+            margin-top: 30px;
+            horiz-align: center;
+            vertical-align: center;
+        }
+        .input_element{
+            border-radius: 5px;
+        }
     </style>
 </head>
+
 <body>
-<h1>Import Student List</h1>
 <form class="md-form" method="post" th:action="@{/importcsv}" enctype="multipart/form-data">
-    <input type="file" id="fileinput" class="fileinput" name="file">
-    <button class="btn btn-primary btn-sm" type="submit">Submit</button>
+    <div class="card bg-dark text-white" style="width: 500px; margin-left: 500px; margin-top: 100px">
+	
+	<h1 style="margin-top: 20px; margin-bottom: 30px">Import Students List</h1></br>
+	<h7 style="margin-top: 0px; margin-bottom: -12px">Slect a .csv file</h7>
+
+	<div class="input-file">
+	<input type="file" id="fileinput" class="fileinput" name="file" style="width:250px">
+	</div></br>
+	
+		<div class="submit-button"></br>
+            <button class="btn btn-primary btn-sm" type="submit">Submit</button>
+        </div></br>
     <p th:text="${message}"/>
+	
+	</div>
 </form>
 </body>
 </html>
