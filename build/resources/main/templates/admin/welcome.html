@@ -1,10 +1,17 @@
 <!DOCTYPE HTML>
 <html xmlns:th="https://www.thymeleaf.org">
+<link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+        crossorigin="anonymous"
+/>
 <head>
     <title>Welcome Admin</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+<div th:replace="fragments/links ::headerNav"></div>
 <h1 th:text=${welcome_message} />
 <!--<h1 th:text = ${welcome_message} />-->
 <!--  <form action="#" th:action="@{/greeting}" th:object="${greeting}" method="post">

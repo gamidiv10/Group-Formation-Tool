@@ -4,8 +4,15 @@
     <title>Welcome Admin</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+            crossorigin="anonymous"
+    />
 </head>
 <body>
+<div th:replace="fragments/links ::headerNav"></div>
 <h1>Course Management Panel</h1>
 <a th:href="@{/admin/}"><button class="btn btn-primary" align= "left"> Go To Home</button></a>
 <hr>
