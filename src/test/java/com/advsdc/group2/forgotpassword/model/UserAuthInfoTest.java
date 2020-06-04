@@ -11,7 +11,7 @@ import com.advsdc.group2.forgotpassword.dao.UserAuthDaoImpl;
 import com.advsdc.group2.forgotpassword.dao.UserDetailsDaoImpl;
 import com.advsdc.group2.forgotpassword.doa.UserAuthDetailsDoaMock;
 import com.advsdc.group2.model.UserAuthInfo;
-import com.advsdc.group2.signup.security.PasswordEncryption;
+import com.advsdc.group2.security.PasswordEncryption;
 
 public class UserAuthInfoTest {
 
