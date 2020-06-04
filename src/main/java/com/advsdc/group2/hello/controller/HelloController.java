@@ -16,7 +16,4 @@ public class HelloController {
 	    hs.greeting(model);
 	    return "greeting";
 	  }
-	
-	
-
 }

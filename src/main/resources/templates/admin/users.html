@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Welcome Admin</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Instructor Assignment Panel</h1>
+<a th:href="@{/admin/}"><button class="btn btn-primary" align= "left"> Go To Home</button></a>
+<hr>
+<div th:if="${crs_map.message}" class="alert alert-primary" role="alert">
+    <p th:text="${crs_map.message}"></p>
+</div>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">User ID</th>
+        <th scope="col">User Name</th>
+        <th scope="col">Course Id</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each = "user: ${user_list}">
+        <form class="form-control" th:action="@{/admin/assignInstructor/(id=${user.getUserId()})}" th:object="${crs_map}" th:method="POST">
+
+                <td th:text="${user.getUserId()}"/>
+                <td th:text="${user.getUserName()}" />
+                <td>
+                    <input type="text" class="form-control" th:field="*{courseId}" placeholder="Enter Course Id">
+                </td>
+                <td>
+                    <button class="btn btn-success" type="submit">Assign Instructor</button>
+                </td>
+        </form>
+    </tr>
+
+
+    </tbody>
+</table>
+</body>
+</html>
