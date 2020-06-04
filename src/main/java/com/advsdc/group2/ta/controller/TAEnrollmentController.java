@@ -15,14 +15,20 @@ import com.advsdc.group2.model.User;
 import com.advsdc.group2.ta.services.ITaEnrollmentService;
 import com.advsdc.group2.ta.services.ITaEnrollmentServiceImpl;
 import com.advsdc.group2.ta.taforms.TAEnrollmentForms;
+import com.advsdc.group2.utility.JwtUtility;
 
 @Controller
 public class TAEnrollmentController {
 	IUserDetailsDao userInfo = new UserDetailsDaoImpl();
 
-	@GetMapping("/taEnrollment/{courseID}")
-	public String initialLanding(@PathVariable("courseID") String courseID, Model model,
-			@ModelAttribute TAEnrollmentForms enrollTA) {
+	@GetMapping("/taEnrollment/{courseID}/{token}")
+	public String initialLanding(@PathVariable("courseID") String courseID, @PathVariable("token") String token,
+	 Model model, @ModelAttribute TAEnrollmentForms enrollTA) {
+		
+		JwtUtility jwtUtility = new JwtUtility();
+		if(jwtUtility.isTokenExpired(token)){
+			return "login";
+		}
 
 		model.addAttribute("enrollTA", enrollTA);
 		ITaEnrollmentService ta = new ITaEnrollmentServiceImpl();

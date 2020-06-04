@@ -24,7 +24,6 @@ public class ImportCsvServiceImpl implements IImportCsvService {
             while ((row = bufferedReader.readLine()) != null) {
                 arrayList.add(Arrays.asList(row.split(",")));
             }
-
             for(int i = 0; i < arrayList.size(); i++){
                 User user = new User();
                 user.setFirstName(arrayList.get(i).get(0));
@@ -59,7 +58,6 @@ public class ImportCsvServiceImpl implements IImportCsvService {
 
     @Override
     public void sendEmail(User user){
-
         String toAddress = user.getEmail();
         String fromAddress = "advsdcgrp2.catme@gmail.com";
         String host = "smtp.gmail.com";
@@ -69,7 +67,6 @@ public class ImportCsvServiceImpl implements IImportCsvService {
         properties.setProperty("mail.smtp.port", "587");
         properties.setProperty("mail.smtp.auth", "true");
         Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
-
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(fromAddress, "msdcpkaidutytdxs");
             }
@@ -82,7 +79,6 @@ public class ImportCsvServiceImpl implements IImportCsvService {
                     "User ID:  <b>" + user.getUserId()
                             + "</b> <br> Password: <b>" + user.getPassword() + "</b>",
                     "text/html; charset=utf-8");
-
             message.setSubject("CatMe account created");
             Transport.send(message);
             System.out.println("Email sent successfully..");

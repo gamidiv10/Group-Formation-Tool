@@ -19,11 +19,10 @@ public class HomePageController {
         if(!jwtUtility.isTokenExpired(token)){
             LoginServiceImpl loginService = new LoginServiceImpl();
             ArrayList<Course> courseList = loginService.getCourses(jwtUtility.getUsernameFromToken(token));
+            model.addAttribute("token", token);
             model.addAttribute("courseList", courseList);
             return "logged_in";
         }
         return "login";
     }
-
-
 }

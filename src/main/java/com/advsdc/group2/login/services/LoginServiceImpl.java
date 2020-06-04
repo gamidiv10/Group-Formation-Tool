@@ -5,7 +5,6 @@ import com.advsdc.group2.login.dao.LoginDaoImpl;
 import com.advsdc.group2.login.models.UserCredentials;
 import com.advsdc.group2.security.PasswordEncryption;
 import com.advsdc.group2.utility.JwtUtility;
-
 import java.util.ArrayList;
 import java.util.List;
 

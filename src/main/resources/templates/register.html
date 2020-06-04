@@ -29,6 +29,8 @@
 </head>
 
 <body>
+<div th:replace="fragments/links ::headerNav"></div>
+
 <div th:if="${form}">
 
 <form class="signup_form" th:action="@{/register}" th:object="${user}" method="POST">

@@ -22,8 +22,8 @@ public class LoginController {
     public String loginSubmit(@ModelAttribute UserCredentials userCredentials, Model model)
     {
         LoginServiceImpl loginService = new LoginServiceImpl();
-        boolean success = loginService.validateUser(userCredentials);
-        String jsonWebToken;
+        final boolean success = loginService.validateUser(userCredentials);
+        final String jsonWebToken;
         if(success) {
             jsonWebToken = loginService.generateJsonWebToken(userCredentials.getUserId());
             model.addAttribute("token", jsonWebToken);

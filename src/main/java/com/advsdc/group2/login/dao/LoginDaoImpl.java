@@ -1,11 +1,10 @@
 package com.advsdc.group2.login.dao;
+
 import com.advsdc.group2.course.models.Course;
 import com.advsdc.group2.utility.DbUtility;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Currency;
-import java.util.List;
 
 public class LoginDaoImpl implements ILoginDao {
 

@@ -1,7 +1,9 @@
 package com.advsdc.group2.course.controller;
 
 import com.advsdc.group2.course.services.ImportCsvServiceImpl;
+import com.advsdc.group2.utility.JwtUtility;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,12 +23,10 @@ public class ImportCsvController {
 
     @PostMapping("/importcsv")
     public String receiveFile(@RequestParam("file") MultipartFile file, RedirectAttributes attributes) {
-
         if (file.isEmpty()) {
             attributes.addFlashAttribute("message", "Please select a file to upload.");
             return "redirect:/importcsv";
         }
-
         ImportCsvServiceImpl importCsvService = new ImportCsvServiceImpl();
         ArrayList<List<String>> arrayList = new ArrayList<>();
         try {
