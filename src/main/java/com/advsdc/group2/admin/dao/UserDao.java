@@ -1,7 +1,7 @@
 package com.advsdc.group2.admin.dao;
 
 import com.advsdc.group2.model.CourseUserMap;
-import com.advsdc.group2.model.User;
+import com.advsdc.group2.model.UserData;
 import com.advsdc.group2.model.UserList;
 import com.advsdc.group2.utility.DbUtility;
 
@@ -20,7 +20,7 @@ public class UserDao implements IUserDao {
         String userId = "";
         String first_name = "";
         String last_name = "";
-        ArrayList<User> uList = new ArrayList<>();
+        ArrayList<UserData> uList = new ArrayList<>();
 
         DbUtility dbConnection = new DbUtility();
         Connection con = dbConnection.connection;
@@ -52,7 +52,7 @@ public class UserDao implements IUserDao {
                     }
                 }
 
-                User user = new User();
+                UserData user = new UserData();
                 user.setUserId(userId);
                 user.setUserName(first_name +" "+ last_name);
                 user.setInstructor(isInstructor);

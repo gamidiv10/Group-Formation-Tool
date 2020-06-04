@@ -16,8 +16,8 @@ class UserListTest {
     @BeforeTestClass
     public void getUserList() {
         assertNull(uList.getUserList());
-        User user = new User();
-        ArrayList<User> usrList = new ArrayList<>();
+        UserData user = new UserData();
+        ArrayList<UserData> usrList = new ArrayList<>();
         user.setUserId("B00841446");
         user.setUserName("Akash Maniar");
         usrList.add(user);
@@ -28,8 +28,8 @@ class UserListTest {
 
     @Test
     void setUserList() {
-        User user = new User();
-        ArrayList<User> usr = new ArrayList<>();
+        UserData user = new UserData();
+        ArrayList<UserData> usr = new ArrayList<>();
         user.setInstructor(true);
         user.setUserName("Akash Maniar");
         user.setUserId("B00841466");

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+<head>
+    <title>Signup</title>
+    <link rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        .signup_form{
+            text-align: center;
+            margin-top: 30px;
+            horiz-align: center;
+            vertical-align: center;
+        }
+        .input_element{
+            border-radius: 5px;
+        }
+		.result{
+            text-align: center;
+            margin-top: 30px;
+            horiz-align: center;
+            vertical-align: center;
+        }
+        .input_element{
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+<div th:replace="fragments/links ::headerNav"></div>
+
+<div th:if="${form}">
+
+<form class="signup_form" th:action="@{/register}" th:object="${user}" method="POST">
+    <div class="card bg-dark text-white" style="width: 500px; margin-left: 500px; margin-top: 100px">
+
+    <h1 style="margin-top: 20px; margin-bottom: 30px">Signup Form</h1>
+        <div class="form-group">
+
+        <input class="input_element" type="text" th:field="*{userId}" placeholder="Banner ID" required autofocus/>
+        </div>
+		<div class="form-group">
+
+        <input class="input_element" type="text" th:field="*{firstName}" placeholder="First Name" required autofocus/>
+        </div>
+        <div class="form-group">
+		
+		<input class="input_element" type="text" th:field="*{lastName}" placeholder="Last Name" required autofocus/>
+        </div>
+		<div class="form-group">
+		
+		<input class="input_element" type="email" th:field="*{email}" placeholder="Email" required autofocus/>
+        </div>
+        <div class="form-group">
+
+        <input class="input_element" type="password" th:field="*{password}" placeholder="Password" required/>
+        </div>
+		<div class="form-group">
+
+        <input class="input_element" type="password" th:field="*{matchingPassword}" placeholder="Conform Password" required/>
+        </div>
+        <div class="form-group">
+                <button type="submit" class="btn btn-light">Signup</button>
+        </div>
+        <div class="form-group">
+            <a href="/login">Already have an account? Login</a>
+        </div>
+		<div class="form-group">
+            <a href="/forgotpassword">Forgot Password?</a>
+        </div>
+        <p th:if="${userIdError}">User already exists</p>
+		<p th:if="${passwordMatchError}">Password did not match</p>
+		<br>
+
+    </div>
+
+</form>
+
+</div>
+
+<div th:if="${result}">
+	<div class="result"> 
+	<div class="card bg-dark text-white" style="width: 500px; margin-left: 500px; margin-top: 100px">
+	
+	<h1 style="margin-top: 20px; margin-bottom: 30px">Signup Successfull</h1>
+	<p th:text="'id: ' + ${user.userId}" />
+    <p th:text="'first name: ' + ${user.firstName}" />
+    <p th:text="'last name: ' + ${user.lastName}" />
+    <p th:text="'email: ' + ${user.email}" />  
+    <a href="/register">Submit another form</a>
+    <br>
+    <a href="/login">Login to system</a>
+	
+	</div>
+	</div>
+</div>
+
+</body>
+</html>

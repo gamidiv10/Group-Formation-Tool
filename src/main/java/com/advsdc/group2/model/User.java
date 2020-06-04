@@ -1,33 +1,52 @@
 package com.advsdc.group2.model;
 
-public class User implements IUser{
-    private String userId;
-    private String userName;
-    private boolean isInstructor;
+import com.advsdc.group2.forgotpassword.dao.IUserDetailsDao;
 
-    public String getUserId() {
-        return userId;
-    }
+public class User implements IUserInfo {
+	public String first_name;
+	public String last_name;
+	public String email;
+	public String user_id;
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
+	public User() {
+		super();
+	}
 
-    public String getUserName() {
-        return userName;
-    }
+	public User(String bannerID, IUserDetailsDao user) {
+		user.getUserInfo(bannerID, this);
 
+	}
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
 
-    public boolean isInstructor() {
-        return isInstructor;
-    }
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
+	}
 
-    public void setInstructor(boolean instructor) {
-        isInstructor = instructor;
-    }
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getUser_id() {
+		return user_id;
+	}
+
+	public String getFirst_name() {
+		return first_name;
+	}
+
+	public String getLast_name() {
+		return last_name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
 
 }

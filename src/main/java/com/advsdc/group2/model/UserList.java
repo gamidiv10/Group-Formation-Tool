@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class UserList implements IUserList {
 
-    static ArrayList<User> userList;
+    static ArrayList<UserData> userList;
 
-    public ArrayList<User> getUserList() {
+    public ArrayList<UserData> getUserList() {
         return userList;
     }
 
-    public void setUserList(ArrayList<User> uL) {
+    public void setUserList(ArrayList<UserData> uL) {
         this.userList = uL;
     }
 }

@@ -1,5 +1,33 @@
-<div th:fragment="links" xmlns:th="https://www.thymeleaf.org">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<div th:fragment="links">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </div>
+
+<div th:fragment="headerNav">
+	<nav class="navbar navbar-dark bg-dark">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<span class="navbar-brand">Group Formation Tool</span>
+			</div>
+			<form th:action="@{/login}">
+				<button type="submit" style="float: right;" class="btn btn-dark">Logout</button>
+		</form>
+		</div>
+	</nav>
+
+</div>
+
+
+<!-- <div th:fragment="header">
+	<nav class="navbar navbar-dark">
+		<div class="navbar-header">
+			<span class="navbar-brand">Group Formation Tool</span>
+		</div>
+
+	</nav>
+</div> -->

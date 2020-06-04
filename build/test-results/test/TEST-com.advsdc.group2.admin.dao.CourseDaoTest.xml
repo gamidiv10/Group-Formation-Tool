@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.advsdc.group2.admin.dao.CourseDaoTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-06-04T17:15:33" hostname="ADMIN" time="0.025">
+<testsuite name="com.advsdc.group2.admin.dao.CourseDaoTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-06-04T18:30:52" hostname="ADMIN" time="0.039">
   <properties/>
-  <testcase name="deleteCourse()" classname="com.advsdc.group2.admin.dao.CourseDaoTest" time="0.023"/>
-  <testcase name="addCourse()" classname="com.advsdc.group2.admin.dao.CourseDaoTest" time="0.001"/>
+  <testcase name="deleteCourse()" classname="com.advsdc.group2.admin.dao.CourseDaoTest" time="0.024"/>
+  <testcase name="addCourse()" classname="com.advsdc.group2.admin.dao.CourseDaoTest" time="0.015"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

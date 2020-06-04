@@ -2,6 +2,7 @@ package com.advsdc.group2.admin.dao;
 
 import com.advsdc.group2.model.IUser;
 import com.advsdc.group2.model.User;
+import com.advsdc.group2.model.UserData;
 import org.springframework.test.context.event.annotation.BeforeTestClass;
 import org.springframework.util.Assert;
 
@@ -13,7 +14,7 @@ class UserDaoTest {
     @BeforeTestClass
     void fetchUsers() {
         IUserDao userDao = new UserDaoTestMock();
-        IUser user = new User();
+        IUser user = new UserData();
         assertNull(user.getUserId());
         assertNull(user.getUserName());
         assertNull(user.isInstructor());
