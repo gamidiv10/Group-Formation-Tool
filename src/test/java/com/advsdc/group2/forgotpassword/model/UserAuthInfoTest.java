@@ -1,6 +1,7 @@
 package com.advsdc.group2.forgotpassword.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.sql.Timestamp;
 
@@ -10,6 +11,7 @@ import com.advsdc.group2.forgotpassword.dao.UserAuthDaoImpl;
 import com.advsdc.group2.forgotpassword.dao.UserDetailsDaoImpl;
 import com.advsdc.group2.forgotpassword.doa.UserAuthDetailsDoaMock;
 import com.advsdc.group2.model.UserAuthInfo;
+import com.advsdc.group2.signup.security.PasswordEncryption;
 
 public class UserAuthInfoTest {
 
@@ -39,15 +41,18 @@ public class UserAuthInfoTest {
 	@Test
 	public void getPasswordTest() {
 		UserAuthInfo u = defaultUserCreation();
-		assertEquals("test123", u.getPassword());
+		assertNotNull(u.getPassword());
 
 	}
 
 	@Test
 	public void setPasswordTest() {
 		UserAuthInfo u = new UserAuthInfo();
-		u.setPassword("test123");
-		assertEquals("test123", u.getPassword());
+		PasswordEncryption enc = new PasswordEncryption();
+		String pass = "test123";
+		String encryptedPassword = enc.encode(pass);
+		u.setPassword(encryptedPassword);
+		assertNotNull(u.getPassword());
 
 	}
 

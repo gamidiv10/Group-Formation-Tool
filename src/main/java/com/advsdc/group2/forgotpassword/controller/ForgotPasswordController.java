@@ -81,13 +81,10 @@ public class ForgotPasswordController {
 		Instant time = Instant.now();
 		System.out.println("Instant time value :" + time);
 		Duration timeDiff = Duration.between(time, otpValidation.toInstant());
-		
-		
-		System.out.println("newPassword Model :"+formModel.getNewPassword());
-		System.out.println("reenter pwd Model :" +formModel.getReEnterPassword());
-		
-		
-		
+
+		System.out.println("newPassword Model :" + formModel.getNewPassword());
+		System.out.println("reenter pwd Model :" + formModel.getReEnterPassword());
+
 		if (!(formModel.getNewPassword()).equals(formModel.getReEnterPassword())) {
 
 			System.out.println("Passwords don't match: ");

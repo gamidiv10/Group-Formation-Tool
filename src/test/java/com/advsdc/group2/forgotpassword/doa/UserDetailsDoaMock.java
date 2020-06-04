@@ -1,5 +1,6 @@
 package com.advsdc.group2.forgotpassword.doa;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.advsdc.group2.forgotpassword.dao.IUserDetailsDao;
@@ -11,6 +12,7 @@ public class UserDetailsDoaMock implements IUserDetailsDao {
 	public String last_name;
 	public String email;
 	public String user_id;
+	List<User> taList = new ArrayList<User>();
 
 	public UserDetailsDoaMock() {
 
@@ -25,6 +27,7 @@ public class UserDetailsDoaMock implements IUserDetailsDao {
 		user.setLast_name(last_name);
 		user.setFirst_name(first_name);
 		user.setEmail(email);
+
 	}
 
 	public void setDefaultVal() {
@@ -38,20 +41,37 @@ public class UserDetailsDoaMock implements IUserDetailsDao {
 
 	@Override
 	public List<User> getTAList(String courseID) {
-		// TODO Auto-generated method stub
-		return null;
+		User user = new User();
+
+		courseID = "CSCI3901";
+
+		user.setEmail("94sreyas@gmail.com");
+		user.setFirst_name("Sriram");
+		user.setLast_name(("Krish"));
+		user.setUser_id("B00840035");
+		taList.add(user);
+
+		return taList;
 	}
 
 	@Override
 	public User showUsers(String course, String bannerID) {
-		// TODO Auto-generated method stub
-		return null;
+
+		User showUser = new User();
+		course = "CSCI3901";
+		bannerID = "B00840031";
+		showUser.setEmail("94sreyas@gmail.com");
+		showUser.setFirst_name("Sriram");
+		showUser.setLast_name(("Krish"));
+		showUser.setUser_id("B00840035");
+
+		return showUser;
 	}
 
 	@Override
 	public int add(String courseID, String bannerID) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return 1;
 	}
 
 }
