@@ -16,6 +16,7 @@ import com.advsdc.group2.forgotpassword.dao.UserAuthDaoImpl;
 import com.advsdc.group2.forgotpassword.dao.UserDetailsDaoImpl;
 import com.advsdc.group2.model.User;
 import com.advsdc.group2.model.UserAuthInfo;
+import com.advsdc.group2.security.*;
 
 @Service
 public class IForgotPasswordServiceImpl implements IForgotPasswordService {
@@ -98,6 +99,12 @@ public class IForgotPasswordServiceImpl implements IForgotPasswordService {
 
 	@Override
 	public int setNewPassword(UserAuthInfo userAuth, IUserAuth userAuthDao) {
+
+		String pwdFromController = userAuth.getPassword();
+		PasswordEncryption enc = new PasswordEncryption();
+		String encryptedPassword = enc.encode(pwdFromController);
+		System.out.println("Encrypted Password output " + encryptedPassword);
+		userAuth.setPassword(encryptedPassword);
 
 		int insertedRecord = userAuthDao.setNewPassword(userAuth, userAuthDao);
 		return insertedRecord;
