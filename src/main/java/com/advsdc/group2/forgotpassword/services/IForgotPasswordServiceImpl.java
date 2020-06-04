@@ -9,9 +9,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
 import org.springframework.stereotype.Service;
-
 import com.advsdc.group2.forgotpassword.dao.IUserAuth;
 import com.advsdc.group2.forgotpassword.dao.IUserDetailsDao;
 import com.advsdc.group2.forgotpassword.dao.UserAuthDaoImpl;
@@ -27,7 +25,6 @@ public class IForgotPasswordServiceImpl implements IForgotPasswordService {
 
 	@Override
 	public User getUserInfo(String bannerID) {
-
 		User u = new User(bannerID, userDet);
 		return u;
 
@@ -41,7 +38,6 @@ public class IForgotPasswordServiceImpl implements IForgotPasswordService {
 
 	@Override
 	public String otpEmailGeneration(String email) {
-
 		int oneTimepwd = generateOneTimePassword();
 		System.out.println("otp method called " + oneTimepwd);
 		sendOTPMail(email, oneTimepwd);
@@ -51,16 +47,12 @@ public class IForgotPasswordServiceImpl implements IForgotPasswordService {
 	}
 
 	private int generateOneTimePassword() {
-
 		int oneTimePwd = 10000 + new Random().nextInt(90000);
-
 		System.out.println(" otp is " + oneTimePwd);
-
 		return oneTimePwd;
 	}
 
 	private void sendOTPMail(String email, int oneTimepwd) {
-
 		String toAddress = email;
 		String fromAddress = "advsdcgrp2.catme@gmail.com";
 		String host = "smtp.gmail.com";
@@ -91,29 +83,23 @@ public class IForgotPasswordServiceImpl implements IForgotPasswordService {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-
 	}
 
 	@Override
 	public int oneTimePwdInsertion(String code, UserAuthInfo userAuth, IUserAuth userAuthDao) {
-
 		int rows = userAuthDao.oneOTPInsertion(Integer.parseInt(code), userAuth);
 		return rows;
-
 	}
 
 	@Override
 	public void OTPValidation(String code, UserAuthInfo userAuth, IUserAuth userAuthDao) {
-
 		userAuthDao.OTPValidation(code, userAuth, userAuthDao);
-
 	}
 
 	@Override
 	public int setNewPassword(UserAuthInfo userAuth, IUserAuth userAuthDao) {
 
 		int insertedRecord = userAuthDao.setNewPassword(userAuth, userAuthDao);
-		// TODO Auto-generated method stub
 		return insertedRecord;
 	}
 

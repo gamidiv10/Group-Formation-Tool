@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet" href="login.css">
+
+<head>
+    <title>Catme</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form action="#" th:action="@{/login}" th:object="${userCred}" method="post" style="text-align: center;">
+    <h1>Login</h1>
+
+    <div class="form-group">
+        <label>Banner ID</label>
+        <input type="text" th:field="*{userId}"/>
+    </div>
+    <div class="form-group">
+        <label>Password</label>
+        <input type="password" th:field="*{password}" />
+    </div>
+        <div class="form-group">
+            <div>
+                <button type="submit" class="btn btn-primary">Sign in</button>
+            </div>
+        </div>
+</form>
+</body>
+</html>
