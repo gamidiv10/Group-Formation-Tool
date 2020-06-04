@@ -8,7 +8,7 @@ public class DbUtility {
     private Statement statement;
     public Connection connection;
 
-    private static final String CONNECTION_STRING = "jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_2_DEVINT";
+    private static final String CONNECTION_STRING = "jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_2_DEVINT?serverTimezone=AST";
     public DbUtility() {
         this.USER_NAME = "CSCI5308_2_DEVINT_USER";
         this.PASSWORD = "CSCI5308_2_DEVINT_2009";
