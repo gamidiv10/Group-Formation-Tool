@@ -29,11 +29,13 @@
 </head>
 
 <body>
+    <div th:replace="fragments/links ::headerNav"></div>
+
 <form class="md-form" method="post" th:action="@{/importcsv}" enctype="multipart/form-data">
     <div class="card bg-dark text-white" style="width: 500px; margin-left: 500px; margin-top: 100px">
 	
 	<h1 style="margin-top: 20px; margin-bottom: 30px">Import Students List</h1></br>
-	<h7 style="margin-top: 0px; margin-bottom: -12px">Slect a .csv file</h7>
+	<h7 style="margin-top: 0px; margin-bottom: -12px">Please select a .csv file to upload</h7>
 
 	<div class="input-file">
 	<input type="file" id="fileinput" class="fileinput" name="file" style="width:250px">

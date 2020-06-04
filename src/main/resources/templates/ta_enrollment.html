@@ -8,8 +8,6 @@
 	<div th:replace="fragments/links ::links" style="display: none;">
 	</div>
 	<div th:replace="fragments/links ::headerNav"></div>
-
-
 	<div class="container py-5">
 		<div class="container-fluid">
 			<div class="row justify-content-center">
@@ -44,9 +42,9 @@
 				 
 				 <!-- <a href="/"><button class="btn btn-dark">Import Users</button></a>
 					<<input type="submit">Import Users</button> -->
-				 <form th:action="@{/importcsv}" method="get">
+				 <form th:action="@{/importcsv}" method="GET">
 				 
-				 <button type="submit" class="btn btn-dark" >Import Users</button>
+				 <button type="submit" class="btn btn-dark" th:name="course" th:value="${courseID}" >Import Users</button>
 				 </form>
 				 
 				

@@ -1,5 +1,7 @@
 package com.advsdc.group2.ta.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -8,9 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.advsdc.group2.course.dao.ImportCsvDao;
 import com.advsdc.group2.forgotpassword.dao.IUserDetailsDao;
 import com.advsdc.group2.forgotpassword.dao.UserDetailsDaoImpl;
+import com.advsdc.group2.login.dao.LoginDaoImpl;
 import com.advsdc.group2.model.User;
 import com.advsdc.group2.ta.services.ITaEnrollmentService;
 import com.advsdc.group2.ta.services.ITaEnrollmentServiceImpl;
@@ -23,13 +28,20 @@ public class TAEnrollmentController {
 
 	@GetMapping("/taEnrollment/{courseID}/{token}")
 	public String initialLanding(@PathVariable("courseID") String courseID, @PathVariable("token") String token,
-	 Model model, @ModelAttribute TAEnrollmentForms enrollTA) {
+	 Model model, @ModelAttribute TAEnrollmentForms enrollTA, RedirectAttributes redirectAttributes) {
 		
 		JwtUtility jwtUtility = new JwtUtility();
 		if(jwtUtility.isTokenExpired(token)){
 			return "login";
 		}
+		String userId = jwtUtility.getUsernameFromToken(token);
+		ImportCsvDao importCsvDao = new ImportCsvDao();
+		int role = importCsvDao.getRoleForCourse(userId, courseID);
+		if(role == 4){
+			redirectAttributes.addFlashAttribute("message", courseID);
 
+			return "redirect:/studentcoursehome";
+		}
 		model.addAttribute("enrollTA", enrollTA);
 		ITaEnrollmentService ta = new ITaEnrollmentServiceImpl();
 		List<User> existingTa = ta.getTAList(courseID, userInfo);
@@ -112,6 +124,10 @@ public class TAEnrollmentController {
 			return "ta_enrollment";
 		}
 
+	}
+	@GetMapping("/studentcoursehome")
+	public String studentCourseHome(){
+		return "course_page_student";
 	}
 
 }

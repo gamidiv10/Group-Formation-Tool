@@ -50,7 +50,7 @@ public class LoginDaoImpl implements ILoginDao {
     public ArrayList<Course> getCourses(String userId) {
         DbUtility dbUtility = new DbUtility();
         try{
-            PreparedStatement statement = dbUtility.connection.prepareStatement("select * from user_course_enrollment inner join courses on courses.course_id = user_course_enrollment.course_id and user_course_enrollment.user_id= ?");
+            PreparedStatement statement = dbUtility.connection.prepareStatement("select * from user_role_map inner join courses on courses.course_id = user_role_map.course_id and user_role_map.user_id= ?");
             statement.setString(1, userId);
             ResultSet resultSet = statement.executeQuery();
             ArrayList<Course> courseList = new ArrayList<>();
