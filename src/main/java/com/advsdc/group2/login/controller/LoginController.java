@@ -1,5 +1,6 @@
 package com.advsdc.group2.login.controller;
 
+import com.advsdc.group2.admin.controller.AdminWelcomeController;
 import com.advsdc.group2.course.controller.HomePageController;
 import com.advsdc.group2.login.models.UserCredentials;
 import com.advsdc.group2.login.services.LoginServiceImpl;
@@ -24,8 +25,13 @@ public class LoginController {
         LoginServiceImpl loginService = new LoginServiceImpl();
         final boolean success = loginService.validateUser(userCredentials);
         final String jsonWebToken;
+        final int role = loginService.getRole(userCredentials.getUserId());
+
         if(success) {
             jsonWebToken = loginService.generateJsonWebToken(userCredentials.getUserId());
+            if(role == 0){
+                return new AdminWelcomeController().adminHome(model, jsonWebToken);
+            }
             model.addAttribute("token", jsonWebToken);
             return new HomePageController().courseHome(jsonWebToken, model);
         }
