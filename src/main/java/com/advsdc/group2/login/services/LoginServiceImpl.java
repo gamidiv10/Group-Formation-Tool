@@ -14,7 +14,6 @@ public class LoginServiceImpl implements ILoginService{
     @Override
     public boolean validateUser(UserCredentials userCred){
         LoginDaoImpl loginDao = new LoginDaoImpl();
-
         passwordFromDb = loginDao.getUserCredentials(userCred.getUserId());
         PasswordEncryption passwordEncryption = new PasswordEncryption();
         return passwordFromDb != null && passwordEncryption.matches(userCred.getPassword(), passwordFromDb);

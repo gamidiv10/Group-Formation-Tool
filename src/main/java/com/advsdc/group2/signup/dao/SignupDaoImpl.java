@@ -9,7 +9,7 @@ import java.util.List;
 
 import com.advsdc.group2.signup.dbutility.DbUtility;
 import com.advsdc.group2.signup.models.User;
-import com.advsdc.group2.signup.security.PasswordEncryption;
+import com.advsdc.group2.security.PasswordEncryption;
 
 public class SignupDaoImpl implements SignupDao{
 
