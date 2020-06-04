@@ -21,6 +21,8 @@ public class SignupController {
 		model.addAttribute("user", new User());
         model.addAttribute("userIdError", false);
         model.addAttribute("passwordMatchError", false);
+        model.addAttribute("form", true);
+        model.addAttribute("result", false);
 		return "register";
 	}
 	
@@ -33,14 +35,21 @@ public class SignupController {
 		if(userAlreadyExists) {
 			model.addAttribute("user", new User());
 	        model.addAttribute("userIdError", true);
+	        model.addAttribute("form", true);
+	        model.addAttribute("result", false);
 			return "register";
 		}
 		boolean isPasswordMatched = signupServiceImpl.isPasswordMatched(user.getPassword(), user.getMatchingPassword());
 		if(isPasswordMatched) {
 			signupServiceImpl.createUser(user);
-			return "signupresult";
+			model.addAttribute("form", false);
+	        model.addAttribute("result", true);
+			return "register";
 			}
 	    model.addAttribute("passwordMatchError", true);
+	    System.out.println("Password not matched ");
+	    model.addAttribute("form", true);
+        model.addAttribute("result", false);
 		return "register";
 		
 	}
