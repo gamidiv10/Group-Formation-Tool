@@ -16,7 +16,7 @@
 <h3>Add a new course</h3>
 <a th:href="@{/admin/}"><button class="btn btn-primary" align= "left"> Go To Home</button></a>
 <hr>
-<form class="form-control" th:action="@{/admin/courses/addCourse}" th:object="${course_obj}" method ="post">
+<form class="form-control" th:action="@{'/admin/courses/addCourse/'} + ${token}" th:object="${course_obj}" method ="post">
     <div class="form-group row">
         <label for="courseId" class="col-sm-2 col-form-label">Course Id</label>
         <div class="col-sm-10">

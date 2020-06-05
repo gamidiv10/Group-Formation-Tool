@@ -31,7 +31,7 @@
     </thead>
     <tbody>
     <tr th:each = "user: ${user_list}">
-        <form class="form-control" th:action="@{/admin/assignInstructor/(id=${user.getUserId()})}" th:object="${crs_map}" th:method="POST">
+        <form class="form-control" th:action="@{'/admin/assignInstructor/'} + ${user.getUserId()} + '/'+ ${token}" th:object="${crs_map}" th:method="POST">
 
                 <td th:text="${user.getUserId()}"/>
                 <td th:text="${user.getUserName()}" />

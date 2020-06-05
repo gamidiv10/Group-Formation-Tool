@@ -3,29 +3,39 @@ package com.advsdc.group2.admin.controller;
 import com.advsdc.group2.admin.services.IUserService;
 import com.advsdc.group2.admin.services.UserService;
 import com.advsdc.group2.model.CourseUserMap;
+import com.advsdc.group2.utility.JwtUtility;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class UserController {
     private IUserService userService = new UserService();
     ModelAndView mv = new ModelAndView();
+    JwtUtility jwtUtility = new JwtUtility();
 
-    @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
-    public String showUsers(Model model) {
+    @RequestMapping(value = "/admin/users/{token}", method = RequestMethod.GET)
+    public String showUsers(Model model, @PathVariable("token") String token) {
+        if(jwtUtility.isTokenExpired(token)){
+            return "login";
+        }
+        model.addAttribute("token", token);
         model.addAttribute("crs_map", new CourseUserMap());
         userService.getUsers(model);
         return "admin/users";
     }
 
-    @RequestMapping(value = "/admin/assignInstructor/", method = RequestMethod.POST)
-    public String assingInstructor(@RequestParam("id") String userId, @ModelAttribute CourseUserMap crs_map, Model model) {
+    @RequestMapping(value = "/admin/assignInstructor/{userId}/{token}", method = RequestMethod.POST)
+    public String assingInstructor(@PathVariable("userId") String userId, @PathVariable("token") String token, @ModelAttribute CourseUserMap crs_map, Model model) {
+        System.out.println("Course ID"+userId);
+        System.out.println("TOken"+token);
+
+        if(jwtUtility.isTokenExpired(token)){
+            return "login";
+        }
         userService.assingInstructor(model, userId, crs_map.getCourseId());
-        return "redirect:/admin/users";
+        showUsers(model, token);
+        return "redirect:/admin/users/{token}";
     }
 }

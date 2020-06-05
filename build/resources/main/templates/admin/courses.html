@@ -28,7 +28,7 @@
     </thead>
     <tbody>
         <tr th:each = "course: ${course_list}">
-            <form class="form-inline" th:action="@{/admin/courses/delete/(id=${course.getCourseId()})}" th:method="POST">
+            <form class="form-inline" th:action="@{'/admin/courses/delete/'} + ${course.getCourseId()} + '/' + ${token}" th:method="POST">
                 <div class="input-group">
                     <td>
                         <input type="text" class="form-control" placeholder="CourseId" th:value = "${course.getCourseId()}">

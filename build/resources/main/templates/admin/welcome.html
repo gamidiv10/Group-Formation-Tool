@@ -13,13 +13,7 @@
 <body>
 <div th:replace="fragments/links ::headerNav"></div>
 <h1 th:text=${welcome_message} />
-<!--<h1 th:text = ${welcome_message} />-->
-<!--  <form action="#" th:action="@{/greeting}" th:object="${greeting}" method="post">
-     <p>Id: <input type="text" th:field="*{id}" /></p>
-     <p>Message: <input type="text" th:field="*{content}" /></p>
-     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
- </form> -->
-<a th:href="@{/admin/courses}"><button th:text= ${course} th:onclick="/admin/courses" /></a>
-<a th:href="@{/admin/users}"><button th:text = ${user} /></a>
+<a th:href="@{'/admin/courses/' + ${token}}"><button th:text= ${course} th:onclick="/admin/courses" /></a>
+<a th:href="@{'/admin/users/' + ${token}}"><button th:text = ${user} /></a>
 </body>
 </html>
