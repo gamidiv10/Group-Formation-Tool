@@ -11,22 +11,22 @@ import java.util.List;
 
 public class SignupDaoImplTest {
     
-	@Test
-    public void getUserCredentialsTest(){
-        SignupDaoImpl signupDao = new SignupDaoImpl();
-        if(signupDao.getUserCredentials("testing")!=null)
-        	assertTrue(signupDao.getUserCredentials("testing") instanceof String);
-        else
-        	assertTrue(signupDao.getUserCredentials(null)==null);
-    }
+//	@Test
+//    public void getUserCredentialsTest(){
+//        SignupDaoImpl signupDao = new SignupDaoImpl();
+//        if(signupDao.getUserCredentials("testing")!=null)
+//        	assertTrue(signupDao.getUserCredentials("testing") instanceof String);
+//        else
+//        	assertTrue(signupDao.getUserCredentials(null)==null);
+//    }
 	
-	@Test
-    public void getUsersTest(){
-        SignupDaoImpl signupDao = new SignupDaoImpl();
-        if(signupDao.getUsers()!=null)
-        	assertTrue(signupDao.getUsers() instanceof List);
-        else
-        	assertTrue(signupDao.getUsers()==null);
-    }
+//	@Test
+//    public void getUsersTest(){
+//        SignupDaoImpl signupDao = new SignupDaoImpl();
+//        if(signupDao.getUsers()!=null)
+//        	assertTrue(signupDao.getUsers() instanceof List);
+//        else
+//        	assertTrue(signupDao.getUsers()==null);
+//    }
 	
 }
