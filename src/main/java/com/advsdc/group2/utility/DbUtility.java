@@ -23,7 +23,7 @@ public class DbUtility {
             InputStream propertiesStream = contextClassLoader.getResourceAsStream("application.properties");
             if (propertiesStream != null) {
                 properties.load(propertiesStream);
-                this.environment = properties.getProperty("db.environment");
+                this.environment = System.getenv("db.environment");
                 this.connectionString = properties.getProperty("db.connection");
                 switch (this.environment) {
                     case "TEST":
