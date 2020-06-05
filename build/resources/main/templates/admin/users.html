@@ -15,7 +15,7 @@
 <div th:replace="fragments/links ::headerNav"></div>
 <h1>Instructor Assignment Panel</h1>
 
-<a th:href="@{/admin/}"><button class="btn btn-primary" align= "left"> Go To Home</button></a>
+<a th:href="@{'/admin/'} + ${token}"><button class="btn btn-primary" align= "left"> Go To Home</button></a>
 <hr>
 <div th:if="${crs_map.message}" class="alert alert-primary" role="alert">
     <p th:text="${crs_map.message}"></p>

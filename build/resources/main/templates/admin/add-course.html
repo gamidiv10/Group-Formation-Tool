@@ -14,7 +14,7 @@
 <body>
 <div th:replace="fragments/links ::headerNav"></div>
 <h3>Add a new course</h3>
-<a th:href="@{/admin/}"><button class="btn btn-primary" align= "left"> Go To Home</button></a>
+<a th:href="@{'/admin/'} + ${token}"><button class="btn btn-primary" align= "left"> Go To Home</button></a>
 <hr>
 <form class="form-control" th:action="@{'/admin/courses/addCourse/'} + ${token}" th:object="${course_obj}" method ="post">
     <div class="form-group row">

@@ -14,7 +14,7 @@
 <body>
 <div th:replace="fragments/links ::headerNav"></div>
 <h1>Course Management Panel</h1>
-<a th:href="@{/admin/}"><button class="btn btn-primary" align= "left"> Go To Home</button></a>
+<a th:href="@{'/admin/'} + ${token}"><button class="btn btn-primary" align= "left"> Go To Home</button></a>
 <hr>
 
 <table class="table">
@@ -47,7 +47,7 @@
         </tr>
     </tbody>
 </table>
-<form class="form-control" th:action="@{/admin/courses/addCourse}" method="get">
+<form class="form-control" th:action="@{'/admin/courses/addCourse/'} + ${token}" method="get">
     <div class="container">
         <div class="row">
             <div class="col text-center">

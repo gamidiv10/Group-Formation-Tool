@@ -28,8 +28,7 @@ public class UserController {
 
     @RequestMapping(value = "/admin/assignInstructor/{userId}/{token}", method = RequestMethod.POST)
     public String assingInstructor(@PathVariable("userId") String userId, @PathVariable("token") String token, @ModelAttribute CourseUserMap crs_map, Model model) {
-        System.out.println("Course ID"+userId);
-        System.out.println("TOken"+token);
+
 
         if(jwtUtility.isTokenExpired(token)){
             return "login";

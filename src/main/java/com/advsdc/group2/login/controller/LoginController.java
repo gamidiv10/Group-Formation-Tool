@@ -30,7 +30,7 @@ public class LoginController {
         if(success) {
             jsonWebToken = loginService.generateJsonWebToken(userCredentials.getUserId());
             if(role == 0){
-                return new AdminWelcomeController().adminHome(model, jsonWebToken);
+                return new AdminWelcomeController().adminHome(model, jsonWebToken, null);
             }
             model.addAttribute("token", jsonWebToken);
             return new HomePageController().courseHome(jsonWebToken, model);
