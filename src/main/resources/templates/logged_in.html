@@ -31,7 +31,7 @@
         </thead>
         <tbody>
         <tr th:each="course : ${courseList}">
-            <td><a th:href="@{'/taEnrollment/' + ${course.courseId}} + '/' + ${token}" th:text="${course.courseId}"></a></td>
+            <td><a th:href="@{'/taEnrollment/' + ${course.courseId} + '/' + ${token}}" th:text="${course.courseId}"></a></td>
             <td th:text="${course.courseName}"></td>
             <td th:text="${course.courseDesc}"></td>
         </tr>

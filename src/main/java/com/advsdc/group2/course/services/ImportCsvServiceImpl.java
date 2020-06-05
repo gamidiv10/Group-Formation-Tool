@@ -1,5 +1,6 @@
 package com.advsdc.group2.course.services;
 
+import com.advsdc.group2.course.dao.ImportCsvDao;
 import com.advsdc.group2.signup.models.User;
 import com.advsdc.group2.signup.services.SignupServiceImpl;
 import javax.mail.Message;
@@ -15,7 +16,7 @@ import java.util.*;
 
 public class ImportCsvServiceImpl implements IImportCsvService {
     @Override
-    public ArrayList<List<String>> readFromCsv(InputStreamReader inputStreamReader) {
+    public ArrayList<List<String>> readFromCsv(InputStreamReader inputStreamReader, String courseId) {
         ArrayList<User> userArrayList = new ArrayList<>();
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
         ArrayList<List<String>> arrayList = new ArrayList<>();
@@ -41,6 +42,7 @@ public class ImportCsvServiceImpl implements IImportCsvService {
         }
         System.out.println(arrayList);
         createUsersFromList(userArrayList);
+        enrollInCourse(userArrayList, courseId);
         return arrayList;
     }
 
@@ -53,6 +55,14 @@ public class ImportCsvServiceImpl implements IImportCsvService {
             }
             signupService.createUser(userArrayList.get(i));
             sendEmail(userArrayList.get(i));
+        }
+    }
+
+    @Override
+    public void enrollInCourse(ArrayList<User> userArrayList, String courseId){
+        ImportCsvDao importCsvDao = new ImportCsvDao();
+        for(int i = 0; i < userArrayList.size(); i++){
+            importCsvDao.enrollInCourse(userArrayList.get(i).getUserId(), courseId);
         }
     }
 

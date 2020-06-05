@@ -64,7 +64,7 @@ public class UserAuthDaoImpl implements IUserAuth {
 		finally {
 			dbConnection.closeConnection();
 		}
-		
+
 		return 1;
 
 	}
@@ -109,7 +109,8 @@ public class UserAuthDaoImpl implements IUserAuth {
 
 		DbUtility dbConnection = new DbUtility();
 		Connection con = dbConnection.connection;
-		int records =0;
+		int records = 0;
+		System.out.println("enc password from service : " + userAuth.getPassword());
 
 		try {
 
@@ -117,7 +118,7 @@ public class UserAuthDaoImpl implements IUserAuth {
 			PreparedStatement pst = con.prepareStatement(sql);
 
 			pst.setString(1, userAuth.getPassword());
-			
+
 			pst.setString(2, userAuth.getUser_id());
 			records = pst.executeUpdate();
 			System.out.println("number of records inserted " + records);
@@ -129,7 +130,7 @@ public class UserAuthDaoImpl implements IUserAuth {
 		finally {
 			dbConnection.closeConnection();
 		}
-		
+
 		return records;
 
 	}

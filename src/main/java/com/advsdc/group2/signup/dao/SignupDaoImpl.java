@@ -60,7 +60,7 @@ public class SignupDaoImpl implements SignupDao{
         PreparedStatement statementForUserTable = null;
         PreparedStatement statementForUserRoleMapTable = null;
         this.passwordEncryption = new PasswordEncryption();
-        if(user!=null)
+        if(user.getPassword()!=null)
         {
         String encryptedPassword = passwordEncryption.encode(user.getPassword());
         

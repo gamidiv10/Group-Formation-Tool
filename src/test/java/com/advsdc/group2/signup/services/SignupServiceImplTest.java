@@ -58,7 +58,7 @@ public class SignupServiceImplTest extends BaseTestCase {
 	void createUserTest() {
 		
 		when(signupDaoImpl.setUserDetails(any(User.class))).thenReturn(true);
-		assertFalse(signupServiceImpl.createUser(new User()));
+		assertTrue(signupServiceImpl.createUser(new User()));
 
 		
 	}

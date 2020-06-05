@@ -42,7 +42,7 @@ public class CourseController {
             return "login";
         }
         model.addAttribute("token", token);
-        courseService.addCoursePage(model);
+        courseService.addCoursePage(model); 
         return "admin/add-course";
     }
 

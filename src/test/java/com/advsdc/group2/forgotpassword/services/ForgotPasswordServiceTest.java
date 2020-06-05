@@ -64,6 +64,7 @@ public class ForgotPasswordServiceTest {
 	public void setNewPasswordTest() {
 
 		UserAuthInfo userAuth = new UserAuthInfo();
+		userAuth.setPassword("test123");
 		IUserAuth userAuthDao = new UserAuthDetailsDoaMock();
 		int num = new IForgotPasswordServiceImpl().setNewPassword(userAuth, userAuthDao);
 		assertEquals(1, num);

@@ -8,8 +8,9 @@ import java.util.List;
 
 public interface IImportCsvService {
 
-    public ArrayList<List<String>> readFromCsv(InputStreamReader inputStreamReader);
+    public ArrayList<List<String>> readFromCsv(InputStreamReader inputStreamReader, String courseId);
     public void createUsersFromList(ArrayList<User> userArrayList);
     public void sendEmail(User user);
+    public void enrollInCourse(ArrayList<User> userArrayList, String courseId);
 
     }

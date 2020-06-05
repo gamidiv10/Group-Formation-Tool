@@ -1,31 +1,62 @@
 package com.advsdc.group2.utility;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
+import java.util.Properties;
 
 public class DbUtility {
-    private final String USER_NAME;
-    private final String PASSWORD;
+    private String userName;
+    private String password;
+    private String database;
     private Statement statement;
+    private String connectionString;
+    private String environment;
     public Connection connection;
 
     private static final String CONNECTION_STRING = "jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_2_DEVINT?serverTimezone=AST";
     public DbUtility() {
-        this.USER_NAME = "CSCI5308_2_DEVINT_USER";
-        this.PASSWORD = "CSCI5308_2_DEVINT_2009";
         try {
-            this.connection = DriverManager.getConnection(
-                    CONNECTION_STRING, this.USER_NAME, this.PASSWORD);
+            Properties properties = new Properties();
+            Thread currentThread = Thread.currentThread();
+            ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+            InputStream propertiesStream = contextClassLoader.getResourceAsStream("application.properties");
+            if (propertiesStream != null) {
+                properties.load(propertiesStream);
+                this.environment = properties.getProperty("db.environment");
+                this.connectionString = properties.getProperty("db.connection");
+                switch (this.environment) {
+                    case "TEST":
+                        this.database = properties.getProperty("db.test.database");
+                        this.userName = properties.getProperty("db.test.user");
+                        this.password = properties.getProperty("db.test.password");
+                        break;
 
-            System.out.println(connection);
+                    case "PRODUCTION":
+                        this.database = properties.getProperty("db.prod.database");
+                        this.userName = properties.getProperty("db.prod.user");
+                        this.password = properties.getProperty("db.prod.password");
+                        break;
 
+                    default:
+                        this.database = properties.getProperty("db.dev.database");
+                        this.userName = properties.getProperty("db.dev.user");
+                        this.password = properties.getProperty("db.dev.password");
+                }
+                this.connection = DriverManager.getConnection(
+                        this.connectionString + this.database + "?serverTimezone=AST", this.userName, this.password);
+
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println(e);
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
 
-    //Sample Retrieval Method
+        //Sample Retrieval Method
 	/*
 	 * public ResultSet getUsers(){ try { this.statement =
 	 * this.connection.createStatement(); ResultSet rs =
