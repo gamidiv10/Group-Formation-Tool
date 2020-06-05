@@ -27,7 +27,7 @@ public class CourseController {
 
     @RequestMapping(value = "/admin/courses/addCourse", method = RequestMethod.GET)
     public String addCoursePage(Model model) {
-        courseService.addCoursePage(model);
+        courseService.addCoursePage(model); 
         return "admin/add-course";
     }
 
