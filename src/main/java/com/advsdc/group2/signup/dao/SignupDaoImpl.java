@@ -7,9 +7,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.advsdc.group2.signup.dbutility.DbUtility;
 import com.advsdc.group2.signup.models.User;
 import com.advsdc.group2.security.PasswordEncryption;
+import com.advsdc.group2.utility.DbUtility;
 
 public class SignupDaoImpl implements SignupDao{
 
