@@ -32,34 +32,23 @@ public class SignupServiceImplTest extends BaseTestCase {
 	
 	@Test
 	void isUserInDbTest() {
-		
-
 		List<String> list = new ArrayList<String>();
 		list.add("B00123");
 		list.add("B00456");
 		when(signupDaoImpl.getUsers()).thenReturn(list);
 		assertFalse(signupServiceImpl.isUserInDb("B00123"));
 //	    verify(signupServiceImpl).isUserInDb(eq("B00123"));
-
-		
-		
 	}
 	
 	@Test
 	void isPasswordMatchedTest() {
-		
-
 		boolean result = signupServiceImpl.isPasswordMatched("password", "password");
 		assertTrue(result);
-		
 	}
 	
 	@Test
 	void createUserTest() {
-		
 		when(signupDaoImpl.setUserDetails(any(User.class))).thenReturn(true);
 		assertTrue(signupServiceImpl.createUser(new User()));
-
-		
 	}
 }
