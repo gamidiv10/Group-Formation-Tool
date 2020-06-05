@@ -9,10 +9,10 @@ public class DbUtility {
     private Statement statement;
     public Connection connection;
 
-    private static final String CONNECTION_STRING = "jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_2_TEST?serverTimezone=AST";
+    private static final String CONNECTION_STRING = "jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_2_PRODUCTION?serverTimezone=AST";
     public DbUtility() {
-        this.USER_NAME = "CSCI5308_2_TEST_USER";
-        this.PASSWORD = "CSCI5308_2_TEST_2440";
+        this.USER_NAME = "CSCI5308_2_PRODUCTION_USER";
+        this.PASSWORD = "CSCI5308_2_PRODUCTION_22992";
         try {
             this.connection = DriverManager.getConnection(
                     CONNECTION_STRING, this.USER_NAME, this.PASSWORD);

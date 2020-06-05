@@ -37,9 +37,9 @@ test:
 deploy:
   stage: deploy
   script:
-    - git remote add heroku https://heroku:$HEROKU_API_KEY_TESTSERVER@git.heroku.com/test-server-app-sdc.git || true
+    - git remote add heroku https://heroku:$HEROKU_API_KEY_TESTSERVER@git.heroku.com/prod-server-app-sdc-g2.git || true
     - git push -f heroku HEAD:master
   only:
-     - develop
+     - master
   tags:
     - ugrad
