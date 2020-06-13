@@ -1,45 +1,39 @@
-image: java:8-jdk
+image: gradle:alpine
 
-stages:
-  - build
-  - test
-  - deploy
+variables:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+  GIT_STRATEGY: clone
 
 before_script:
-  - echo "CI-CD started" 
-  - export GRADLE_USER_HOME=`pwd`/.gradle  
-  - echo "CI-CI start"
-  
-cache:
-  paths:
-    - .gradle/wrapper
-    - .gradle/caches
+  - chmod +x ./gradlew
+  - export GRADLE_USER_HOME=`pwd`/.gradle
 
 build:
   stage: build
-  script: 
-    - chmod +x ./gradlew
-    - ./gradlew assemble
-  artifacts:
-    paths:
-      - build/libs/*.jar
   tags:
-    - ugrad
-  
+    - grad
+  script: ./gradlew --build-cache assemble
+  only:
+    refs:
+      - branches
 test:
   stage: test
-  script:     
-    -  chmod +x ./gradlew
-    - ./gradlew check
   tags:
-    - ugrad
-
-deploy:
-  stage: deploy
-  script:
-    - git remote add heroku https://heroku:$HEROKU_API_KEY_TESTSERVER@git.heroku.com/test-server-app-sdc.git || true
-    - git push -f heroku HEAD:master
+    - grad
+  script: ./gradlew check
   only:
-     - develop
-  tags:
-    - ugrad
+    refs:
+      - branches
+
+deploy-test:
+    stage: deploy
+    tags:
+    - dalfcs_gitlab_docker_ci
+    image: ruby:2.6
+    script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
+    only:
+    - develop
