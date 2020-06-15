@@ -22,6 +22,11 @@ public class SignupController
 	@GetMapping("/signup")
 	public String displaySignup(Model model)
 	{
+		SystemConfig.instance().getPasswordEnforcementPolicy();
+		String pwd = "test@123";
+		System.out.println("Value Returned from Validation is "+PasswordEnforcementPolicy.isPasswordValid(pwd));
+		
+		
 		return "signup";
 	}
 	
@@ -39,6 +44,7 @@ public class SignupController
 			 User.isEmailValid(email) &&
 			 User.isFirstNameValid(firstName) &&
 			 User.isLastNameValid(lastName) &&
+			 
 			 password.equals(passwordConfirm))
 		{
 			User u = new User();
