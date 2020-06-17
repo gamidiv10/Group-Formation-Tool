@@ -8,8 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.Assert;
 
 import CSCI5308.GroupFormationTool.AccessControl.User;
-import CSCI5308.GroupFormationTool.Questions.IQuestionPersistance;
-import CSCI5308.GroupFormationTool.Questions.Questions;
+import CSCI5308.GroupFormationTool.Question.IQuestionPersistance;
+import CSCI5308.GroupFormationTool.Question.Questions;
 
 @SpringBootTest
 @SuppressWarnings("deprecation")

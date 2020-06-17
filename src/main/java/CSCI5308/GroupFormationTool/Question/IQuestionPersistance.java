@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.Questions;
+package CSCI5308.GroupFormationTool.Question;
 
 import java.util.List;
 

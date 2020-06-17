@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.Questions;
+package CSCI5308.GroupFormationTool.Question;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,10 +8,8 @@ import java.util.List;
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 
 public class QuestionDB implements IQuestionPersistance {
-
 	@Override
 	public List<Questions> loadAllQuestionTitlesByInstructorID(long instructorID) {
-		
 		List<Questions> questions= new ArrayList<>();
 		CallStoredProcedure proc = null;
 		try
@@ -26,7 +24,6 @@ public class QuestionDB implements IQuestionPersistance {
 					questions.add(new Questions(results.getString(1), results.getDate(2)));
 				}
 			}
-			
 		}
 		catch (SQLException e)
 		{
@@ -41,5 +38,4 @@ public class QuestionDB implements IQuestionPersistance {
 		}
 		return questions;
 	}
-
 }

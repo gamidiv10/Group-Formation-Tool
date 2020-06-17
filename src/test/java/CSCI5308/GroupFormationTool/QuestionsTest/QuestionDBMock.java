@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
 
-import CSCI5308.GroupFormationTool.Questions.IQuestionPersistance;
-import CSCI5308.GroupFormationTool.Questions.Questions;
+import CSCI5308.GroupFormationTool.Question.IQuestionPersistance;
+import CSCI5308.GroupFormationTool.Question.Questions;
 
 @SuppressWarnings("deprecation")
 public class QuestionDBMock implements IQuestionPersistance
