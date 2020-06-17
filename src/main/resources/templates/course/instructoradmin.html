@@ -57,5 +57,9 @@
 		</form>
         <br/>
 		<a th:href="@{/course/enrollta(id=${course.id})}">Enroll TAs</a>
+		<div th:if="${isinstructor}">
+			<br/>
+			<a th:href="@{/course/questionmanager}">Question Manager</a>	
+		</div>
 	</body>
 </html>
