@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.Courses;
+package CSCI5308.GroupFormationTool.Question;
 
 public class Option {
     private String displayText;

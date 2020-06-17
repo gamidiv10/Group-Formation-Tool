@@ -1,6 +1,6 @@
-package CSCI5308.GroupFormationTool.CoursesTest;
+package CSCI5308.GroupFormationTool.Question;
 
-import CSCI5308.GroupFormationTool.Courses.Option;
+import CSCI5308.GroupFormationTool.Question.Option;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

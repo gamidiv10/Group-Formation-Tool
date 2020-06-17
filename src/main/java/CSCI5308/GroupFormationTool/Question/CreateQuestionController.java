@@ -1,9 +1,9 @@
-package CSCI5308.GroupFormationTool.Courses;
+package CSCI5308.GroupFormationTool.Question;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.ModelAndViewDefiningException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -11,9 +11,6 @@ import java.util.List;
 
 @Controller
 public class CreateQuestionController {
-    public String qTitle;
-    public String qText;
-    public String qType;
 
     @GetMapping("/createquestion")
     public ModelAndView createQuestion()
@@ -29,23 +26,24 @@ public class CreateQuestionController {
     @RequestMapping(value = "/createquestion", method = RequestMethod.POST)
     public ModelAndView createQuestion(
             @RequestParam(name = "title") String title,
-            @RequestParam(name = "question") String question,
+            @RequestParam(name = "question") String questionText,
             @RequestParam(name = "type") String type)
     {
-        qText = question;
-        qTitle = title;
-        qType = type;
+        Question question = Question.getInstance();
+        IQuestionDataHandler questionDataHandler = new QuestionDataHandler(question);
+        questionDataHandler.setQuestionData(title, type, questionText);
+
         boolean isNumeric = false;
         boolean isMultipleOne = false;
         boolean isFreeText = false;
         boolean isInitialPage = true;
         boolean isNext = false;
-        System.out.println(title + question + type);
+        System.out.println(title + questionText + type);
         if(type.equals("Numeric")){
             isNumeric = true;
             isInitialPage = false;
         }
-        if(type.equals("Multiple choice - choose one")){
+        if(type.equals("Multiple choice - choose one") || type.equals("Multiple choice - choose multiple")){
             isMultipleOne = true;
             isInitialPage = false;
         }
@@ -59,7 +57,7 @@ public class CreateQuestionController {
         m.addObject("isFreeText", isFreeText);
         m.addObject("isInitialPage", isInitialPage);
         m.addObject("isNext", isNext);
-        m.addObject("question", question);
+        m.addObject("question", questionText);
         m.addObject("save", true);
         return m;
     }
@@ -67,30 +65,25 @@ public class CreateQuestionController {
     @RequestMapping(value = "/createquestion", method = RequestMethod.POST, params = "action=save")
     public ModelAndView saveQuestion(HttpServletRequest request)
     {
-        List<Option> options = new ArrayList<>();
-        String displayText, storedAs;
-        int i = 1;
-        while(true){
-            displayText = request.getParameter("displayText-" + i + "");
-            storedAs = request.getParameter("storedAs-" + i + "");
-            System.out.println(displayText + " " + storedAs);
-            if ((displayText == null) || (storedAs == null)) {
-                break;
-            }
-            if(displayText.length() > 0){
-                Option option = new Option(displayText, Integer.parseInt(storedAs));
-                options.add(option);
-            }
-            i++;
+        IHandleInputOptions handleInputOptions = new HandleInputOptions();
+        List<Option> optionList = handleInputOptions.handleOptions(request);
+        IQuestionDB questionDB = new QuestionDB();
+        ISaveQuestion saveQuestion = new SaveQuestion(questionDB);
+        int questionId = saveQuestion.saveQuestionModel(Question.getInstance());
+        if(optionList.size() > 0){
+            saveQuestion.saveMcqOptions(optionList, questionId);
         }
-        if(options.size() > 0){
+        return new ModelAndView("course/createquestion");
+    }
+    @RequestMapping(value = "/createquestion", method = RequestMethod.POST, params = "action=cancel")
+    public ModelAndView saveQuestion() {
+        Question question = Question.getInstance();
+        question.reset();
+        ModelAndView modelAndView = new ModelAndView("/course/createquestion");
+        modelAndView.addObject("isInitialPage", true);
+        modelAndView.addObject("save", false);
+        return modelAndView;
 
-        }
-        else{
-
-        }
-        ModelAndView m = new ModelAndView("course/createquestion");
-        return m;
     }
 
 }

@@ -77,18 +77,17 @@
                         <tr>
                             <td>
                                 <label for="displayText">Display Text:  </label>
-                                <input name="displayText-1" id="displayText" type="text">
+                                <input name="displayText-1" class="displayText" id="displayText" type="text">
                             </td>
                             <td>
                                 <label for="storedAs">Stored as:  </label>
-                                <input name="storedAs-1" id="storedAs" value="1" type="number">
+                                <input name="storedAs-1" class="storedAs" id="storedAs" value="1" type="number">
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="form-group">
-<!--                <button style="margin: 5px" type="submit" name="action" value="save" class="btn btn-primary">Save</button>-->
                 <a id="addOptions" href="#">More Options</a>
             </div>
         </div>
@@ -105,12 +104,7 @@
             <button th:if="${isNext}" style="margin: 5px" type="submit" class="btn btn-success">Next</button>
         </div>
         <button style="margin: 5px" type="submit" th:if="${save}" name="action" value="save" class="btn btn-primary">Save</button>
-
-    </form>
-
-    <form th:if="${save}" th:action="@{/savequestion}" method="POST">
-        <button style="margin: 5px" type="submit" class="btn btn-danger">cancel</button>
-<!--        <button style="margin: 5px" type="submit" class="btn btn-success">Save</button>-->
+        <button style="margin: 5px" type="submit" th:if="${save}" name="action" value="cancel" class="btn btn-danger">cancel</button>
     </form>
 </div>
 <!--    </div>-->
