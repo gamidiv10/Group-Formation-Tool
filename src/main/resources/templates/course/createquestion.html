@@ -6,11 +6,25 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#addOptions").click(function () {
+                var iX = $("#option-table").find("tr").length + 1;
+
+                $('#option-table tbody>tr:last').clone(true).insertAfter('#option-table tbody>tr:last').find(".storedAs")
+                    .attr("name","storedAs-" + iX).val(iX);
+                $('#option-table tbody>tr:last .displayText')
+                    .attr("name","displayText-" + iX).val("");
+                return false;
+            });
+        });
+
+    </script>
+
     <style>
         .form-control{
             width: 300px;
             margin: 5px;
-            /*margin: 0 auto;*/
         }
         .form-group{
             display: flex;
@@ -26,24 +40,29 @@
         <div th:if="${isInitialPage}">
             <h1>Basic Question Information</h1>
             <div class="form-group">
-        <label for="title">Title: </label>
-        <input type="text" id="title" class="form-control" name="title">
-        </div>
-        <div class="form-group">
-        <label for="question">Question: </label>
-            <textarea type="text" id="question" class="form-control" name="question" rows="3"></textarea>
-        </div>
+                <label for="title">Title: </label>
+                <input type="text" id="title" class="form-control" name="title">
+            </div>
+            <div class="form-group">
+                <label for="question">Question: </label>
+                <textarea type="text" id="question" class="form-control" name="question" rows="3"></textarea>
+            </div>
 
-        <div class="form-group">
-        <label for="type">Type: </label>
-            <select class="form-control" id="type" name="type">
-                <option>Numeric</option>
-                <option>Multiple choice - choose one</option>
-                <option>Multiple choice - choose multiple</option>
-                <option>Free Text</option>
-            </select>
+            <div class="form-group">
+                <label for="type">Type: </label>
+                <select class="form-control" id="type" name="type">
+                    <option>Numeric</option>
+                    <option>Multiple choice - choose one</option>
+                    <option>Multiple choice - choose multiple</option>
+                    <option>Free Text</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button style="margin: 5px" type="submit" class="btn btn-success">Next</button>
+            </div>
         </div>
-        </div>
+    </form>
+    <form class="question-form" th:action="@{/createquestion}" method="POST">
         <div th:if="${isNumeric}">
             <div class="form-group">
             <p th:for="numeric_response" th:text="${question}"></p>
@@ -52,17 +71,25 @@
         </div>
         <div th:if="${isMultipleOne}">
             <h1>Answers</h1>
-            <div th:each="answer : *{answers}">
             <div class="form-group">
-                <label for="displayText">Display Text:  </label>
-                <input type="text" id="displayText" class="form-control" name="displayText">
-                <label for="storedAs">Stored as:  </label>
-                <input type="text" id="storedAs" class="form-control" name="storedAs">
-            </div>
-
+                <table id="option-table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="displayText">Display Text:  </label>
+                                <input name="displayText-1" id="displayText" type="text">
+                            </td>
+                            <td>
+                                <label for="storedAs">Stored as:  </label>
+                                <input name="storedAs-1" id="storedAs" value="1" type="number">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="form-group">
-                <button style="margin: 5px" class="btn btn-primary">More Answers</button>
+<!--                <button style="margin: 5px" type="submit" name="action" value="save" class="btn btn-primary">Save</button>-->
+                <a id="addOptions" href="#">More Options</a>
             </div>
         </div>
 
@@ -77,11 +104,13 @@
         <div class="form-group">
             <button th:if="${isNext}" style="margin: 5px" type="submit" class="btn btn-success">Next</button>
         </div>
+        <button style="margin: 5px" type="submit" th:if="${save}" name="action" value="save" class="btn btn-primary">Save</button>
+
     </form>
 
     <form th:if="${save}" th:action="@{/savequestion}" method="POST">
         <button style="margin: 5px" type="submit" class="btn btn-danger">cancel</button>
-        <button style="margin: 5px" type="submit" class="btn btn-success">Save</button>
+<!--        <button style="margin: 5px" type="submit" class="btn btn-success">Save</button>-->
     </form>
 </div>
 <!--    </div>-->
