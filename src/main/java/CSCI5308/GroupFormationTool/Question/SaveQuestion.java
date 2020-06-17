@@ -32,7 +32,7 @@ public class SaveQuestion implements ISaveQuestion{
                 typeId = -1;
         }
         User user = CurrentUser.instance().getCurrentAuthenticatedUser();
-        return questionDB.saveQuestion(question, "B00851825", typeId);
+        return questionDB.saveQuestion(question, user.getBannerID(), typeId);
     }
 
     @Override

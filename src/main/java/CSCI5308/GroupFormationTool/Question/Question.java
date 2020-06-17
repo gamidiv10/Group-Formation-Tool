@@ -1,6 +1,5 @@
 package CSCI5308.GroupFormationTool.Question;
 
-
 public class Question {
     private String questionTitle;
     private String questionText;

@@ -1,9 +1,12 @@
 package CSCI5308.GroupFormationTool.Question;
 
+import CSCI5308.GroupFormationTool.AccessControl.CurrentUser;
+import CSCI5308.GroupFormationTool.AccessControl.User;
+import CSCI5308.GroupFormationTool.SystemConfig;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.ModelAndViewDefiningException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -32,7 +35,6 @@ public class CreateQuestionController {
         Question question = Question.getInstance();
         IQuestionDataHandler questionDataHandler = new QuestionDataHandler(question);
         questionDataHandler.setQuestionData(title, type, questionText);
-
         boolean isNumeric = false;
         boolean isMultipleOne = false;
         boolean isFreeText = false;
@@ -63,27 +65,32 @@ public class CreateQuestionController {
     }
 
     @RequestMapping(value = "/createquestion", method = RequestMethod.POST, params = "action=save")
-    public ModelAndView saveQuestion(HttpServletRequest request)
+    public String saveQuestion(HttpServletRequest request, Model model)
     {
         IHandleInputOptions handleInputOptions = new HandleInputOptions();
         List<Option> optionList = handleInputOptions.handleOptions(request);
-        IQuestionDB questionDB = new QuestionDB();
+        IQuestionDB questionDB = new QuestionDao();
         ISaveQuestion saveQuestion = new SaveQuestion(questionDB);
         int questionId = saveQuestion.saveQuestionModel(Question.getInstance());
         if(optionList.size() > 0){
             saveQuestion.saveMcqOptions(optionList, questionId);
         }
-        return new ModelAndView("course/createquestion");
+        User u = CurrentUser.instance().getCurrentAuthenticatedUser();
+        Questions questions = new Questions();
+        IQuestionPersistance questionPersistance = SystemConfig.instance().getQuestionPersistance();
+        List<Questions> listOfQuestions = questions.getAllQuestionTitlesByInstructorID(questionPersistance, u.getID());
+        model.addAttribute("displayQuestions",listOfQuestions);
+        return "course/questionmanager";
     }
     @RequestMapping(value = "/createquestion", method = RequestMethod.POST, params = "action=cancel")
-    public ModelAndView saveQuestion() {
+    public String saveQuestion(Model model) {
         Question question = Question.getInstance();
         question.reset();
-        ModelAndView modelAndView = new ModelAndView("/course/createquestion");
-        modelAndView.addObject("isInitialPage", true);
-        modelAndView.addObject("save", false);
-        return modelAndView;
-
+        User u = CurrentUser.instance().getCurrentAuthenticatedUser();
+        Questions questions = new Questions();
+        IQuestionPersistance questionPersistance = SystemConfig.instance().getQuestionPersistance();
+        List<Questions> listOfQuestions = questions.getAllQuestionTitlesByInstructorID(questionPersistance, u.getID());
+        model.addAttribute("displayQuestions",listOfQuestions);
+        return "course/questionmanager";
     }
-
 }

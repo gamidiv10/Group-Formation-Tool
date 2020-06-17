@@ -34,7 +34,7 @@
     </style>
 </head>
 <body>
-<!--    <div sec:authorize="isAuthenticated()">-->
+<div sec:authorize="isAuthenticated()">
 <div class="question-container" style="text-align: center; margin-top: 10%">
     <form class="question-form" th:action="@{/createquestion}" method="POST">
         <div th:if="${isInitialPage}">
@@ -107,6 +107,6 @@
         <button style="margin: 5px" type="submit" th:if="${save}" name="action" value="cancel" class="btn btn-danger">cancel</button>
     </form>
 </div>
-<!--    </div>-->
+    </div>
 </body>
 </html>

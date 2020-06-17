@@ -13,7 +13,7 @@ import static org.mockito.Mockito.when;
 public class SaveQuestionTest {
     @Test
     public void saveQuestionModelTest(){
-        IQuestionDB questionDB = mock(QuestionDB.class);
+        IQuestionDB questionDB = mock(QuestionDao.class);
         Question question = Question.getInstance();
         question.setQuestionType("Numeric");
         question.setQuestionText("Text");
@@ -24,7 +24,7 @@ public class SaveQuestionTest {
     }
     @Test
     public void saveMcqOptionsTest(){
-        IQuestionDB questionDB = mock(QuestionDB.class);
+        IQuestionDB questionDB = mock(QuestionDao.class);
         List<Option> optionList = new ArrayList<>();
         optionList.add(new Option("a", 1));
         Option opt = new Option("a", 1);

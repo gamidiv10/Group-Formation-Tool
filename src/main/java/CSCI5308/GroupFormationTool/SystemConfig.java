@@ -3,8 +3,8 @@ package CSCI5308.GroupFormationTool;
 import CSCI5308.GroupFormationTool.Security.*;
 import CSCI5308.GroupFormationTool.AccessControl.*;
 import CSCI5308.GroupFormationTool.Database.*;
-import CSCI5308.GroupFormationTool.Questions.IQuestionPersistance;
-import CSCI5308.GroupFormationTool.Questions.QuestionDB;
+import CSCI5308.GroupFormationTool.Question.IQuestionPersistance;
+import CSCI5308.GroupFormationTool.Question.QuestionDB;
 import CSCI5308.GroupFormationTool.Courses.*;
 
 /*

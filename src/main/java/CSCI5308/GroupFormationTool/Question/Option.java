@@ -19,7 +19,6 @@ public class Option {
         this.storedAs = storedAs;
     }
 
-
     public String getDisplayText() {
         return displayText;
     }
