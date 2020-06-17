@@ -29,6 +29,14 @@ public class InstructorAdminController
 		courseDB.loadCourseByID(courseID, course);
 		model.addAttribute("course", course);
 		model.addAttribute("displayresults", false);
+		if (course.isCurrentUserEnrolledAsRoleInCourse(Role.INSTRUCTOR))
+		{
+			model.addAttribute("isinstructor", true);
+		}
+		else
+		{
+			model.addAttribute("isinstructor", false);
+		}
 		if (course.isCurrentUserEnrolledAsRoleInCourse(Role.INSTRUCTOR) ||
 			 course.isCurrentUserEnrolledAsRoleInCourse(Role.TA))
 		{
