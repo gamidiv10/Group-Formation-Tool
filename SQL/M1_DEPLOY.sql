@@ -39,6 +39,43 @@ CREATE TABLE SystemRole (
     FOREIGN KEY (userID) REFERENCES User(id)
 );
 
+CREATE TABLE `QuestionType` (
+  `typeID` int(11) NOT NULL,
+  `type` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`typeID`)
+);
+
+CREATE TABLE `Question` (
+  `questionID` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(150) NOT NULL,
+  `typeID` int(11) NOT NULL,
+  `questionText` varchar(400) NOT NULL,
+  `instructorID` bigint(20) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  PRIMARY KEY (`questionID`),
+  KEY `type` (`typeID`),
+  KEY `instructor` (`instructorID`),
+  CONSTRAINT `instructor` FOREIGN KEY (`instructorID`) REFERENCES `User` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `type` FOREIGN KEY (`typeID`) REFERENCES `QuestionType` (`typeID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
+CREATE TABLE `QuestionOptions` (
+  `optionID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `questionID` int(11) NOT NULL,
+  `displayText` varchar(150) NOT NULL,
+  `storedAs` int(11) NOT NULL,
+  PRIMARY KEY (`optionID`),
+  KEY `question` (`questionID`),
+  CONSTRAINT `question` FOREIGN KEY (`questionID`) REFERENCES `Question` (`questionID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
+INSERT INTO QuestionType
+VALUES
+(1, 'Numeric'),
+(2, 'Multiple Choice - One'),
+(3, 'Multiple Choice - Many'),
+(4, 'Free Text');
+
 INSERT INTO Role(role)
 VALUES
     ('Admin'),

@@ -9,7 +9,6 @@ public class Option {
         this.storedAs = storedAs;
     }
     public Option(){
-
     }
     public void setDisplayText(String displayText) {
         this.displayText = displayText;
