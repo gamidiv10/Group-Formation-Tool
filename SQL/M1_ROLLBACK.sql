@@ -14,7 +14,8 @@ DROP PROCEDURE IF EXISTS spEnrollUser;
 DROP PROCEDURE IF EXISTS spFindCourseByID;
 DROP PROCEDURE IF EXISTS spFindUsersWithoutCourseRole;
 DROP PROCEDURE IF EXISTS spLoadUserRolesForCourse;
-
+DROP PROCEDURE IF EXISTS spCreateQuestion
+DROP PROCEDURE IF EXISTS spInsertOptions
 DROP TABLE SystemRole;
 
 DROP TABLE CourseRole;
@@ -26,3 +27,9 @@ DROP TABLE Role;
 DROP TABLE UserContactInfo;
 
 DROP TABLE User;
+
+DROP TABLE QuestionOptions;
+
+DROP TABLE Question;
+
+DROP TABLE QuestionType;

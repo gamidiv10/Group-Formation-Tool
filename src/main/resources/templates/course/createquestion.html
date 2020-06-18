@@ -9,18 +9,16 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $("#addOptions").click(function () {
-                var iX = $("#option-table").find("tr").length + 1;
+                var index = $("#mcq-table").find("tr").length + 1;
 
-                $('#option-table tbody>tr:last').clone(true).insertAfter('#option-table tbody>tr:last').find(".storedAs")
-                    .attr("name","storedAs-" + iX).val(iX);
-                $('#option-table tbody>tr:last .displayText')
-                    .attr("name","displayText-" + iX).val("");
+                $('#mcq-table tbody>tr:last').clone(true).insertAfter('#mcq-table tbody>tr:last').find(".storedAs")
+                    .attr("name","storedAs-" + index).val(index);
+                $('#mcq-table tbody>tr:last .displayText')
+                    .attr("name","displayText-" + index).val("");
                 return false;
             });
         });
-
     </script>
-
     <style>
         .form-control{
             width: 300px;
@@ -72,7 +70,7 @@
         <div th:if="${isMultipleOne}">
             <h1>Answers</h1>
             <div class="form-group">
-                <table id="option-table">
+                <table id="mcq-table">
                     <tbody>
                         <tr>
                             <td>
