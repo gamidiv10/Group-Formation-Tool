@@ -1,7 +1,5 @@
 package CSCI5308.GroupFormationTool.Security;
 
-import CSCI5308.GroupFormationTool.SystemConfig;
-
 public class PasswordEnforcementPolicy {
 
 	private int minLength;
@@ -57,7 +55,7 @@ public class PasswordEnforcementPolicy {
 		if (this.minLowerCase != -1) {
 
 			toDisplayPolicies = toDisplayPolicies + "The password should contain atleast"
-					+ String.valueOf(this.minLowerCase) + " upper lower character(s) " + "\n";
+					+ String.valueOf(this.minLowerCase) + " lower character(s) " + "\n";
 
 		}
 

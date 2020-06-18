@@ -67,7 +67,6 @@ public class QuestionManagerController {
 		question.setQuestionId(questionId);
 		question.deleteQuestion(questionDB);
 		ModelAndView mav = new ModelAndView("redirect:/course/questionmanager");
-//		mav.addObject("message", "Successfully deleted the question");
 		return mav;
 	}
 
