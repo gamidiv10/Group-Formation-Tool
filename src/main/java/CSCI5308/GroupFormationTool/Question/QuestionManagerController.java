@@ -20,6 +20,7 @@ public class QuestionManagerController {
 	{
 		IQuestionPersistance questionDB = SystemConfig.instance().getQuestionPersistance();
 		User u = CurrentUser.instance().getCurrentAuthenticatedUser();
+		Questions que = new Questions();
 		List<Questions> listOfQuestions = questionDB.loadAllQuestionTitlesByInstructorID(u.getID());
 		model.addAttribute("displayQuestions",listOfQuestions);
 		return "/course/questionmanager";
@@ -52,13 +53,14 @@ public class QuestionManagerController {
 	public String deleteConfirmation(Model model, @PathVariable("questionId") Integer questionId) {
 		IQuestionPersistance questionDB = SystemConfig.instance().getQuestionPersistance();
 		Questions question = new Questions();
-		questionDB.loadQuestionById(questionId, question);
+		question.setQuestionId(questionId);
+		question.loadQuestion(questionDB);
 		model.addAttribute("Question", question);
 		return "/course/delete_question";
 	}
 
 	@PostMapping("/deleteQuestion/{questionId}")
-	public ModelAndView deleteCourse(Model model, @PathVariable("questionId") Integer questionId) {
+	public ModelAndView deleteQuestions(Model model, @PathVariable("questionId") Integer questionId) {
 		IQuestionPersistance questionDB = SystemConfig.instance().getQuestionPersistance();
 		Questions question = new Questions();
 		question.setQuestionId(questionId);

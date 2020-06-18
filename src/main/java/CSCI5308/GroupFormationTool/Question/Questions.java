@@ -80,6 +80,10 @@ public class Questions {
 		return questionDB.deleteQuestion(this.questionId);
 	}
 
+	public void loadQuestion(IQuestionPersistance questionDB) {
+		questionDB.loadQuestionById(this.questionId, this);
+	}
+
 	public List<Questions> sortByTile(IQuestionPersistance questionDB, User u)
 	{
 		List<Questions> questions = questionDB.loadAllQuestionTitlesByInstructorID(u.getID());

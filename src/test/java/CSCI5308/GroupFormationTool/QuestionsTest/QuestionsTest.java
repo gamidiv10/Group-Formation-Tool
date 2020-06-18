@@ -101,7 +101,7 @@ public class QuestionsTest
 	}
 
 	@Test
-	void loadQuestionById() {
+	void loadQuestion() {
 		IQuestionPersistance questionDB = new QuestionDBMock();
 		Questions question = new Questions();
 		Assert.isTrue(question.getQuestionId() == -1);
