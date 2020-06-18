@@ -24,7 +24,7 @@ public class QuestionManagerController {
 		IQuestionPersistance questionPersistance = SystemConfig.instance().getQuestionPersistance();
 		List<Questions> listOfQuestions = questions.getAllQuestionTitlesByInstructorID(questionPersistance, u.getID());
 		model.addAttribute("displayQuestions",listOfQuestions);
-		return "/course/questionmanager";
+		return "course/questionmanager";
 	}
 
 	@GetMapping("/course/sortbytitle")
@@ -35,7 +35,7 @@ public class QuestionManagerController {
 		Questions questions = new Questions();
 		List<Questions> listOfQuestions = questions.sortByTile(questionDB, u);
 		model.addAttribute("displayQuestions",listOfQuestions);
-		return "/course/questionmanager";
+		return "course/questionmanager";
 	}
 
 	@GetMapping("/course/sortbydate")
@@ -47,7 +47,7 @@ public class QuestionManagerController {
 		List<Questions> listOfQuestions = questions.sortByDate(questionDB, u);
 		model.addAttribute("displayQuestions",listOfQuestions);
 
-		return "/course/questionmanager";
+		return "course/questionmanager";
 	}
 
 	@PostMapping("/deleteConfirmation/{questionId}")
@@ -57,7 +57,7 @@ public class QuestionManagerController {
 		question.setQuestionId(questionId);
 		question.loadQuestion(questionDB);
 		model.addAttribute("Question", question);
-		return "/course/delete_question";
+		return "course/delete_question";
 	}
 
 	@PostMapping("/deleteQuestion/{questionId}")
