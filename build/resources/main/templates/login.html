@@ -1,75 +1,42 @@
-<!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
-  <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-    crossorigin="anonymous"
-  />
+<!DOCTYPE html>  
+<html xmlns:th="http://www.thymeleaf.org">  
+<head>  
+	<title>CSCI5308 Group Formation Tool - Login page</title>
+	<!-- Normalize.css by Nicolas Gallagher, used from https://necolas.github.io/normalize.css/ 
+	Necessary to reset some default browser styles for consistent appearance across browsers. -->
+	<link th:href="@{/styles/cssandjs/normalize.css}" rel="stylesheet" />
 
-  <head>
-    <title>Catme</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <style>
-      .login_form {
-        text-align: center;
-        margin-top: 30px;
-        horiz-align: center;
-        vertical-align: center;
-      }
-      .input_element {
-        border-radius: 5px;
-      }
-    </style>
-  </head>
+	<!-- This file includes all default styles for this application. -->
+	<link th:href="@{/styles/cssandjs/main.css}" rel="stylesheet" />
+</head>  
+<body class="bodyGridContainer">
+	<header class="bodyGridRow headerGridContainer">
+		<h1>CSCI5308 Group Formation Tool</h1>
+	</header>
+	<main class="bodyGridRow mainGridContainer">
+		<aside class="mainGridRow welcomeInfoBox">
+			<h2>Welcome to the group formation tool, please sign in.</h2>
+		</aside>
 
-  <body>
-    <div th:replace="fragments/links ::headerNav"></div>
-
-    <form
-      class="login_form"
-      th:action="@{/home}"
-      th:object="${userCred}"
-      method="post"
-    >
-      <div
-        class="card bg-dark text-white"
-        style="width: 500px; margin-left: 500px; margin-top: 100px;"
-      >
-        <h1 style="margin-top: 20px; margin-bottom: 30px;">CatMe Login</h1>
-        <div class="form-group">
-          <input
-            class="input_element"
-            type="text"
-            th:field="*{userId}"
-            placeholder="Banner ID"
-            required
-            autofocus
-          />
-        </div>
-        <div class="form-group">
-          <input
-            class="input_element"
-            type="password"
-            id="input"
-            th:field="*{password}"
-            placeholder="Password"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-light">Login</button>
-        </div>
-        <div class="form-group">
-          <a href="/resetPassword">Forgot Password?</a>
-        </div>
-        <div class="form-group">
-          <a href="/register">Don't have an account? Register</a>
-        </div>
-        <div class="form-group">
-          <p th:if="${loginError}">Incorrect BannerId or Password</p>
-        </div>
-      </div>
-    </form>
-  </body>
+		<div class="mainGridCentreInfoBox" th:if="${param.error}">
+			<p class="errorInfo">Invalid Banner ID or password.</p>
+		</div>
+		<div class="mainGridCentreInfoBox" th:if="${param.logout}">
+			<p class="confirmation">You have been logged out.</p>
+		</div>
+		<div class="mainGridCentreCard">
+			<form class="regnLoginGridContainer" th:action="@{/login}" method="post">
+				<label class="regnLoginGridLeftCol" for="lBannerInput"> Banner ID:</label> 
+				<input id="lBannerInput" class="regnLoginGridRightCol" type="text" name="username"/>
+				<label class="regnLoginGridLeftCol" for="lPswdInput"> Password:</label> 
+				<input id="lPswdInput" class="regnLoginGridRightCol" type="password" name="password"/>
+				<input class="regnLoginGridRightCol" type="submit" value="Log In"/>
+			</form>
+		</div>
+		<a class="signupLogin mainGridRow mainGridCentreCard" th:href="@{signup}">Are you a new user? Click here to sign up!</a>
+	</main>
+	<footer class="bodyGridRow footerGridContainer">
+		<p><strong>CSCI5308 (Advanced Topics in Software Development)</strong> is a graduate course offered for students enrolled in the <a href="https://www.dal.ca/macs" target="_blank">Master of Applied Computer Science (MACS)</a> at the <a href="https://www.dal.ca/cs" target="_blank">Faculty of Computer Science</a>, <a href="https://www.dal.ca" target="_blank">Dalhousie University</a>.</p>
+</footer>
+</body>  
 </html>
