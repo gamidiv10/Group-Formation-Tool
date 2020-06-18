@@ -20,8 +20,9 @@ public class QuestionManagerController {
 	{
 		IQuestionPersistance questionDB = SystemConfig.instance().getQuestionPersistance();
 		User u = CurrentUser.instance().getCurrentAuthenticatedUser();
-		Questions que = new Questions();
-		List<Questions> listOfQuestions = questionDB.loadAllQuestionTitlesByInstructorID(u.getID());
+		Questions questions = new Questions();
+		IQuestionPersistance questionPersistance = SystemConfig.instance().getQuestionPersistance();
+		List<Questions> listOfQuestions = questions.getAllQuestionTitlesByInstructorID(questionPersistance, u.getID());
 		model.addAttribute("displayQuestions",listOfQuestions);
 		return "/course/questionmanager";
 	}
