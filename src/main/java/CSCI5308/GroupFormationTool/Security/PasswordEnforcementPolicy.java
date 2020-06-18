@@ -46,7 +46,7 @@ public class PasswordEnforcementPolicy {
 		}
 		if (this.maxLength != -1) {
 			toDisplayPolicies = toDisplayPolicies + "The Maximum length of password should be "
-					+ String.valueOf(this.minLength) + "\n";
+					+ String.valueOf(this.maxLength) + "\n";
 
 		}
 		if (this.minUpperCase != -1) {
