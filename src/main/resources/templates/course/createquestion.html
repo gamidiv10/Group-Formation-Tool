@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>CSCI5308 - Group Formation Tool</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#addOptions").click(function () {
+                var index = $("#mcq-table").find("tr").length + 1;
+
+                $('#mcq-table tbody>tr:last').clone(true).insertAfter('#mcq-table tbody>tr:last').find(".storedAs")
+                    .attr("name","storedAs-" + index).val(index);
+                $('#mcq-table tbody>tr:last .displayText')
+                    .attr("name","displayText-" + index).val("");
+                return false;
+            });
+        });
+    </script>
+    <style>
+        .form-control{
+            width: 300px;
+            margin: 5px;
+        }
+        .form-group{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+<div sec:authorize="isAuthenticated()">
+<div class="question-container" style="text-align: center; margin-top: 10%">
+    <form class="question-form" th:action="@{/createquestion}" method="POST">
+        <div th:if="${isInitialPage}">
+            <h1>Basic Question Information</h1>
+            <div class="form-group">
+                <label for="title">Title: </label>
+                <input type="text" id="title" class="form-control" name="title">
+            </div>
+            <div class="form-group">
+                <label for="question">Question: </label>
+                <textarea type="text" id="question" class="form-control" name="question" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="type">Type: </label>
+                <select class="form-control" id="type" name="type">
+                    <option>Numeric</option>
+                    <option>Multiple choice - choose one</option>
+                    <option>Multiple choice - choose multiple</option>
+                    <option>Free Text</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button style="margin: 5px" type="submit" class="btn btn-success">Next</button>
+            </div>
+        </div>
+    </form>
+    <form class="question-form" th:action="@{/createquestion}" method="POST">
+        <div th:if="${isNumeric}">
+            <div class="form-group">
+            <p th:for="numeric_response" th:text="${question}"></p>
+                <input style="width: 40px; margin: 5px" type="text" name="numeric_response"/>
+            </div>
+        </div>
+        <div th:if="${isMultipleOne}">
+            <h1>Answers</h1>
+            <div class="form-group">
+                <table id="mcq-table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="displayText">Display Text:  </label>
+                                <input name="displayText-1" class="displayText" id="displayText" type="text">
+                            </td>
+                            <td>
+                                <label for="storedAs">Stored as:  </label>
+                                <input name="storedAs-1" class="storedAs" id="storedAs" value="1" type="number">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="form-group">
+                <a id="addOptions" href="#">More Options</a>
+            </div>
+        </div>
+
+        <div th:if="${isFreeText}">
+            <div class="form-group">
+                <label for="freeText" th:text="${question}"></label>
+            </div>
+            <div class="form-group">
+                <textarea type="text" id="freeText" class="form-control" name="freeText" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <button th:if="${isNext}" style="margin: 5px" type="submit" class="btn btn-success">Next</button>
+        </div>
+        <button style="margin: 5px" type="submit" th:if="${save}" name="action" value="save" class="btn btn-primary">Save</button>
+        <button style="margin: 5px" type="submit" th:if="${save}" name="action" value="cancel" class="btn btn-danger">cancel</button>
+    </form>
+</div>
+    </div>
+</body>
+</html>
