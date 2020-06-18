@@ -9,7 +9,7 @@ import java.util.List;
 
 import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.Courses.*;
-import CSCI5308.GroupFormationTool.Security.IPasswordEnforcementPolicy;
+import CSCI5308.GroupFormationTool.Security.IPasswordEnforcementPolicyPersistence;
 
 @Controller
 public class IndexController

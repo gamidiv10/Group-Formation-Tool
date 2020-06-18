@@ -15,6 +15,7 @@ import CSCI5308.GroupFormationTool.Courses.*;
  * library classes in the framework).
  */
 public class SystemConfig {
+
 	private static SystemConfig uniqueInstance = null;
 
 	private IPasswordEncryption passwordEncryption;
@@ -22,7 +23,8 @@ public class SystemConfig {
 	private IDatabaseConfiguration databaseConfiguration;
 	private ICoursePersistence courseDB;
 	private ICourseUserRelationshipPersistence courseUserRelationshipDB;
-	private IPasswordEnforcementPolicy passwordEnforcementPolicyDB;
+	private IPasswordEnforcementPolicyPersistence passwordEnforcementPolicyDB;
+	private IUserHistroyRelationshipPersistence userHistoryRelationshipDB;
 
 	// This private constructor ensures that no class other than System can allocate
 	// the System object. The compiler would prevent it.
@@ -36,6 +38,7 @@ public class SystemConfig {
 		courseDB = new CourseDB();
 		courseUserRelationshipDB = new CourseUserRelationshipDB();
 		passwordEnforcementPolicyDB = new PasswordEnforcementPolicyDB();
+		userHistoryRelationshipDB = new UserHistoryRelationshipDB();
 
 	}
 
@@ -47,6 +50,14 @@ public class SystemConfig {
 			uniqueInstance = new SystemConfig();
 		}
 		return uniqueInstance;
+	}
+
+	public IUserHistroyRelationshipPersistence getUserHistoryRelationshipDB() {
+		return userHistoryRelationshipDB;
+	}
+
+	public void setUserHistoryRelationshipDB(IUserHistroyRelationshipPersistence userHistoryRelationshipDB) {
+		this.userHistoryRelationshipDB = userHistoryRelationshipDB;
 	}
 
 	public PasswordEnforcementPolicy getPasswordEnforcementPolicy() {
@@ -94,12 +105,12 @@ public class SystemConfig {
 		return courseUserRelationshipDB;
 	}
 
-	public IPasswordEnforcementPolicy getPasswordEnforcementPolicyDB(
-			IPasswordEnforcementPolicy passwordEnforcementPolicyDB) {
+	public IPasswordEnforcementPolicyPersistence getPasswordEnforcementPolicyDB(
+			IPasswordEnforcementPolicyPersistence passwordEnforcementPolicyDB) {
 		return passwordEnforcementPolicyDB;
 	}
 
-	public void setPasswordEnforcementPolicyDB(IPasswordEnforcementPolicy passwordEnforcementPolicyDB) {
+	public void setPasswordEnforcementPolicyDB(IPasswordEnforcementPolicyPersistence passwordEnforcementPolicyDB) {
 		this.passwordEnforcementPolicyDB = passwordEnforcementPolicyDB;
 	}
 }

@@ -1,9 +1,9 @@
 package CSCI5308.GroupFormationTool.SecurityTest;
 
-import CSCI5308.GroupFormationTool.Security.IPasswordEnforcementPolicy;
+import CSCI5308.GroupFormationTool.Security.IPasswordEnforcementPolicyPersistence;
 import CSCI5308.GroupFormationTool.Security.PasswordEnforcementPolicy;
 
-public class PasswordEnforcementPolicyDBMock implements IPasswordEnforcementPolicy {
+public class PasswordEnforcementPolicyDBMock implements IPasswordEnforcementPolicyPersistence {
 
 	@Override
 	public void loadPasswordEnforcementPolicy(PasswordEnforcementPolicy policy) {

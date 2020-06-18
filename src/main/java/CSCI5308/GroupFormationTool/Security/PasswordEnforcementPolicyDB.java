@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 
-public class PasswordEnforcementPolicyDB implements IPasswordEnforcementPolicy {
+public class PasswordEnforcementPolicyDB implements IPasswordEnforcementPolicyPersistence {
 
 	@Override
 	public void loadPasswordEnforcementPolicy(PasswordEnforcementPolicy policy) {

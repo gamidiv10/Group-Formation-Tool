@@ -1,6 +1,6 @@
 package CSCI5308.GroupFormationTool.Security;
 
-public interface IPasswordEnforcementPolicy {
+public interface IPasswordEnforcementPolicyPersistence {
 
 	public void loadPasswordEnforcementPolicy(PasswordEnforcementPolicy policy);
 }
