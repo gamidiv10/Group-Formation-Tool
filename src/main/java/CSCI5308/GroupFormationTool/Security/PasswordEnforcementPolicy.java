@@ -23,9 +23,7 @@ public class PasswordEnforcementPolicy {
 
 	public static PasswordEnforcementPolicy getInstance(IPasswordEnforcementPolicyPersistence policy) {
 
-		if (null == uniqueInstance) {
-			uniqueInstance = new PasswordEnforcementPolicy(policy);
-		}
+		uniqueInstance = new PasswordEnforcementPolicy(policy);
 		return uniqueInstance;
 	}
 
