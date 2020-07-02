@@ -81,7 +81,7 @@ public class CreateQuestionController {
     }
 
     @RequestMapping(value = "/createquestion", method = RequestMethod.POST, params = "action=cancel")
-    public String saveQuestion(Model model) {
+    public String cancel(Model model) {
         Question question = Question.getInstance();
         question.reset();
         User u = CurrentUser.instance().getCurrentAuthenticatedUser();

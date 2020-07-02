@@ -29,7 +29,6 @@ public class UserDB implements IUserPersistence {
                 }
             }
         } catch (SQLException e) {
-            // Logging needed.
         } finally {
             if (null != proc) {
                 proc.cleanup();
@@ -50,13 +49,11 @@ public class UserDB implements IUserPersistence {
                 }
             }
         } catch (SQLException e) {
-            // Logging needed.
         } finally {
             if (null != proc) {
                 proc.cleanup();
             }
         }
-        // If we found the ID load the full details.
         if (userID > -1) {
             loadUserByID(userID, user);
         }
@@ -74,7 +71,6 @@ public class UserDB implements IUserPersistence {
             proc.registerOutputParameterLong(6);
             proc.execute();
         } catch (SQLException e) {
-            // Logging needed
             return false;
         } finally {
             if (null != proc) {
@@ -85,7 +81,6 @@ public class UserDB implements IUserPersistence {
     }
 
     public boolean updateUser(User user) {
-        // Coming in M2!
         return false;
     }
 }

@@ -26,7 +26,6 @@ public class CourseDB implements ICoursePersistence {
                 }
             }
         } catch (SQLException e) {
-            // Logging needed.
         } finally {
             if (null != proc) {
                 proc.cleanup();
@@ -49,7 +48,6 @@ public class CourseDB implements ICoursePersistence {
                 }
             }
         } catch (SQLException e) {
-            // Logging needed.
         } finally {
             if (null != proc) {
                 proc.cleanup();
@@ -65,7 +63,6 @@ public class CourseDB implements ICoursePersistence {
             proc.registerOutputParameterLong(2);
             proc.execute();
         } catch (SQLException e) {
-            // Logging needed
             return false;
         } finally {
             if (null != proc) {
@@ -82,7 +79,6 @@ public class CourseDB implements ICoursePersistence {
             proc.setParameter(1, id);
             proc.execute();
         } catch (SQLException e) {
-            // Logging needed
             return false;
         } finally {
             if (null != proc) {

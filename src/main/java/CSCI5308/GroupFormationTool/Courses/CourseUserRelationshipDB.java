@@ -32,7 +32,6 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
                 }
             }
         } catch (SQLException e) {
-            // Logging needed.
         } finally {
             if (null != proc) {
                 proc.cleanup();
@@ -58,7 +57,6 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
                 }
             }
         } catch (SQLException e) {
-            // Logging needed.
         } finally {
             if (null != proc) {
                 proc.cleanup();
@@ -76,7 +74,6 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
             proc.setParameter(3, role.toString());
             proc.execute();
         } catch (SQLException e) {
-            // Logging needed
             return false;
         } finally {
             if (null != proc) {
@@ -101,7 +98,6 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
                 }
             }
         } catch (SQLException e) {
-            // Logging needed.
         } finally {
             if (null != proc) {
                 proc.cleanup();

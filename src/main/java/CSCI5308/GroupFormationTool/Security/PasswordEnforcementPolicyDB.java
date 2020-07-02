@@ -45,7 +45,6 @@ public class PasswordEnforcementPolicyDB implements IPasswordEnforcementPolicyPe
                 }
             }
         } catch (SQLException e) {
-            // Logging needed.
         } finally {
             if (null != proc) {
                 proc.cleanup();

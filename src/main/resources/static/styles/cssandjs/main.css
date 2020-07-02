@@ -13,17 +13,10 @@ body {
     margin: auto;
 }
 
-/* 
- * All content will have a bit of default padding to align text properly.
- */
 p, a, h1, h2, h3, h4, h5, h6, form {
     padding: 0 16px;
 }
 
-/*
- * Content is organized into header, main and footer elements for consistency.
- * These elements have default properties defined here.
- */
 header {
     background-color: steelblue;
     color: white;
@@ -36,19 +29,12 @@ footer {
     border-top: thin solid lightgray;
 }
 
-/* 
- * Main heading has a steelblue coloured background.
- * It also has a top and bottom padding to space the content better.
- */
 h1 {
     margin: 0;
     padding-bottom: 1em;
     padding-top: 1em;
 }
 
-/* 
- * Some default styling for form input elements. 
- */
 form input {
     margin: 1em 0;
     height: 40px;
@@ -63,9 +49,6 @@ form input[type="submit"]:hover {
     color: yellow;
 }
 
-/* 
- * Default styles for footer text and links.
- */
 footer p {
     font-size: 0.9em;
 }
@@ -81,9 +64,6 @@ footer a:hover {
     border-bottom: thin solid darkgoldenrod;
 }
 
-/* 
- * Custom styles for displaying key information.
- */
 .errorInfo {
     color: red;
     font-style: italic;
@@ -117,21 +97,11 @@ a.signupLogin:active {
     color: yellow;
 }
 
-/* 
- * Custom class for an aside block to show information below the page header.
- */
 .welcomeInfoBox {
     text-align: center;
     color: red;
 }
 
-/*
- * UI Update: Grid layout
- * -> The page body is a grid with 4 rows (header, user profile div, main, footer)
- * -> The user profile div is a 4 column grid
- * -> The main is another grid with 3 columns (for content alignment)
- * -> The header and footer are also set up as grid containers to align content in the vertical middle.
- */
 .bodyGridContainer {
     display: grid;
     gap: 1em;
@@ -216,9 +186,6 @@ a.signupLogin:active {
     grid-row: -2/-1;
 }
 
-/*
- * Styles for the containers holding login and registration forms
- */
 .regnLoginGridContainer {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -232,10 +199,6 @@ a.signupLogin:active {
 .regnLoginGridRightCol {
     grid-column: 2/-1;
 }
-
-/*
- * Media queries for responsive behaviour
- */
 
 @media screen and (max-width: 900px) {
     body {

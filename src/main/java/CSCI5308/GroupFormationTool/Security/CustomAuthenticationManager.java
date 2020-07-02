@@ -21,13 +21,10 @@ public class CustomAuthenticationManager implements AuthenticationManager
 	
 	private Authentication checkAdmin(String password, User u, Authentication authentication) throws AuthenticationException
 	{
-		// The admin password is not encrypted because it is hardcoded in the DB.
 		if (password.equals(u.getPassword()))
 		{
-			// Grant ADMIN rights system-wide, this is used to protect controller mappings.
 			List<GrantedAuthority> rights = new ArrayList<GrantedAuthority>();
 			rights.add(new SimpleGrantedAuthority("ADMIN"));
-			// Return valid authentication token.
 			UsernamePasswordAuthenticationToken token;
 			token = new UsernamePasswordAuthenticationToken(authentication.getPrincipal(),
 																			authentication.getCredentials(),
@@ -45,10 +42,8 @@ public class CustomAuthenticationManager implements AuthenticationManager
 		IPasswordEncryption passwordEncryption = SystemConfig.instance().getPasswordEncryption();
 		if (passwordEncryption.matches(password, u.getPassword()))
 		{
-			// Grant USER rights system-wide, this is used to protect controller mappings.
 			List<GrantedAuthority> rights = new ArrayList<GrantedAuthority>();
 			rights.add(new SimpleGrantedAuthority("USER"));
-			// Return valid authentication token.
 			UsernamePasswordAuthenticationToken token;
 			token = new UsernamePasswordAuthenticationToken(authentication.getPrincipal(),
 																			authentication.getCredentials(),
@@ -61,7 +56,6 @@ public class CustomAuthenticationManager implements AuthenticationManager
 		}
 	}
 	
-	// Authenticate against our database using the input banner ID and password.
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException
 	{
 		String bannerID = authentication.getPrincipal().toString();
@@ -89,7 +83,6 @@ public class CustomAuthenticationManager implements AuthenticationManager
 		}
 		else
 		{
-			// No user with this banner id found.
 			throw new BadCredentialsException("1001");
 		}			
 	}
