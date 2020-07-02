@@ -12,7 +12,7 @@ import static org.mockito.Mockito.when;
 
 public class SaveQuestionTest {
     @Test
-    public void saveQuestionModelTest(){
+    public void saveQuestionModelTest() {
         IQuestionDB questionDB = mock(QuestionDao.class);
         Question question = Question.getInstance();
         question.setQuestionType("Numeric");
@@ -22,8 +22,9 @@ public class SaveQuestionTest {
         SaveQuestion saveQuestion = new SaveQuestion(questionDB);
         assertEquals(questionDB.saveQuestion(question, "B00851825", 1), 1);
     }
+
     @Test
-    public void saveMcqOptionsTest(){
+    public void saveMcqOptionsTest() {
         IQuestionDB questionDB = mock(QuestionDao.class);
         List<Option> optionList = new ArrayList<>();
         optionList.add(new Option("a", 1));
@@ -32,6 +33,6 @@ public class SaveQuestionTest {
         SaveQuestion saveQuestion = new SaveQuestion(questionDB);
         assertTrue(saveQuestion.saveMcqOptions(optionList, 1));
 
-        }
+    }
 
 }

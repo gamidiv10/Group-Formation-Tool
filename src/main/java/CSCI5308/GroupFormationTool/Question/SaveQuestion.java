@@ -5,17 +5,18 @@ import CSCI5308.GroupFormationTool.AccessControl.User;
 
 import java.util.List;
 
-public class SaveQuestion implements ISaveQuestion{
+public class SaveQuestion implements ISaveQuestion {
 
     IQuestionDB questionDB;
-    public SaveQuestion(IQuestionDB questionDB){
+
+    public SaveQuestion(IQuestionDB questionDB) {
         this.questionDB = questionDB;
     }
 
     @Override
     public int saveQuestionModel(Question question) {
         int typeId;
-        switch (question.getQuestionType()){
+        switch (question.getQuestionType()) {
             case "Numeric":
                 typeId = 1;
                 break;
@@ -41,8 +42,7 @@ public class SaveQuestion implements ISaveQuestion{
             for (Option option : optionList) {
                 questionDB.saveMcq(option, questionId);
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }

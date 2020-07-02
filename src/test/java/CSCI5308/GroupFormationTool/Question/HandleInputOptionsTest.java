@@ -11,7 +11,7 @@ import static org.mockito.Mockito.*;
 
 public class HandleInputOptionsTest {
     @Test
-    public void handleOptionsSuccessTest(){
+    public void handleOptionsSuccessTest() {
         HttpServletRequest httpServletRequest = mock(HttpServletRequest.class);
         when(httpServletRequest.getParameter("displayText-1")).thenReturn("displayText1");
         when(httpServletRequest.getParameter("storedAs-1")).thenReturn("1");
@@ -20,8 +20,9 @@ public class HandleInputOptionsTest {
         HandleInputOptions handleInputOptions = new HandleInputOptions();
         assertEquals(handleInputOptions.handleOptions(httpServletRequest).get(0).getDisplayText(), "displayText1");
     }
+
     @Test
-    public void handleOptionsFailureTest(){
+    public void handleOptionsFailureTest() {
         HttpServletRequest httpServletRequest = mock(HttpServletRequest.class);
         when(httpServletRequest.getParameter("displayText-1")).thenReturn("displayText1");
         when(httpServletRequest.getParameter("storedAs-1")).thenReturn("1");

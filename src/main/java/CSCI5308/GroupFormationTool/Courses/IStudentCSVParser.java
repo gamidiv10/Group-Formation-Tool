@@ -4,9 +4,8 @@ import java.util.List;
 
 import CSCI5308.GroupFormationTool.AccessControl.User;
 
-public interface IStudentCSVParser 
-{
+public interface IStudentCSVParser {
 
-	public List<User> parseCSVFile(List<String> failureResults);
-	
+    public List<User> parseCSVFile(List<String> failureResults);
+
 }

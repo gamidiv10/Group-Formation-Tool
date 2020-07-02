@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class QuestionDataHandlerTest {
     @Test
-    public void setQuestionDataTest(){
+    public void setQuestionDataTest() {
         Question question = Question.getInstance();
         question.setQuestionType("Numeric");
         question.setQuestionText("Text");
@@ -19,8 +19,9 @@ public class QuestionDataHandlerTest {
         assertEquals(question.getQuestionText(), "ChangedText");
 
     }
+
     @Test
-    public void reset(){
+    public void reset() {
         Question question = Question.getInstance();
         question.setQuestionType("Numeric");
         question.setQuestionText("Text");

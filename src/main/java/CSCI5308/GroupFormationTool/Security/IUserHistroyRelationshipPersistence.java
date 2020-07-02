@@ -6,8 +6,8 @@ import CSCI5308.GroupFormationTool.AccessControl.User;
 
 public interface IUserHistroyRelationshipPersistence {
 
-	public boolean insertPasswordtoHistory(User user);
+    public boolean insertPasswordtoHistory(User user);
 
-	public List<String> getPreviousPasswords(User user, int historyConstraint);
+    public List<String> getPreviousPasswords(User user, int historyConstraint);
 
 }

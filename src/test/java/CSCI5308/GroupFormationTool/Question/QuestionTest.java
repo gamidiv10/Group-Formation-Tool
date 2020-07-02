@@ -10,8 +10,9 @@ public class QuestionTest {
     public String questionText = "text";
     public String questionType = "type";
     private Question question;
+
     @BeforeEach
-    public void getObject(){
+    public void getObject() {
         question = Question.getInstance();
     }
 
@@ -20,16 +21,19 @@ public class QuestionTest {
         question.setQuestionTitle(questionTitle);
         assertEquals(questionTitle, question.getQuestionTitle());
     }
+
     @Test
     public void getQuestionTextTest() {
         question.setQuestionText(questionText);
         assertEquals(questionText, question.getQuestionText());
     }
+
     @Test
     public void getQuestionTypeTest() {
         question.setQuestionType(questionType);
         assertEquals(questionType, question.getQuestionType());
     }
+
     @Test
     public void setQuestionTitleTest() {
         question.setQuestionTitle(questionTitle);
@@ -47,8 +51,9 @@ public class QuestionTest {
         question.setQuestionType(questionType);
         assertEquals(questionType, question.getQuestionType());
     }
+
     @AfterEach
-    public void reset(){
+    public void reset() {
         question = null;
     }
 }

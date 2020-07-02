@@ -16,47 +16,42 @@ import CSCI5308.GroupFormationTool.Courses.Role;
 
 @SpringBootTest
 @SuppressWarnings("deprecation")
-class CourseUserRelationshipTest 
-{
-	private ICourseUserRelationshipPersistence courseUserRelationshipDB;
+class CourseUserRelationshipTest {
+    private ICourseUserRelationshipPersistence courseUserRelationshipDB;
 
-	public CourseUserRelationshipTest() 
-	{
-		courseUserRelationshipDB = new CourseUserRelationshipDBMock();
-	}
+    public CourseUserRelationshipTest() {
+        courseUserRelationshipDB = new CourseUserRelationshipDBMock();
+    }
 
-	@Test
-	public void userHasRoleInCourse() 
-	{
-		Course course = new Course();
-		course.setId(0);
-		CurrentUserMock currentUser = new CurrentUserMock();
-		User user = currentUser.getCurrentAuthenticatedUser();
-		List<Role> roles = courseUserRelationshipDB.loadUserRolesForCourse(course, user);
-		assertThat(roles).isNotNull();
-		assertThat(roles).isNotEmpty();
-		Assert.isTrue(roles.size() > 0);
-	}
+    @Test
+    public void userHasRoleInCourse() {
+        Course course = new Course();
+        course.setId(0);
+        CurrentUserMock currentUser = new CurrentUserMock();
+        User user = currentUser.getCurrentAuthenticatedUser();
+        List<Role> roles = courseUserRelationshipDB.loadUserRolesForCourse(course, user);
+        assertThat(roles).isNotNull();
+        assertThat(roles).isNotEmpty();
+        Assert.isTrue(roles.size() > 0);
+    }
 
-	@Test
-	public void loadAllRoluesForUserInCourse() 
-	{
-		Course course = new Course();
-		course.setId(0);
-		CurrentUserMock currentUser = new CurrentUserMock();
-		User user = currentUser.getCurrentAuthenticatedUser();
-		List<Role> roles = courseUserRelationshipDB.loadUserRolesForCourse(course, user);
-		Assert.isTrue(roles.size() > 0);
-	}
+    @Test
+    public void loadAllRoluesForUserInCourse() {
+        Course course = new Course();
+        course.setId(0);
+        CurrentUserMock currentUser = new CurrentUserMock();
+        User user = currentUser.getCurrentAuthenticatedUser();
+        List<Role> roles = courseUserRelationshipDB.loadUserRolesForCourse(course, user);
+        Assert.isTrue(roles.size() > 0);
+    }
 
-	@Test
-	public void enrollUserInCourse() 
-	{
-		Course course = new Course();
-		CurrentUserMock currentUser = new CurrentUserMock();
-		User user = currentUser.getCurrentAuthenticatedUser();
-		boolean result = courseUserRelationshipDB.enrollUser(course, user, Role.STUDENT);
-		Assert.isTrue(result);
-	}
+    @Test
+    public void enrollUserInCourse() {
+        Course course = new Course();
+        CurrentUserMock currentUser = new CurrentUserMock();
+        User user = currentUser.getCurrentAuthenticatedUser();
+        boolean result = courseUserRelationshipDB.enrollUser(course, user, Role.STUDENT);
+        Assert.isTrue(result);
+    }
 
 }

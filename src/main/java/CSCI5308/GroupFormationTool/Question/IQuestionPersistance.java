@@ -4,7 +4,9 @@ import java.util.List;
 
 public interface IQuestionPersistance {
 
-	public List<Questions> loadAllQuestionTitlesByInstructorID(long instructorID);
-	public void loadQuestionById(Integer questionId, Questions question);
-	public boolean deleteQuestion(Integer questionId);
+    public List<Questions> loadAllQuestionTitlesByInstructorID(long instructorID);
+
+    public void loadQuestionById(Integer questionId, Questions question);
+
+    public boolean deleteQuestion(Integer questionId);
 }

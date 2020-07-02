@@ -5,11 +5,13 @@ public class Question {
     private String questionText;
     private String questionType;
     private static Question question;
-    private Question(){
+
+    private Question() {
 
     }
-    public static Question getInstance(){
-        if(question == null){
+
+    public static Question getInstance() {
+        if (question == null) {
             question = new Question();
         }
         return question;
@@ -39,7 +41,7 @@ public class Question {
         this.questionType = questionType;
     }
 
-    public void reset(){
+    public void reset() {
         question.setQuestionTitle(null);
         question.setQuestionText(null);
         question.setQuestionType(null);
