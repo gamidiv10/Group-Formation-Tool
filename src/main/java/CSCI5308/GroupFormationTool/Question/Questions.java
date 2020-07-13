@@ -13,6 +13,7 @@ public class Questions {
     private String title;
     private String questionText;
     private Date dateCreated;
+    private int typeID;
 
     public Questions() {
         setDefaults();
@@ -88,4 +89,12 @@ public class Questions {
         Collections.sort(questions, Comparator.comparing(Questions::getDateCreated));
         return questions;
     }
+
+	public int getTypeID() {
+		return typeID;
+	}
+
+	public void setTypeID(int typeID) {
+		this.typeID = typeID;
+	}
 }
