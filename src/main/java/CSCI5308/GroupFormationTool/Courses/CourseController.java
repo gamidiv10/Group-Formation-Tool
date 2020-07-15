@@ -57,7 +57,6 @@ public class CourseController {
         Answer answer = Answer.getInstance();
         ISubmitSurvey submitSurveyHandler = new SubmitSurvey(submitSurveyDB);
         submitSurveyHandler.submitSurvey(request, answer.getQuestions(), this.courseID);
-        ModelAndView modelAndView = new ModelAndView("redirect:/");
-        return modelAndView;
+        return new ModelAndView("redirect:/");
     }
 }

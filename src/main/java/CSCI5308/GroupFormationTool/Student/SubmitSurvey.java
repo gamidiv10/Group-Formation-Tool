@@ -1,7 +1,5 @@
 package CSCI5308.GroupFormationTool.Student;
 
-import CSCI5308.GroupFormationTool.AccessControl.CurrentUser;
-import CSCI5308.GroupFormationTool.AccessControl.User;
 import CSCI5308.GroupFormationTool.Question.Option;
 import CSCI5308.GroupFormationTool.Question.Questions;
 
@@ -16,7 +14,7 @@ public class SubmitSurvey implements ISubmitSurvey{
         this.submitSurveyDB = submitSurveyDB;
     }
     @Override
-    public void submitSurvey(HttpServletRequest httpServletRequest, HashMap<Questions, List<Option>> questions, long courseID) {
+    public boolean submitSurvey(HttpServletRequest httpServletRequest, HashMap<Questions, List<Option>> questions, long courseID) {
         Answer answer = Answer.getInstance();
         for(Questions key: questions.keySet()){
             int questionType = key.getQuestionType();
@@ -51,5 +49,6 @@ public class SubmitSurvey implements ISubmitSurvey{
                 }
             }
         }
+        return true;
     }
 }

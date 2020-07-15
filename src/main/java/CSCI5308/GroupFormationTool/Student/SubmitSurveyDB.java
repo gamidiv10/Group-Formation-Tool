@@ -3,9 +3,7 @@ package CSCI5308.GroupFormationTool.Student;
 import CSCI5308.GroupFormationTool.AccessControl.CurrentUser;
 import CSCI5308.GroupFormationTool.AccessControl.User;
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
-
 import java.sql.SQLException;
-
 
 public class SubmitSurveyDB implements ISubmitSurveyDB{
 

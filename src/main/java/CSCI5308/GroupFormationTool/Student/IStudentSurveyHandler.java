@@ -7,5 +7,5 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface IStudentSurveyHandler {
-    public HashMap<Questions, List<Option>> retrieveQuestions(long courseID);
+    HashMap<Questions, List<Option>> retrieveQuestions(long courseID);
 }
