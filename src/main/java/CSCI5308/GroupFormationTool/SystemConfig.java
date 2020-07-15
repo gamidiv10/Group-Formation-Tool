@@ -1,8 +1,10 @@
 package CSCI5308.GroupFormationTool;
 
 import CSCI5308.GroupFormationTool.Security.*;
+import CSCI5308.GroupFormationTool.Surveys.ISurveyPersistence;
 import CSCI5308.GroupFormationTool.Surveys.ISurveyQuestionRelationship;
 import CSCI5308.GroupFormationTool.Surveys.ISurveyQuestionRelationshipPersistence;
+import CSCI5308.GroupFormationTool.Surveys.SurveyDB;
 import CSCI5308.GroupFormationTool.Surveys.SurveyQuestionRelationshipDB;
 import CSCI5308.GroupFormationTool.AccessControl.*;
 import CSCI5308.GroupFormationTool.Database.*;
@@ -20,6 +22,7 @@ public class SystemConfig {
     private ICoursePersistence courseDB;
     private ICourseUserRelationshipPersistence courseUserRelationshipDB;
     private IQuestionPersistance questionPersistance;
+    private ISurveyPersistence surveyDB;
 
     private IPasswordEnforcementPolicyPersistence passwordEnforcementPolicyDB;
     private IUserHistroyRelationshipPersistence userHistoryRelationshipDB;
@@ -44,6 +47,7 @@ public class SystemConfig {
         passwordEnforcementPolicyDB = new PasswordEnforcementPolicyDB();
         userHistoryRelationshipDB = new UserHistoryRelationshipDB();
         surveyQuestionRelationshipDB = new SurveyQuestionRelationshipDB();
+        surveyDB = new SurveyDB();
 
     }
 
@@ -123,4 +127,8 @@ public class SystemConfig {
     public void setPasswordEnforcementPolicyDB(IPasswordEnforcementPolicyPersistence passwordEnforcementPolicyDB) {
         this.passwordEnforcementPolicyDB = passwordEnforcementPolicyDB;
     }
+
+	public ISurveyPersistence getSurveyPersistance() {
+		return surveyDB;
+	}
 }

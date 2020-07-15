@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="https://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
+<head>
+    <title>CSCI5308 - Group Formation Tool</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body class="bodyGridContainer">
+<div sec:authorize="isAuthenticated()">
+    <h4 th:inline="text">BannerID: [[${#httpServletRequest.remoteUser}]]</h4>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+<br/>
+<p>
+    This tool allows you to manage your surveys.                 	
+</p>
+<div>
+<h2>Questions that can be added to survey</h2>
+<table class="table table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Question Title</th>
+            <th scope="col">Question text</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${displayQuestions.empty}">
+            <td colspan="2">No Questions Available</td>
+        </tr>
+        <tr th:each="question : ${displayQuestions}" class="table-primary">
+            <th scope="row" th:text="${questionStat.index + 1}"/>
+            <td th:text="${question.title}"/>
+            <td th:text="${question.questionText}"/>
+            <td>
+                <form th:action="@{'/addQuestion/'} + ${question.questionId}" th:method="post">
+                	<input type="hidden" id="questionTitle" name="questionTitle" th:value="${question.title}">
+                	<input type="hidden" id="questionText" name="questionText" th:value="${question.questionText}">
+                	<input type="hidden" id="courseID" name="courseID" th:value="${courseID}">
+                	
+                    <div th:switch="${surveyStatus}">
+                    	<p th:case="0"> <button class="btn btn-success" type="submit">Add Question to Survey</button> </p>
+                    	<p th:case="1"> Not Editable </p>	
+                    </div>	
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<br>
+
+<h6>Survey Status</h6>
+<p th:text="${surveyStatus}"> </p>
+<div th:switch="${surveyStatus}">
+	<p th:case="0"> Not Published </p>
+	<p th:case="1"> Published </p>	
+</div>	
+<h6>Survey ID</h6>
+<p th:text="${surveyId}"> </p>
+<h2>Survey Questions</h2>
+<div>
+<table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Question Title</th>
+            <th scope="col">Question text</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${surveyQuestions.empty}">
+            <td colspan="2">No Questions Available</td>
+        </tr>
+        <tr th:each="question : ${surveyQuestions}" class="table-success">
+            <th scope="row" th:text="${questionStat.index + 1}"/>
+            <td th:text="${question.title}"/>
+            <td th:text="${question.questionText}"/>
+            <td>
+                <form th:action="@{'/deleteQuestion'}" th:method="post">
+                	<input type="hidden" id="surveyId" name="surveyId" th:value="${surveyId}">
+                	<input type="hidden" id="questionId" name="questionId" th:value="${question.questionId}">
+                    <div th:switch="${surveyStatus}">
+                    	<p th:case="0"> <button class="btn btn-danger" type="submit">Delete Questions From Survey</button> </p>
+                    	<p th:case="1"> Not Editable </p>	
+                    </div>	
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<br>
+<div style="text-align: center;">
+	<form th:action="@{'/publish'}" th:method="post">
+		<input type="hidden" id="surveyId" name="surveyId" th:value="${surveyId}">
+        <div th:switch="${surveyStatus}">
+        	<p th:case="0"> <button class="btn btn-primary" type="submit">Publish Survey</button> </p>
+            <p th:case="1"> Already Published </p>	
+        </div>	
+	</form>
+</div>
+
+</body>
+</html>
