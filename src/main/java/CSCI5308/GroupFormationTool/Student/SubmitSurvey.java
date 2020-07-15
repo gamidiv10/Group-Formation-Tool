@@ -18,7 +18,6 @@ public class SubmitSurvey implements ISubmitSurvey{
     @Override
     public void submitSurvey(HttpServletRequest httpServletRequest, HashMap<Questions, List<Option>> questions, long courseID) {
         Answer answer = Answer.getInstance();
-//        User user = CurrentUser.instance().getCurrentAuthenticatedUser();
         for(Questions key: questions.keySet()){
             int questionType = key.getQuestionType();
             int questionID = key.getQuestionId();

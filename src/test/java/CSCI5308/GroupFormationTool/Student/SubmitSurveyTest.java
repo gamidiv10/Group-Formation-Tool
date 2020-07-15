@@ -1,12 +1,7 @@
 package CSCI5308.GroupFormationTool.Student;
 
-import CSCI5308.GroupFormationTool.AccessControl.CurrentUser;
-import CSCI5308.GroupFormationTool.AccessControl.User;
 import CSCI5308.GroupFormationTool.Question.Option;
-import CSCI5308.GroupFormationTool.Question.Question;
 import CSCI5308.GroupFormationTool.Question.Questions;
-import org.graalvm.compiler.nodes.calc.IntegerDivRemNode;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javax.servlet.http.HttpServletRequest;
