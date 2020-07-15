@@ -12,4 +12,5 @@ public interface ISurveyPersistence {
 	public boolean deleteQuestionFromSurvey(int questionID, long surveyID);
 	public long getSurveyIdByCourseId(long courseId);
 	public int getSurveyStatus(long surveyId);
+	public boolean publishSurvey(long surveyId);
 }

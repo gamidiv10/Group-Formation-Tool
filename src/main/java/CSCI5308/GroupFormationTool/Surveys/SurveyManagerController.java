@@ -16,6 +16,8 @@ import CSCI5308.GroupFormationTool.AccessControl.User;
 import CSCI5308.GroupFormationTool.Question.IQuestionPersistance;
 import CSCI5308.GroupFormationTool.Question.Questions;
 
+import javax.swing.plaf.synth.SynthTextAreaUI;
+
 @Controller
 public class SurveyManagerController {
 	
@@ -75,7 +77,16 @@ public class SurveyManagerController {
         mav.addObject(questionID);
 		mav.setViewName("redirect:/course/surveymanager");
 		return mav;
-		
 	}
-	
+
+	@PostMapping("/publish-survey/{surveyId}")
+    public ModelAndView publishSurvey(ModelAndView mav, @PathVariable("surveyId") long surveyId) {
+        ISurveyPersistence surveyDB = SystemConfig.instance().getSurveyPersistance();
+        Survey survey = new Survey();
+        boolean isSurveyPublished = survey.publishSurvey(surveyDB, surveyId);
+        mav.addObject("id", surveyId);
+        mav.addObject("isSurveyPublished", isSurveyPublished);
+        mav.setViewName("redirect:/course/surveymanager");
+        return mav;
+    }
 }

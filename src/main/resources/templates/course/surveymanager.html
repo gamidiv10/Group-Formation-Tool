@@ -21,6 +21,12 @@
     </form>
 </div>
 <br/>
+
+<div th:if="${#httpServletRequest.getParameter('isSurveyPublished')}" class="alert alert-success" role="alert">
+    Successfully published the survey!!
+</div>
+
+
 <p>
     This tool allows you to manage your surveys.                 	
 </p>
@@ -106,11 +112,11 @@
 
 <br>
 <div style="text-align: center;">
-	<form th:action="@{'/publish'}" th:method="post">
-		<input type="hidden" id="surveyId" name="surveyId" th:value="${surveyId}">
+	<form th:action="@{'/publish-survey/'} + ${surveyId}" th:method="post">
+		<input type="hidden" name="surveyId" th:value="${surveyId}">
         <div th:switch="${surveyStatus}">
         	<p th:case="0"> <button class="btn btn-primary" type="submit">Publish Survey</button> </p>
-            <p th:case="1"> Already Published </p>	
+            <p th:case="1"> <button class="btn btn-primary" disabled>Survey is Published! </button> </p>
         </div>	
 	</form>
 </div>

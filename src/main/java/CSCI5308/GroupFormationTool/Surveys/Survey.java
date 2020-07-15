@@ -65,4 +65,8 @@ public class Survey {
 		return surveyDB.getSurveyStatus(surveyId);
 	}
 
+	public boolean publishSurvey(ISurveyPersistence surveyDB, long surveyId) {
+		return surveyDB.publishSurvey(surveyId);
+	}
+
 }

@@ -58,4 +58,9 @@ public class SurveyDBMock implements ISurveyPersistence {
 		return 0;
 	}
 
+	@Override
+	public boolean publishSurvey(long surveyId) {
+		return true;
+	}
+
 }

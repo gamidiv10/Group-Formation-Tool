@@ -145,4 +145,14 @@ public class SurveyTest {
 		long surveyId = survey.getSurveyIdByCourseId(surveyDB,courseId);
 		Assert.isTrue(surveyDB.getSurveyStatus(surveyId)==0);
 	}
+
+	@Test
+	public void publishSurvey() {
+		boolean isSurveyPublished = false;
+		long surveyId = 1;
+		Assert.isTrue(isSurveyPublished == false);
+		ISurveyPersistence surveyDB = new SurveyDBMock();
+		isSurveyPublished = surveyDB.publishSurvey(surveyId);
+		Assert.isTrue(isSurveyPublished);
+	}
 }

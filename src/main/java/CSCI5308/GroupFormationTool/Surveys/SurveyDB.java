@@ -184,4 +184,24 @@ public class SurveyDB implements ISurveyPersistence{
 		return surveyStatus;
 	}
 
+	@Override
+	public boolean publishSurvey(long surveyId) {
+		CallStoredProcedure proc = null;
+		boolean isSuccess = false;
+		try {
+			proc = new CallStoredProcedure("spPublishSurvey(?)");
+			proc.setParameter(1, surveyId);
+			proc.execute();
+			isSuccess = true;
+		}catch (SQLException e) {
+			e.printStackTrace();
+			isSuccess = false;
+		} finally {
+			if (null != proc) {
+				proc.cleanup();
+			}
+		}
+		return isSuccess;
+	}
+
 }
