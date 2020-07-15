@@ -20,7 +20,6 @@ public class QuestionDao implements IQuestionDB {
             ResultSet resultSet = proc.executeWithResults();
             while (resultSet.next()) {
                 questionIdFromDB = resultSet.getInt(1);
-                System.out.println("Question ID from DB: " + questionIdFromDB);
             }
         } catch (SQLException e) {
             System.out.println(e);

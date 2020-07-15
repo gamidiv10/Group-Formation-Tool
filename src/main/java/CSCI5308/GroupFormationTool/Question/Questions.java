@@ -13,6 +13,7 @@ public class Questions {
     private String title;
     private String questionText;
     private Date dateCreated;
+    private int questionType;
 
     public Questions() {
         setDefaults();
@@ -47,6 +48,14 @@ public class Questions {
 
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
+    }
+
+    public int getQuestionType() {
+        return questionType;
+    }
+
+    public void setQuestionType(int questionType) {
+        this.questionType = questionType;
     }
 
     public Integer getQuestionId() {

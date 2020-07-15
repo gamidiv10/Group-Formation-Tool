@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class CreateQuestionController {
+public class QuestionController {
 
     @GetMapping("/createquestion")
     public ModelAndView createQuestion() {
@@ -38,16 +38,16 @@ public class CreateQuestionController {
         boolean isFreeText = false;
         boolean isInitialPage = true;
         boolean isNext = false;
-        System.out.println(title + questionText + type);
-        if (type.equals("Numeric")) {
+
+        if (type.equals(QuestionType.NUMERIC.toString())) {
             isNumeric = true;
             isInitialPage = false;
         }
-        if (type.equals("Multiple choice - choose one") || type.equals("Multiple choice - choose multiple")) {
+        if (type.equals(QuestionType.MULTIPLE_CHOICE_CHOOSE_ONE.toString()) || type.equals(QuestionType.MULTIPLE_CHOICE_CHOOSE_MANY.toString())) {
             isMultipleOne = true;
             isInitialPage = false;
         }
-        if (type.equals("Free Text")) {
+        if (type.equals(QuestionType.FREE_TEXT.toString())) {
             isFreeText = true;
             isInitialPage = false;
         }
