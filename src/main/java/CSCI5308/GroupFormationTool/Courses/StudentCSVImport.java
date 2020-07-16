@@ -2,12 +2,15 @@ package CSCI5308.GroupFormationTool.Courses;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.AccessControl.*;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
 
 public class StudentCSVImport {
+    private Logger log = Logger.getLogger(StudentCSVImport.class.getName());
     private List<String> successResults;
     private List<String> failureResults;
     private Course course;
@@ -51,8 +54,10 @@ public class StudentCSVImport {
             }
             if (course.enrollUserInCourse(Role.STUDENT, user)) {
                 successResults.add("User enrolled in course: " + userDetails);
+                log.log(Level.INFO, "User enrolled in course: " + userDetails);
             } else {
                 failureResults.add("Unable to enroll user in course: " + userDetails);
+                log.log(Level.INFO, "Unable to enroll user in course: " + userDetails);
             }
         }
     }

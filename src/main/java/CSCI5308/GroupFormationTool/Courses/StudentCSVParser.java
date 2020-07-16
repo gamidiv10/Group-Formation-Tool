@@ -8,10 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import CSCI5308.GroupFormationTool.Question.QuestionDao;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 
@@ -21,10 +18,8 @@ public class StudentCSVParser implements IStudentCSVParser {
     private Logger log = Logger.getLogger(StudentCSVParser.class.getName());
     private MultipartFile uploadedFile;
     private List<User> studentList = new ArrayList<>();
-
     public StudentCSVParser(MultipartFile file) {
         this.uploadedFile = file;
-
     }
 
     @Override
@@ -37,7 +32,6 @@ public class StudentCSVParser implements IStudentCSVParser {
             User u;
             while (iter.hasNext()) {
                 String[] record = iter.next();
-
                 String bannerID = record[0];
                 String firstName = record[1];
                 String lastName = record[2];
@@ -50,7 +44,6 @@ public class StudentCSVParser implements IStudentCSVParser {
                 u.setEmail(email);
                 studentList.add(u);
             }
-
         } catch (IOException e) {
             log.log(Level.SEVERE, "Encountered IO Exception while uploading the file");
             failureResults.add("Failure reading uploaded file: " + e.getMessage());
@@ -58,9 +51,7 @@ public class StudentCSVParser implements IStudentCSVParser {
             failureResults.add("Failure parsing CSV file: " + e.getMessage());
             log.log(Level.SEVERE, "Encountered an Exception while parsing the csv file");
         }
-
         return studentList;
-
     }
 
 }

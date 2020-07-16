@@ -5,7 +5,6 @@ public class QuestionDataHandler implements IQuestionDataHandler {
 
     public QuestionDataHandler(Question question) {
         this.question = question;
-
     }
 
     @Override

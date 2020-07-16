@@ -1,6 +1,4 @@
 package CSCI5308.GroupFormationTool.Question;
-import CSCI5308.GroupFormationTool.Student.StudentSurveyHandler;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;

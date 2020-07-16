@@ -1,8 +1,8 @@
 package CSCI5308.GroupFormationTool.Courses;
-
 import java.util.Iterator;
 import java.util.List;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.AccessControl.User;
 
 @Controller
 public class CourseAdminController {
+    private Logger log = Logger.getLogger(CourseAdminController.class.getName());
     private static final String ID = "id";
     private static final String TITLE = "title";
     private static final String INSTRUCTOR = "instructor";
@@ -24,6 +24,7 @@ public class CourseAdminController {
     public String course(Model model) {
         ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
         List<Course> allCourses = courseDB.loadAllCourses();
+        log.log(Level.INFO, "All the Courses loaded to the view");
         model.addAttribute("courses", allCourses);
         return "admin/course";
     }

@@ -1,10 +1,8 @@
 package CSCI5308.GroupFormationTool.Question;
-
 import java.util.Collections;
 import java.sql.Date;
 import java.util.Comparator;
 import java.util.List;
-
 import CSCI5308.GroupFormationTool.AccessControl.User;
 
 public class Questions {
@@ -15,11 +13,9 @@ public class Questions {
     private Date dateCreated;
     private int typeID;
     private int questionType;
-
     public Questions() {
         setDefaults();
     }
-
     public Questions(Integer questionId, String title, String questionText, Date dateCreated) {
         this.questionId = questionId;
         this.title = title;

@@ -1,11 +1,7 @@
 package CSCI5308.GroupFormationTool.AccessControl;
-
-import CSCI5308.GroupFormationTool.Question.QuestionDao;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-
 import CSCI5308.GroupFormationTool.SystemConfig;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,9 +10,7 @@ public class CurrentUser {
     private static CurrentUser uniqueInstance = null;
 
     private CurrentUser() {
-
     }
-
     public static CurrentUser instance() {
         if (null == uniqueInstance) {
             uniqueInstance = new CurrentUser();

@@ -1,10 +1,7 @@
 package CSCI5308.GroupFormationTool.GroupCreation;
-
 import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.Question.Questions;
 import CSCI5308.GroupFormationTool.Surveys.ISurveyQuestionRelationshipPersistence;
@@ -23,9 +20,7 @@ public class GroupCreationController {
 		
 		for(Questions qlist :questionList ) {
 			System.out.println("Question elements "+qlist.getQuestionText());
-			
 		}
-		
 		return "group_formation";
 	}
 	

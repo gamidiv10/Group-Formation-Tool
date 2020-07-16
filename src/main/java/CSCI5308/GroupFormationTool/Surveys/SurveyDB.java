@@ -19,7 +19,6 @@ public class SurveyDB implements ISurveyPersistence{
 			proc.setParameter(2, survey.getCourseid());
 			proc.setParameter(3, survey.getCreatedById());
 			proc.setParameter(4, survey.getPublised());
-
 			ResultSet results = proc.executeWithResults();
 			if (null != results) {
 				while (results.next()) {
@@ -27,7 +26,6 @@ public class SurveyDB implements ISurveyPersistence{
 					survey.setSurveyId(surveyId);
 				}
 			}
-						
 		} catch (SQLException e) {
 		} finally {
 			if (null != proc) {

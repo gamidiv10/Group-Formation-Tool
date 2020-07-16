@@ -89,7 +89,6 @@ public class InstructorAdminController {
         mav.addObject("successful", importer.getSuccessResults());
         mav.addObject("failures", importer.getFailureResults());
         mav.addObject("displayresults", true);
-
         return mav;
     }
 }

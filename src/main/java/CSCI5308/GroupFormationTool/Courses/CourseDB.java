@@ -1,10 +1,7 @@
 package CSCI5308.GroupFormationTool.Courses;
 
 import java.util.List;
-
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
-import CSCI5308.GroupFormationTool.Question.QuestionDB;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -36,6 +33,7 @@ public class CourseDB implements ICoursePersistence {
                 proc.cleanup();
             }
         }
+        log.log(Level.INFO, "Courses loaded from DB");
         return courses;
     }
 
@@ -59,6 +57,7 @@ public class CourseDB implements ICoursePersistence {
                 proc.cleanup();
             }
         }
+        log.log(Level.INFO, "Loaded Course from DB with ID " + id);
     }
 
     public boolean createCourse(Course course) {
@@ -76,6 +75,7 @@ public class CourseDB implements ICoursePersistence {
                 proc.cleanup();
             }
         }
+        log.log(Level.INFO, "Created Course " + course.getTitle());
         return true;
     }
 
@@ -93,6 +93,7 @@ public class CourseDB implements ICoursePersistence {
                 proc.cleanup();
             }
         }
+        log.log(Level.INFO, "Deleted Course " + id + " from DB");
         return true;
     }
 }

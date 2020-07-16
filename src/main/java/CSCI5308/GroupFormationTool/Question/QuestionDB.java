@@ -1,12 +1,10 @@
 package CSCI5308.GroupFormationTool.Question;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 
 public class QuestionDB implements IQuestionPersistance {

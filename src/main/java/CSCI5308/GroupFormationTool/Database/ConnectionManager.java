@@ -3,11 +3,14 @@ package CSCI5308.GroupFormationTool.Database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import CSCI5308.GroupFormationTool.SystemConfig;
 
 // Singleton for retrieving connections.
 public class ConnectionManager {
+    private Logger log = Logger.getLogger(ConnectionManager.class.getName());
     private static ConnectionManager uniqueInstance = null;
 
     private String dbURL;
@@ -29,6 +32,7 @@ public class ConnectionManager {
     }
 
     public Connection getDBConnection() throws SQLException {
+        log.log(Level.WARNING, "Getting the connection: " + dbURL + ", might throw SQL Exception");
         return DriverManager.getConnection(dbURL, dbUserName, dbPassword);
     }
 }

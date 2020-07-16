@@ -1,12 +1,9 @@
 package CSCI5308.GroupFormationTool.AccessControl;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
-import CSCI5308.GroupFormationTool.Question.QuestionDB;
 
 public class UserDB implements IUserPersistence {
     private Logger log = Logger.getLogger(UserDB.class.getName());
@@ -87,7 +84,6 @@ public class UserDB implements IUserPersistence {
         log.log(Level.INFO, "User " + user.getBannerID() + " created");
         return true;
     }
-
     public boolean updateUser(User user) {
         return false;
     }
