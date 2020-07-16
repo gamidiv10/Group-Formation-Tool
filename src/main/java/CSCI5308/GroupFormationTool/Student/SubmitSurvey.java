@@ -15,6 +15,7 @@ public class SubmitSurvey implements ISubmitSurvey{
     }
     @Override
     public boolean submitSurvey(HttpServletRequest httpServletRequest, HashMap<Questions, List<Option>> questions, long courseID) {
+        boolean success = true;
         Answer answer = Answer.getInstance();
         for(Questions key: questions.keySet()){
             int questionType = key.getQuestionType();
@@ -25,12 +26,18 @@ public class SubmitSurvey implements ISubmitSurvey{
                 String parameter = "result"+questionID;
                 responseHandler.addAnswer(questionID, httpServletRequest.getParameter(parameter));
                 System.out.println(httpServletRequest.getParameter(parameter));
-                submitSurveyDB.submitSurvey(questionID, httpServletRequest.getParameter(parameter), courseID);
+                success = submitSurveyDB.submitSurvey(questionID, httpServletRequest.getParameter(parameter), courseID);
+                if(success == false){
+                    return false;
+                }
             } else {
                 if(questionType == 2){
                     responseHandler.addAnswer(questionID, httpServletRequest.getParameter("mcqOne"));
                     System.out.println(httpServletRequest.getParameter("mcqOne"));
-                    submitSurveyDB.submitSurvey(questionID, httpServletRequest.getParameter("mcqOne"), courseID);
+                    success = submitSurveyDB.submitSurvey(questionID, httpServletRequest.getParameter("mcqOne"), courseID);
+                    if(success == false){
+                        return false;
+                    }
                 } else {
                     List<String> mcqAnswers = new ArrayList<>();
                     for(Option option: questions.get(key)){
@@ -39,6 +46,9 @@ public class SubmitSurvey implements ISubmitSurvey{
                         System.out.println(httpServletRequest.getParameter(parameter));
                         if(httpServletRequest.getParameter(parameter) != null) {
                             submitSurveyDB.submitSurvey(questionID, httpServletRequest.getParameter(parameter), courseID);
+                            if(success == false){
+                                return false;
+                            }
                         }
                     }
                     answer.addMcMultipleAnswer(questionID, mcqAnswers);

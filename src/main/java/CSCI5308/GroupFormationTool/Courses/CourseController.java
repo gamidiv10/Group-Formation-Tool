@@ -53,10 +53,15 @@ public class CourseController {
     }
     @PostMapping("/submitsurvey")
     public ModelAndView submitSurvey(HttpServletRequest request) {
+        boolean success;
         ISubmitSurveyDB submitSurveyDB = new SubmitSurveyDB();
         Answer answer = Answer.getInstance();
         ISubmitSurvey submitSurveyHandler = new SubmitSurvey(submitSurveyDB);
-        submitSurveyHandler.submitSurvey(request, answer.getQuestions(), this.courseID);
-        return new ModelAndView("redirect:/");
+        success = submitSurveyHandler.submitSurvey(request, answer.getQuestions(), this.courseID);
+        ModelAndView modelAndView = new ModelAndView("redirect:/");
+        if(success == false){
+            modelAndView.addObject("hasAnError", true);
+        }
+        return modelAndView;
     }
 }

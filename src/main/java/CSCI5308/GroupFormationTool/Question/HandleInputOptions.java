@@ -1,9 +1,7 @@
 package CSCI5308.GroupFormationTool.Question;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
-
 public class HandleInputOptions implements IHandleInputOptions {
 
     @Override
