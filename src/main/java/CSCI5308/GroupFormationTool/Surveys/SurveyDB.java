@@ -1,15 +1,15 @@
 package CSCI5308.GroupFormationTool.Surveys;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 import CSCI5308.GroupFormationTool.Question.Questions;
 
 public class SurveyDB implements ISurveyPersistence{
-
+	private Logger log = Logger.getLogger(SurveyDB.class.getName());
 	@Override
 	public long createSurvey(Survey survey) {
 		CallStoredProcedure proc = null;
@@ -27,6 +27,7 @@ public class SurveyDB implements ISurveyPersistence{
 				}
 			}
 		} catch (SQLException e) {
+			log.log(Level.SEVERE, "Encountered SQL Exception while creating survey: " + survey);
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
@@ -44,8 +45,8 @@ public class SurveyDB implements ISurveyPersistence{
 			proc.setParameter(1,surveyID);
 			proc.setParameter(2, questionId);
 			proc.execute();
-			
 		} catch (SQLException e) {
+			log.log(Level.SEVERE, "Encountered SQL Exception while adding questions to survey: " + surveyID);
 			status = false;
 		} finally {
 			if (null != proc) {
@@ -74,11 +75,13 @@ public class SurveyDB implements ISurveyPersistence{
 				}
 			}
 		}catch (SQLException e) {
+			log.log(Level.SEVERE, "Encountered SQL Exception while loading questions for survey: " + surveyID);
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
 			}
 		}
+		log.log(Level.INFO, "Loaded questions from DB for survey " + surveyID);
 		return questions;
 	}
 	
@@ -104,12 +107,14 @@ public class SurveyDB implements ISurveyPersistence{
 				}
 			}
 		}catch (SQLException e) {
+			log.log(Level.SEVERE, "Encountered SQL Exception while loading questions for instructor: " + instructorID);
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
 			}
 		}
-	return questions;
+		log.log(Level.INFO, "Loaded questions from DB for instructor " + instructorID);
+		return questions;
 	}
 	
 	@Override
@@ -121,12 +126,14 @@ public class SurveyDB implements ISurveyPersistence{
 			proc.setParameter(2, surveyID);
 			proc.execute();
 		}catch (SQLException e) {
+			log.log(Level.SEVERE, "Encountered SQL Exception while deleting questions from survey " + surveyID);
 			return false;
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
 			}
 		}
+		log.log(Level.INFO, "Deleted question " + questionID + " from survey " + surveyID);
 		return true;
 	}
 
@@ -147,12 +154,13 @@ public class SurveyDB implements ISurveyPersistence{
 				}
 			}
 		}catch (SQLException e) {
-			System.out.println("Exception");
+			log.log(Level.SEVERE, "Encountered SQL Exception while loading Survey for course " + courseId);
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
 			}
 		}
+		log.log(Level.INFO, "Loaded survey " + surveyId + " for course " + courseId);
 		return surveyId;
 	}
 
@@ -173,12 +181,13 @@ public class SurveyDB implements ISurveyPersistence{
 				}
 			}
 		}catch (SQLException e) {
-			System.out.println("Exception");
+			log.log(Level.SEVERE, "Encountered SQL Exception while loading status of survey " + surveyId);
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
 			}
 		}
+		log.log(Level.INFO, "Loaded status of survey " + surveyId);
 		return surveyStatus;
 	}
 
@@ -192,13 +201,14 @@ public class SurveyDB implements ISurveyPersistence{
 			proc.execute();
 			isSuccess = true;
 		}catch (SQLException e) {
-			e.printStackTrace();
+			log.log(Level.SEVERE, "Encountered SQL Exception while publishing survey " + surveyId);
 			isSuccess = false;
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
 			}
 		}
+		log.log(Level.SEVERE, "Published the survey " + surveyId);
 		return isSuccess;
 	}
 
