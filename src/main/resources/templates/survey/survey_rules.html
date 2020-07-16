@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Group Creation Page</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+<div>
+Survey Rules Created and the following groups were formed :
+
+</div>
+<br>
+
+<table class="table">
+<thead class="thead-dark">
+<tr>
+<th>Banner ID</th>
+<th>First Name</th>
+<th>Second Name</th>
+<th>Answers</th>
+</tr>
+</thead>
+<span th:each="team : ${groupformed}" style="display:none">
+	<tr>
+	<td th:text="'Group: '+${team.key}"></td>
+	</tr>
+	<span th:each="individual,iterstat:${team.value}" style="display:none">
+		<tr>
+		<td th:text="${individual.key.bannerID}"></td>
+		<td th:text="${individual.key.firstName}"></td>
+		<td th:text="${individual.key.lastName}"></td>
+		<span th:each="answers,iterstat:${individual.value}"style="display:none" >
+			<td th:text="${answers}"><td> 
+		</span>
+		<tr>
+	</span>
+</span>
+<table>
+
+
+
+</body>
+</html>

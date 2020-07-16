@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link th:href="@{/styles/cssandjs/normalize.css}" rel="stylesheet" />
+<link th:href="@{/styles/cssandjs/main.css}" rel="stylesheet" />
+<title>Survey Page</title>
+</head>
+<body class="bodyGridContainer">
+	Set Survey Rules Page
+
+	<form th:action="@{/survey/groupFormation(crseId=${crseId})}" method="post"
+		th:object="${formRules}">
+
+		<div th:each="question ,iter : *{allSurveyQuestions}">
+			<br>
+			<input style="display: none"
+				th:field="*{allSurveyQuestions[__${iter.index}__].questionId}" /> 
+			Question * :
+			<p th:text="${question.questionText}" />
+
+			<div th:if="${question.typeID == 4}">
+				<select th:field="*{allSurveyQuestions[__${iter.index}__].rule}">
+					<option value="">Need not Consider</option>
+					<option value="similar">Similar</option>
+					<option value="dissimilar">Dis-similar</option>
+				</select>
+			</div>
+
+			<div th:if="${question.typeID == 3}">
+				<select th:field="*{allSurveyQuestions[__${iter.index}__].rule}">
+					<option value="">Need not Consider</option>
+					<option value="similar">Similar</option>
+					<option value="dissimilar">Dis-similar</option>
+				</select>
+
+			</div>
+
+			<div th:if="${question.typeID == 2}">
+				<select th:field="*{allSurveyQuestions[__${iter.index}__].rule}">
+					<option value="">Need not Consider</option>
+					<option value="similar">Similar</option>
+					<option value="dissimilar">Dis-similar</option>
+				</select>
+			</div>
+
+			<div th:if="${question.typeID == 1}">
+				<select th:field="*{allSurveyQuestions[__${iter.index}__].rule}">
+					<option value="">Need not Consider</option>
+					<option value="similar">similar</option>
+					<option value="dissimilar">Dis-similar</option>
+					<option value="similar">Greater</option>
+					<option value="dissimilar">Lesser</option>
+				</select> Enter a Value for Greater/Lesser option: <input type="number"
+					id="quantity" name="quantity"
+					th:field="*{allSurveyQuestions[__${iter.index}__].numericValue}">
+			</div>
+		</div>
+		<div>
+			Please enter the size of the group * <input type="tel" id="quantity"
+				name="quantity" th:field="*{groupSizeCount}">
+		</div>
+
+		<button class="btn btn-danger" type="submit">Set Survey Rules</button>
+		
+
+	</form>
+
+</body>
+</html>

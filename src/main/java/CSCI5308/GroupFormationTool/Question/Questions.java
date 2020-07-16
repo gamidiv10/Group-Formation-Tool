@@ -7,45 +7,45 @@ import CSCI5308.GroupFormationTool.AccessControl.User;
 
 public class Questions {
 
-    private Integer questionId;
-    private String title;
-    private String questionText;
-    private Date dateCreated;
-    private int typeID;
+	private Integer questionId;
+	private String title;
+	private String questionText;
+	private Date dateCreated;
+	private int typeID;
     private int questionType;
-    public Questions() {
-        setDefaults();
-    }
-    public Questions(Integer questionId, String title, String questionText, Date dateCreated) {
-        this.questionId = questionId;
-        this.title = title;
-        this.questionText = questionText;
-        this.dateCreated = dateCreated;
-    }
+	// For Thymeleaf Binding
+	private String rule;
+	private int numericValue;
+	public Questions() {
+		setDefaults();
+	}
 
-    public void setDefaults() {
-        this.questionId = -1;
-        this.title = "";
-        this.questionText = "";
-        setDateCreated(null);
+	public Questions(Integer questionId, String title, String questionText, Date dateCreated) {
+		this.questionId = questionId;
+		this.title = title;
+		this.questionText = questionText;
+		this.dateCreated = dateCreated;
+	}
 
-    }
+	public void setDefaults() {
+		this.questionId = -1;
+		this.title = "";
+		this.questionText = "";
+		setDateCreated(null);
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public Date getDateCreated() {
-        return dateCreated;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
-    }
+	public Date getDateCreated() {
+		return dateCreated;
+	}
 
     public int getQuestionType() {
         return questionType;
@@ -58,42 +58,49 @@ public class Questions {
     public Integer getQuestionId() {
         return questionId;
     }
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
 
-    public void setQuestionId(Integer questionId) {
-        this.questionId = questionId;
-    }
+	public Integer getQuestionId() {
+		return questionId;
+	}
 
-    public String getQuestionText() {
-        return questionText;
-    }
+	public void setQuestionId(Integer questionId) {
+		this.questionId = questionId;
+	}
 
-    public void setQuestionText(String questionText) {
-        this.questionText = questionText;
-    }
+	public String getQuestionText() {
+		return questionText;
+	}
 
-    public List<Questions> getAllQuestionTitlesByInstructorID(IQuestionPersistance questionDB, long instructorID) {
-        return questionDB.loadAllQuestionTitlesByInstructorID(instructorID);
-    }
+	public void setQuestionText(String questionText) {
+		this.questionText = questionText;
+	}
 
-    public boolean deleteQuestion(IQuestionPersistance questionDB) {
-        return questionDB.deleteQuestion(this.questionId);
-    }
+	public List<Questions> getAllQuestionTitlesByInstructorID(IQuestionPersistance questionDB, long instructorID) {
+		return questionDB.loadAllQuestionTitlesByInstructorID(instructorID);
+	}
 
-    public void loadQuestion(IQuestionPersistance questionDB) {
-        questionDB.loadQuestionById(this.questionId, this);
-    }
+	public boolean deleteQuestion(IQuestionPersistance questionDB) {
+		return questionDB.deleteQuestion(this.questionId);
+	}
 
-    public List<Questions> sortByTile(IQuestionPersistance questionDB, User u) {
-        List<Questions> questions = questionDB.loadAllQuestionTitlesByInstructorID(u.getID());
-        Collections.sort(questions, Comparator.comparing(Questions::getTitle));
-        return questions;
-    }
+	public void loadQuestion(IQuestionPersistance questionDB) {
+		questionDB.loadQuestionById(this.questionId, this);
+	}
 
-    public List<Questions> sortByDate(IQuestionPersistance questionDB, User u) {
-        List<Questions> questions = questionDB.loadAllQuestionTitlesByInstructorID(u.getID());
-        Collections.sort(questions, Comparator.comparing(Questions::getDateCreated));
-        return questions;
-    }
+	public List<Questions> sortByTile(IQuestionPersistance questionDB, User u) {
+		List<Questions> questions = questionDB.loadAllQuestionTitlesByInstructorID(u.getID());
+		Collections.sort(questions, Comparator.comparing(Questions::getTitle));
+		return questions;
+	}
+
+	public List<Questions> sortByDate(IQuestionPersistance questionDB, User u) {
+		List<Questions> questions = questionDB.loadAllQuestionTitlesByInstructorID(u.getID());
+		Collections.sort(questions, Comparator.comparing(Questions::getDateCreated));
+		return questions;
+	}
 
 	public int getTypeID() {
 		return typeID;
@@ -101,5 +108,21 @@ public class Questions {
 
 	public void setTypeID(int typeID) {
 		this.typeID = typeID;
+	}
+
+	public String getRule() {
+		return rule;
+	}
+
+	public void setRule(String rule) {
+		this.rule = rule;
+	}
+
+	public int getNumericValue() {
+		return numericValue;
+	}
+
+	public void setNumericValue(int numericValue) {
+		this.numericValue = numericValue;
 	}
 }
