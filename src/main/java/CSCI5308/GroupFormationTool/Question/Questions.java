@@ -62,10 +62,6 @@ public class Questions {
 		this.dateCreated = dateCreated;
 	}
 
-	public Integer getQuestionId() {
-		return questionId;
-	}
-
 	public void setQuestionId(Integer questionId) {
 		this.questionId = questionId;
 	}
