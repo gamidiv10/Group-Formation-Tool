@@ -50,6 +50,7 @@ public class CourseController {
         answer.setQuestions(questionsList);
         model.addAttribute("answer", answer);
         model.addAttribute("questionList", questionsList);
+        model.addAttribute("notPublished", false);
         return "course/course";
     }
     @PostMapping("/submitsurvey")
