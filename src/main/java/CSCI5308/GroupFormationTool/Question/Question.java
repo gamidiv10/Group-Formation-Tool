@@ -4,6 +4,7 @@ public class Question {
     private String questionTitle;
     private String questionText;
     private String questionType;
+
     private static Question question;
 
     private Question() {

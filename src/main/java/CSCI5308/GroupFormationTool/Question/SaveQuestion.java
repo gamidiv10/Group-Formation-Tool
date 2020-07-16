@@ -4,9 +4,11 @@ import CSCI5308.GroupFormationTool.AccessControl.CurrentUser;
 import CSCI5308.GroupFormationTool.AccessControl.User;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SaveQuestion implements ISaveQuestion {
-
+    private Logger log = Logger.getLogger(SaveQuestion.class.getName());
     IQuestionDB questionDB;
 
     public SaveQuestion(IQuestionDB questionDB) {
@@ -43,7 +45,7 @@ public class SaveQuestion implements ISaveQuestion {
                 questionDB.saveMcq(option, questionId);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            log.log(Level.SEVERE, "Encountered Exception while saving options for question " + questionId);
             return false;
         }
         return true;

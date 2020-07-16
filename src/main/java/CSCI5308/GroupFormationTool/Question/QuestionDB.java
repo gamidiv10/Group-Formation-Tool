@@ -4,14 +4,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 
 public class QuestionDB implements IQuestionPersistance {
-
+    private Logger log = Logger.getLogger(QuestionDB.class.getName());
     @Override
     public List<Questions> loadAllQuestionTitlesByInstructorID(long instructorID) {
-
         List<Questions> questions = new ArrayList<>();
         CallStoredProcedure proc = null;
         try {
@@ -30,7 +31,7 @@ public class QuestionDB implements IQuestionPersistance {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.log(Level.SEVERE, "Encountered SQL Exception while loading questions for instructor " + instructorID);
         } finally {
             if (null != proc) {
                 proc.cleanup();
@@ -55,7 +56,7 @@ public class QuestionDB implements IQuestionPersistance {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.log(Level.SEVERE, "Encountered SQL Exception while loading option for question " + questionID);
         } finally {
             if (null != proc) {
                 proc.cleanup();
@@ -71,7 +72,7 @@ public class QuestionDB implements IQuestionPersistance {
             proc.setParameter(1, questionID);
             proc.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.log(Level.SEVERE, "Encountered SQL Exception while deleting question " + questionID);
             return false;
         } finally {
             if (null != proc) {

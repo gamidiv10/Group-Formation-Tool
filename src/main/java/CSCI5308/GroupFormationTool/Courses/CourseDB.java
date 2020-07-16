@@ -3,12 +3,16 @@ package CSCI5308.GroupFormationTool.Courses;
 import java.util.List;
 
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
+import CSCI5308.GroupFormationTool.Question.QuestionDB;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CourseDB implements ICoursePersistence {
+    private Logger log = Logger.getLogger(CourseDB.class.getName());
     public List<Course> loadAllCourses() {
         List<Course> courses = new ArrayList<Course>();
         CallStoredProcedure proc = null;
@@ -26,6 +30,7 @@ public class CourseDB implements ICoursePersistence {
                 }
             }
         } catch (SQLException e) {
+            log.log(Level.SEVERE, "Encountered SQL Exception while loading courses");
         } finally {
             if (null != proc) {
                 proc.cleanup();
@@ -48,6 +53,7 @@ public class CourseDB implements ICoursePersistence {
                 }
             }
         } catch (SQLException e) {
+            log.log(Level.SEVERE, "Encountered SQL Exception while loading course with ID " + id);
         } finally {
             if (null != proc) {
                 proc.cleanup();
@@ -63,6 +69,7 @@ public class CourseDB implements ICoursePersistence {
             proc.registerOutputParameterLong(2);
             proc.execute();
         } catch (SQLException e) {
+            log.log(Level.SEVERE, "Encountered SQL Exception while creating course " + course.getTitle());
             return false;
         } finally {
             if (null != proc) {
@@ -79,6 +86,7 @@ public class CourseDB implements ICoursePersistence {
             proc.setParameter(1, id);
             proc.execute();
         } catch (SQLException e) {
+            log.log(Level.SEVERE, "Encountered SQL Exception while deleting course " + id);
             return false;
         } finally {
             if (null != proc) {

@@ -1,11 +1,15 @@
 package CSCI5308.GroupFormationTool.Question;
 
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
+import CSCI5308.GroupFormationTool.Student.SubmitSurveyDB;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class QuestionDao implements IQuestionDB {
+    private Logger log = Logger.getLogger(QuestionDao.class.getName());
     @Override
     public int saveQuestion(Question question, String instructorId, int typeId) {
 
@@ -20,10 +24,9 @@ public class QuestionDao implements IQuestionDB {
             ResultSet resultSet = proc.executeWithResults();
             while (resultSet.next()) {
                 questionIdFromDB = resultSet.getInt(1);
-                System.out.println("Question ID from DB: " + questionIdFromDB);
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            log.log(Level.SEVERE, "Encountered SQL Exception while saving the question " + question.getQuestionTitle());
         } finally {
             if (null != proc) {
                 proc.cleanup();
@@ -42,7 +45,7 @@ public class QuestionDao implements IQuestionDB {
             proc.setParameter(3, option.getStoredAs());
             proc.execute();
         } catch (SQLException e) {
-            System.out.println(e);
+            log.log(Level.SEVERE, "Encountered SQL Exception while saving the option for question " + questionId);
             return false;
         } finally {
             if (null != proc) {

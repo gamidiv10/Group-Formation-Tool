@@ -21,6 +21,7 @@ public class IndexController {
             ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
             List<Course> allCourses = courseDB.loadAllCourses();
             model.addAttribute("courses", allCourses);
+            model.addAttribute("hasAnError", false);
         }
 
         return "index";

@@ -4,6 +4,16 @@ public class Option {
     private String displayText;
     private int storedAs;
 
+    public int getOptionID() {
+        return optionID;
+    }
+
+    public void setOptionID(int optionID) {
+        this.optionID = optionID;
+    }
+
+    private int optionID;
+
     public Option(String displayText, int storedAs) {
         this.displayText = displayText;
         this.storedAs = storedAs;
