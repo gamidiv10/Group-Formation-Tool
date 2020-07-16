@@ -1,8 +1,13 @@
 package CSCI5308.GroupFormationTool.Database;
 
+import CSCI5308.GroupFormationTool.Question.QuestionDao;
+
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CallStoredProcedure {
+    private Logger log = Logger.getLogger(CallStoredProcedure.class.getName());
     private String storedProcedureName;
     private Connection connection;
     private CallableStatement statement;
@@ -34,6 +39,7 @@ public class CallStoredProcedure {
                 }
             }
         } catch (Exception e) {
+            log.log(Level.SEVERE, "Encountered SQL Exception while closing the connection");
         }
     }
 

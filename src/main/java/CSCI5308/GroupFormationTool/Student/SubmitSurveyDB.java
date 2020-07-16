@@ -4,9 +4,11 @@ import CSCI5308.GroupFormationTool.AccessControl.CurrentUser;
 import CSCI5308.GroupFormationTool.AccessControl.User;
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SubmitSurveyDB implements ISubmitSurveyDB{
-
+    private Logger log = Logger.getLogger(SubmitSurveyDB.class.getName());
     @Override
     public boolean submitSurvey(int questionID, String answer, long courseID) {
         CallStoredProcedure proc = null;
@@ -19,7 +21,8 @@ public class SubmitSurveyDB implements ISubmitSurveyDB{
             proc.setParameter(4, courseID);
             proc.execute();
         } catch (SQLException e) {
-            System.out.println(e);
+            log.log(Level.SEVERE,
+                    "Encountered SQL Exception while saving the response for question id " + questionID);
             return false;
         } finally {
             if (null != proc) {

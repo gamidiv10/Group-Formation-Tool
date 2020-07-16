@@ -8,8 +8,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class StudentSurveyDB implements IStudentSurveyDB {
+    private Logger log = Logger.getLogger(StudentSurveyDB.class.getName());
     @Override
     public List<Questions> retrieveQuestions(long courseID) {
         List<Questions> questions = new ArrayList<>();
@@ -28,7 +31,8 @@ public class StudentSurveyDB implements IStudentSurveyDB {
                 System.out.println(question);
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            log.log(Level.SEVERE,
+                    "Encountered SQL Exception while retrieving the questions for course " + courseID);
         } finally {
             if (null != proc) {
                 proc.cleanup();
@@ -53,7 +57,8 @@ public class StudentSurveyDB implements IStudentSurveyDB {
                 optionList.add(option);
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            log.log(Level.SEVERE,
+                    "Encountered SQL Exception while retrieving options for question id " + questionID);
         } finally {
             if (null != proc) {
                 proc.cleanup();

@@ -4,11 +4,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import CSCI5308.GroupFormationTool.AccessControl.User;
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 
 public class CourseUserRelationshipDB implements ICourseUserRelationshipPersistence {
+    private Logger log = Logger.getLogger(CourseUserRelationshipDB.class.getName());
     public List<User> findAllUsersWithoutCourseRole(Role role, long courseID) {
         List<User> users = new ArrayList<User>();
         CallStoredProcedure proc = null;
@@ -32,6 +35,7 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
                 }
             }
         } catch (SQLException e) {
+            log.log(Level.SEVERE, "Encountered SQL Exception while loading user without course role for course " + courseID);
         } finally {
             if (null != proc) {
                 proc.cleanup();
@@ -57,6 +61,7 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
                 }
             }
         } catch (SQLException e) {
+            log.log(Level.SEVERE, "Encountered SQL Exception while loading users with a course role for course " + courseID);
         } finally {
             if (null != proc) {
                 proc.cleanup();
@@ -74,6 +79,7 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
             proc.setParameter(3, role.toString());
             proc.execute();
         } catch (SQLException e) {
+            log.log(Level.SEVERE, "Encountered SQL Exception while enrolling user " + user.getID() + " for course " + course.getId() + " with role " + role.toString());
             return false;
         } finally {
             if (null != proc) {
@@ -98,6 +104,7 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
                 }
             }
         } catch (SQLException e) {
+            log.log(Level.SEVERE, "Encountered SQL Exception while loading roles of user " + user.getID() + " for course " + course.getId()) ;
         } finally {
             if (null != proc) {
                 proc.cleanup();

@@ -1,6 +1,5 @@
 package CSCI5308.GroupFormationTool.CoursesTest;
 
-
 import CSCI5308.GroupFormationTool.Courses.CourseController;
 import CSCI5308.GroupFormationTool.Question.Option;
 import CSCI5308.GroupFormationTool.Question.Questions;
@@ -22,7 +21,6 @@ public class CourseControllerTest {
     @Test
     public void submitSurveyTest(){
         CourseController courseController = new CourseController();
-        ISubmitSurveyDB submitSurveyDB = mock(SubmitSurveyDB.class);
         ISubmitSurvey submitSurveyHandler = mock(SubmitSurvey.class);
         Answer answer = mock(Answer.class);
         HashMap<Questions, List<Option>> questions = new HashMap<>();

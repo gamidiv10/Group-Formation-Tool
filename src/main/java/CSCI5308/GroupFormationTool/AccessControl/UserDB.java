@@ -2,10 +2,14 @@ package CSCI5308.GroupFormationTool.AccessControl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
+import CSCI5308.GroupFormationTool.Question.QuestionDB;
 
 public class UserDB implements IUserPersistence {
+    private Logger log = Logger.getLogger(UserDB.class.getName());
     public void loadUserByID(long id, User user) {
         CallStoredProcedure proc = null;
         try {
@@ -29,6 +33,7 @@ public class UserDB implements IUserPersistence {
                 }
             }
         } catch (SQLException e) {
+            log.log(Level.SEVERE, "Encountered SQL Exception while loading the user " + id);
         } finally {
             if (null != proc) {
                 proc.cleanup();
@@ -49,6 +54,7 @@ public class UserDB implements IUserPersistence {
                 }
             }
         } catch (SQLException e) {
+            log.log(Level.SEVERE, "Encountered SQL Exception while loading user by banner ID " + bannerID);
         } finally {
             if (null != proc) {
                 proc.cleanup();
@@ -71,6 +77,7 @@ public class UserDB implements IUserPersistence {
             proc.registerOutputParameterLong(6);
             proc.execute();
         } catch (SQLException e) {
+            log.log(Level.SEVERE, "Encountered SQL Exception while creating the user " + user.getBannerID());
             return false;
         } finally {
             if (null != proc) {

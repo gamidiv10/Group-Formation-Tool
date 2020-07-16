@@ -2,6 +2,7 @@ package CSCI5308.GroupFormationTool.Student;
 
 import CSCI5308.GroupFormationTool.Question.Option;
 import CSCI5308.GroupFormationTool.Question.Questions;
+import org.graalvm.compiler.core.common.type.ArithmeticOpTable;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -18,21 +19,17 @@ public class SubmitSurvey implements ISubmitSurvey{
         Answer answer = Answer.getInstance();
         for(Questions key: questions.keySet()){
             int questionType = key.getQuestionType();
+            AddAnswerFactory addAnswerFactory = new AddAnswerFactory();
+            IResponseHandler responseHandler = addAnswerFactory.getObject(questionType);
             int questionID = key.getQuestionId();
             if (questions.get(key) == null){
                 String parameter = "result"+questionID;
-                if(questionType == 1){
-                    answer.addNumericAnswer(questionID, httpServletRequest.getParameter(parameter));
-                    System.out.println(httpServletRequest.getParameter(parameter));
-                }
-                else{
-                    answer.addFreeTextAnswer(questionID, httpServletRequest.getParameter(parameter));
-                    System.out.println(httpServletRequest.getParameter(parameter));
-                }
+                responseHandler.addAnswer(questionID, httpServletRequest.getParameter(parameter));
+                System.out.println(httpServletRequest.getParameter(parameter));
                 submitSurveyDB.submitSurvey(questionID, httpServletRequest.getParameter(parameter), courseID);
             } else {
                 if(questionType == 2){
-                    answer.addMcOneAnswer(questionID, httpServletRequest.getParameter("mcqOne"));
+                    responseHandler.addAnswer(questionID, httpServletRequest.getParameter("mcqOne"));
                     System.out.println(httpServletRequest.getParameter("mcqOne"));
                     submitSurveyDB.submitSurvey(questionID, httpServletRequest.getParameter("mcqOne"), courseID);
                 } else {
