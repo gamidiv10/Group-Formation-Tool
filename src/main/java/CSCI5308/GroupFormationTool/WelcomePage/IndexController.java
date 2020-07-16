@@ -23,7 +23,6 @@ public class IndexController {
             model.addAttribute("courses", allCourses);
             model.addAttribute("hasAnError", false);
         }
-
         return "index";
     }
 }
