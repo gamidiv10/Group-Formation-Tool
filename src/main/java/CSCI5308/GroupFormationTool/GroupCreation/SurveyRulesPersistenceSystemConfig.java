@@ -9,7 +9,6 @@ public class SurveyRulesPersistenceSystemConfig {
 
 	private SurveyRulesPersistenceSystemConfig() {
 		surveyRulesPolicyDB = new SurveyRulesDB();
-		// setAnswersDB(new AnswersDB());
 		answersDB = new AnswersDB();
 		createGroup = new GroupCreationService();
 

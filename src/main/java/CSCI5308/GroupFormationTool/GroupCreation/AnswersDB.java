@@ -6,25 +6,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 
 public class AnswersDB implements IGroupCreationAnswersPersistence {
-
+	private Logger log = Logger.getLogger(AnswersDB.class.getName());
 	@Override
 	public Map<Long, Map<Long, Integer>> loadAnwersNumericQn(long courseid) {
-
 		Map<Long, Map<Long, Integer>> userAnswers = new HashMap<Long, Map<Long, Integer>>();
 		CallStoredProcedure proc = null;
-
 		try {
 			proc = new CallStoredProcedure("spLoadAnswersNumericQn(?)");
 			proc.setParameter(1, courseid);
-
 			ResultSet results = proc.executeWithResults();
 			if (null != results) {
 				while (results.next()) {
-
 					long userId = results.getLong("studentID");
 					long questionID = results.getLong("questionID");
 					int answer = 0;
@@ -34,7 +32,6 @@ public class AnswersDB implements IGroupCreationAnswersPersistence {
 					} else {
 						answer = 0;
 					}
-
 					if (null != userAnswers.get(userId)) {
 						userAnswers.get(userId).put(questionID, answer);
 					} else {
@@ -45,14 +42,13 @@ public class AnswersDB implements IGroupCreationAnswersPersistence {
 				}
 			}
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			log.log(Level.SEVERE, "Encountered SQL Exception while loading answers for course " + courseid);
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
 			}
 		}
-
+		log.log(Level.INFO, "Loaded answers for course " + courseid);
 		return userAnswers;
 	}
 
@@ -82,23 +78,20 @@ public class AnswersDB implements IGroupCreationAnswersPersistence {
 				}
 			}
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			log.log(Level.SEVERE, "Encountered SQL Exception while loading answers for course " + courseId);
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
 			}
 		}
-
+		log.log(Level.INFO, "Loaded answers for course " + courseId);
 		return userAnswers;
 	}
 
 	@Override
 	public Map<Long, Map<Long, List<String>>> loadAnwersMcm(long courseId) {
-
 		Map<Long, Map<Long, List<String>>> userAnswers = new HashMap<Long, Map<Long, List<String>>>();
 		CallStoredProcedure proc = null;
-
 		try {
 			proc = new CallStoredProcedure("spLoadAnswersMcm(?)");
 			proc.setParameter(1, courseId);
@@ -129,14 +122,13 @@ public class AnswersDB implements IGroupCreationAnswersPersistence {
 				}
 			}
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			log.log(Level.SEVERE, "Encountered SQL Exception while loading answers for course " + courseId);
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
 			}
 		}
-
+		log.log(Level.INFO, "Loaded answers for course " + courseId);
 		return userAnswers;
 	}
 
@@ -168,14 +160,13 @@ public class AnswersDB implements IGroupCreationAnswersPersistence {
 			}
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			log.log(Level.SEVERE, "Encountered SQL Exception while loading answers for course " + courseId);
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
 			}
 		}
-
+		log.log(Level.INFO, "Loaded answers for course " + courseId);
 		return userAnswers;
 	}
 

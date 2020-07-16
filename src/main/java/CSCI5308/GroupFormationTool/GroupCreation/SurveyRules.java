@@ -11,9 +11,7 @@ public class SurveyRules implements ISurveyRules {
 	private int groupSizeCount;
 
 	public SurveyRules() {
-
 	}
-
 	public SurveyRules(long surveyId, int groupSizeCount, Questions q) {
 		this.surveyId = surveyId;
 		this.questionId = q.getQuestionId();

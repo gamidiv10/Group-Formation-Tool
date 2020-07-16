@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import CSCI5308.GroupFormationTool.AccessControl.IUserPersistence;
 import CSCI5308.GroupFormationTool.AccessControl.User;
@@ -12,7 +14,7 @@ import CSCI5308.GroupFormationTool.Formula.GroupFormationFormulaBuilder;
 import CSCI5308.GroupFormationTool.Formula.IGroupFormationFormula;
 
 public class GroupCreationService implements IGroupCreationService {
-
+	private Logger log = Logger.getLogger(GroupCreationService.class.getName());
 	@Override
 	public Map<Integer, Map<User, List<String>>> createTeams(List<SurveyRules> surveyRules, IUserPersistence user,
 			IGroupCreationAnswersPersistence answers) {
@@ -56,9 +58,7 @@ public class GroupCreationService implements IGroupCreationService {
 			for (Long j : i) {
 				System.out.println("groups " + j);
 			}
-
 		}
-
 		Map<Integer, Map<User, List<String>>> teamMap = new LinkedHashMap<>();
 		for (int k = 0; k < teams.size(); k++) {
 			List<Long> indvTeams = teams.get(k);
@@ -71,7 +71,6 @@ public class GroupCreationService implements IGroupCreationService {
 					for (Integer ans : numericQuestion.values()) {
 						iAnswers.add(ans.toString());
 					}
-
 				}
 				if (null != mcoAnswers.get(individual)) {
 					Map<Long, String> mcoQuestion = mcoAnswers.get(individual);
@@ -96,7 +95,6 @@ public class GroupCreationService implements IGroupCreationService {
 						}
 					}
 				}
-
 				indvTeamMap.put(u, iAnswers);
 			}
 			teamMap.put(k, indvTeamMap);
@@ -114,9 +112,8 @@ public class GroupCreationService implements IGroupCreationService {
 					System.out.println("Responses are : " + res);
 				}
 			}
-
 		}
+		log.log(Level.INFO, "Returning the teams created based on the responses");
 		return teamMap;
 	}
-
 }
