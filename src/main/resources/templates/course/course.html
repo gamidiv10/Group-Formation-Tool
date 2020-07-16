@@ -16,6 +16,9 @@
 </div>
 <h1 th:text="'Course: ' + ${course.title}">Course: Title Not Found</h1>
 <div th:if="${student}">
+    <div th:if="${notPublished}">
+        <h2>Survey Not Published Yet. Please check again later.</h2>
+    </div>
     <form th:action="@{/submitsurvey}"  method="post">
         <table class="table table-striped" style="margin-left: 100px;" th:each="question : ${questionList}">
             <tr>
@@ -45,7 +48,9 @@
             </tr>
         </table>
         <input id="questions" name="questions" type="hidden" th:value="${questionList}">
-        <button type="submit">Submit</button>
+        <div th:if="${notPublished == false }">
+        <button style="margin-left: 500px;" type="submit">Submit</button>
+        </div>
     </form>
 </div>
 <div th:if="${instructor}">

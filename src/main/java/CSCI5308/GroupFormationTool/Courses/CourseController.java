@@ -46,6 +46,10 @@ public class CourseController {
         IStudentSurveyDB studentSurveyDB = new StudentSurveyDB();
         StudentSurveyHandler studentSurveyHandler = new StudentSurveyHandler(studentSurveyDB);
         questionsList = studentSurveyHandler.retrieveQuestions(courseID);
+        if(questionsList.size() == 0){
+            model.addAttribute("notPublished", true);
+            return "course/course";
+        }
         answer.setQuestions(questionsList);
         model.addAttribute("answer", answer);
         model.addAttribute("questionList", questionsList);

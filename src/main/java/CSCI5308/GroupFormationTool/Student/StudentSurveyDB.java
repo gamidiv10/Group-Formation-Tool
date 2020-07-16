@@ -16,7 +16,6 @@ public class StudentSurveyDB implements IStudentSurveyDB {
     @Override
     public List<Questions> retrieveQuestions(long courseID) {
         List<Questions> questions = new ArrayList<>();
-
         CallStoredProcedure proc = null;
         try {
             proc = new CallStoredProcedure("spGetQuestions(?)");
