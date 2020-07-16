@@ -31,7 +31,7 @@
                 <td><a th:href="@{/course/course(id=${course.id})}" th:text="${course.title}">Title</a></td>
             </tr>
         </table>
-        <div th:if="hasAnError == false">
+        <div th:if="hasAnError == true">
             <h2 style="color: maroon">Failed to submit the responses. Please try again later</h2>
         </div>
     </div>
