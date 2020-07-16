@@ -19,11 +19,14 @@
     <a th:href="@{/course/instructoradmin(id=${course.id})}">Course Administration</a>
     <br/>
     <a th:href="@{/course/questionmanager}">Question Manager</a>
+    
+    <a th:href="@{/survey/createSurveyRules(id=${course.id})}">Set Group rules!</a>
 </div>
 <br>
 <div th:if="${ta}">
     <br/>
     <a th:href="@{/course/instructoradmin(id=${course.id})}">Course Administration</a>
+    <a th:href="@{/survey/createSurveyRules(id=${course.id})}">Set Group rules!</a>
 </div>
 </body>
 </html>
