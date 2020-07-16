@@ -2,7 +2,6 @@ package CSCI5308.GroupFormationTool.Student;
 
 import CSCI5308.GroupFormationTool.Question.Option;
 import CSCI5308.GroupFormationTool.Question.Questions;
-import org.graalvm.compiler.core.common.type.ArithmeticOpTable;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
