@@ -7,8 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SubmitSurvey implements ISubmitSurvey{
+    private Logger log = Logger.getLogger(SubmitSurvey.class.getName());
     ISubmitSurveyDB submitSurveyDB;
     public SubmitSurvey(ISubmitSurveyDB submitSurveyDB){
         this.submitSurveyDB = submitSurveyDB;
@@ -28,6 +31,7 @@ public class SubmitSurvey implements ISubmitSurvey{
                 System.out.println(httpServletRequest.getParameter(parameter));
                 success = submitSurveyDB.submitSurvey(questionID, httpServletRequest.getParameter(parameter), courseID);
                 if(success == false){
+                    log.log(Level.SEVERE, "Response is not saved for question " + questionID);
                     return false;
                 }
             } else {
@@ -36,6 +40,7 @@ public class SubmitSurvey implements ISubmitSurvey{
                     System.out.println(httpServletRequest.getParameter("mcqOne"));
                     success = submitSurveyDB.submitSurvey(questionID, httpServletRequest.getParameter("mcqOne"), courseID);
                     if(success == false){
+                        log.log(Level.SEVERE, "Response is not saved for question " + questionID);
                         return false;
                     }
                 } else {
@@ -47,6 +52,7 @@ public class SubmitSurvey implements ISubmitSurvey{
                         if(httpServletRequest.getParameter(parameter) != null) {
                             submitSurveyDB.submitSurvey(questionID, httpServletRequest.getParameter(parameter), courseID);
                             if(success == false){
+                                log.log(Level.SEVERE, "Response is not saved for question " + questionID);
                                 return false;
                             }
                         }
@@ -55,6 +61,7 @@ public class SubmitSurvey implements ISubmitSurvey{
                 }
             }
         }
+        log.log(Level.INFO, "Successfully saved survey responses");
         return true;
     }
 }

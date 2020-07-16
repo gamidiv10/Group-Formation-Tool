@@ -37,6 +37,7 @@ public class QuestionDB implements IQuestionPersistance {
                 proc.cleanup();
             }
         }
+        log.log(Level.INFO, "Questions loaded fro DB for instructor " + instructorID);
         return questions;
     }
 
@@ -79,6 +80,7 @@ public class QuestionDB implements IQuestionPersistance {
                 proc.cleanup();
             }
         }
+        log.log(Level.INFO, "Deleted Question " + questionID + " from DB");
         return true;
     }
 }

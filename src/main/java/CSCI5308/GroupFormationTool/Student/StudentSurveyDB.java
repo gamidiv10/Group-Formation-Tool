@@ -27,7 +27,6 @@ public class StudentSurveyDB implements IStudentSurveyDB {
                 question.setQuestionType(resultSet.getInt("typeID"));
                 question.setQuestionId(resultSet.getInt("questionID"));
                 questions.add(question);
-                System.out.println(question);
             }
         } catch (SQLException e) {
             log.log(Level.SEVERE,
@@ -37,6 +36,7 @@ public class StudentSurveyDB implements IStudentSurveyDB {
                 proc.cleanup();
             }
         }
+        log.log(Level.INFO, "Retrieved Questions from DB for Course " + courseID);
         return questions;
     }
 
@@ -63,6 +63,7 @@ public class StudentSurveyDB implements IStudentSurveyDB {
                 proc.cleanup();
             }
         }
+        log.log(Level.INFO, "Retrieved Options from DB for question " + questionID);
         return optionList;
     }
 }

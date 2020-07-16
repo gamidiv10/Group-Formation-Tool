@@ -2,9 +2,12 @@ package CSCI5308.GroupFormationTool.AccessControl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import CSCI5308.GroupFormationTool.Question.QuestionDao;
 import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
 import CSCI5308.GroupFormationTool.Security.IUserHistroyRelationship;
@@ -13,6 +16,7 @@ import CSCI5308.GroupFormationTool.Security.PasswordEnforcementPolicy;
 import CSCI5308.GroupFormationTool.Security.UserHistoryRelationship;
 
 public class User {
+    private static final Logger log = Logger.getLogger(User.class.getName());
     private static final String EMAIL_REGEX = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
 
     private long id;
@@ -47,7 +51,6 @@ public class User {
         System.out.println("Min Upper Case count " + minUpperCaseCount);
 
         if ((uniqueInstance.getMinLength() != -1) && (password.length() < uniqueInstance.getMinLength())) {
-
             System.out.println("minlength " + password.length());
             return false;
 
@@ -57,7 +60,6 @@ public class User {
             return false;
         }
         if ((uniqueInstance.getMinUpperCase() != -1) && (minUpperCaseCount > uniqueInstance.getMinUpperCase())) {
-
             System.out.println("upper case " + minUpperCaseCount);
             return false;
         }
@@ -74,20 +76,15 @@ public class User {
         for (int i = 0; i < passwordCount; i++) {
             char[] cmp = compare.toCharArray();
             char[] specialChar = uniqueInstance.getNotAllowedChar().toCharArray();
-
             if (cmp == specialChar) {
-
                 System.out.println("not allowed char " + specialChar.toString());
                 return false;
             }
-
         }
-
         return true;
     }
 
     public boolean insertPasswordtoHistory(IUserHistroyRelationshipPersistence userHistoryDB) {
-
         return userHistory.insertPasswordtoHistory(this, userHistoryDB);
     }
 
@@ -95,16 +92,13 @@ public class User {
         List<String> listOfPrevPwd = new ArrayList<String>();
         listOfPrevPwd = userHistory.getPreviousPasswords(user,
                 SystemConfig.instance().getPasswordEnforcementPolicy().getHistoryConstraint(), userHistoryDB);
-
         for (String cmpPwd : listOfPrevPwd) {
             if (encPwd.matches(this.password, cmpPwd)) {
-
                 System.out.println("inside user isPrevPwd enc " + cmpPwd);
                 System.out.println("inside user isPrevPwd " + this.password);
                 return false;
             }
         }
-
         return true;
     }
 
@@ -200,6 +194,7 @@ public class User {
         if (success && (null != notification)) {
             notification.sendUserLoginCredentials(this, rawPassword);
         }
+        log.log(Level.INFO, "User Created");
         return success;
     }
 
@@ -228,9 +223,9 @@ public class User {
 
     public static boolean isEmailValid(String email) {
         if (isStringNullOrEmpty(email)) {
+            log.log(Level.WARNING, "Email id Empty");
             return false;
         }
-
         Pattern pattern = Pattern.compile(EMAIL_REGEX);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();

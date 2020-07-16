@@ -3,8 +3,11 @@ import CSCI5308.GroupFormationTool.Question.Option;
 import CSCI5308.GroupFormationTool.Question.Questions;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class StudentSurveyHandler implements IStudentSurveyHandler{
+    private Logger log = Logger.getLogger(StudentSurveyHandler.class.getName());
     IStudentSurveyDB studentSurveyDB;
     public StudentSurveyHandler(IStudentSurveyDB studentSurveyDB){
         this.studentSurveyDB = studentSurveyDB;
@@ -23,6 +26,7 @@ public class StudentSurveyHandler implements IStudentSurveyHandler{
                 allQuestions.put(questions.get(i), null);
             }
         }
+        log.log(Level.INFO, "Sending the retrieved questions to the view");
         return allQuestions;
     }
 }

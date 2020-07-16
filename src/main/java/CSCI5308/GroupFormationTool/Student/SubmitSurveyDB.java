@@ -29,6 +29,7 @@ public class SubmitSurveyDB implements ISubmitSurveyDB{
                 proc.cleanup();
             }
         }
+        log.log(Level.INFO, "Saved the response for the question " + questionID);
         return true;
     }
 }

@@ -32,6 +32,7 @@ public class QuestionDao implements IQuestionDB {
                 proc.cleanup();
             }
         }
+        log.log(Level.INFO, "Question saved to the DB");
         return questionIdFromDB;
     }
 
@@ -52,6 +53,7 @@ public class QuestionDao implements IQuestionDB {
                 proc.cleanup();
             }
         }
+        log.log(Level.INFO, "Option is saved for Question " + questionId);
         return true;
     }
 }

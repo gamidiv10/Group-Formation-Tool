@@ -48,6 +48,7 @@ public class SaveQuestion implements ISaveQuestion {
             log.log(Level.SEVERE, "Encountered Exception while saving options for question " + questionId);
             return false;
         }
+        log.log(Level.INFO, "Options are saved for Question " + questionId);
         return true;
     }
 }

@@ -1,9 +1,14 @@
 package CSCI5308.GroupFormationTool.Question;
+import CSCI5308.GroupFormationTool.Student.StudentSurveyHandler;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
-public class HandleInputOptions implements IHandleInputOptions {
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+public class HandleInputOptions implements IHandleInputOptions {
+    private Logger log = Logger.getLogger(HandleInputOptions.class.getName());
     @Override
     public List<Option> handleOptions(HttpServletRequest request) {
         List<Option> options = new ArrayList<>();
@@ -22,6 +27,7 @@ public class HandleInputOptions implements IHandleInputOptions {
             }
             i++;
         }
+        log.log(Level.INFO, "Returning the options to the view");
         return options;
     }
 }

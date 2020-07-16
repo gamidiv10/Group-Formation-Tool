@@ -84,6 +84,7 @@ public class UserDB implements IUserPersistence {
                 proc.cleanup();
             }
         }
+        log.log(Level.INFO, "User " + user.getBannerID() + " created");
         return true;
     }
 
